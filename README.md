@@ -1,2 +1,2 @@
-# Computation-Visualization
-Computation &amp; Visualization Sub-Project for Auto-REBA
+# AutoREBA
+Repository for Project for Auto-REBA

@@ -1,0 +1,3 @@
+response_id,started,finished,"TLXMD","TLXPD","TLXTD","TLXPF","TLXEF","TLXFR","SubjectID","Gender","Age","Recruitment","Order","Condition"
+4,27.11.2022 21:16:51,27.11.2022 21:16:59,14,14,11,13,17,15,"1","Female","23","Student","0","GreenCondition"
+7,27.11.2022 21:17:46,27.11.2022 21:17:53,9,11,13,15,17,15,"1","Female","23","Student","1","BlueCondition"

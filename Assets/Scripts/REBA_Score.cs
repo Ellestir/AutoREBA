@@ -1,4 +1,4 @@
-#define LogAngles
+//#define LogAngles
 
 using System;
 using System.Collections;
@@ -209,6 +209,12 @@ public class REBA_Score : MonoBehaviour
             body["legs_walking"] = 1;
             Debug.Log("Is not Grounded");
         }
+
+        if (LeftForeArmCollider.LeftForeArmCollision)
+        {
+            //Implement code for the reba score calculation
+            Debug.Log("Left Forearm Grounded: ");
+        }
         // TODO: calculation if wrists are twisted (if rotations x = 0 and y = 0, then wrists are not in normal position) 
         // TODO: calculation if upper arms are abducted (if rotations x = 0 and y = 0, then upper arms are not in normal position) 
 
@@ -237,7 +243,7 @@ public class REBA_Score : MonoBehaviour
         Debug.Log("Leg grounded?: " + body["legs_walking"]);
         Debug.Log("Score A: " + result_sore_a);
         Debug.Log("REBA-Score: " + result_sore_c.Item1);
-        
+
     }
 
     public (int, int[]) ComputeScoreA()

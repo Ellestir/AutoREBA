@@ -1,4 +1,4 @@
-#define LogAngles
+//#define LogAngles
 
 using System;
 using System.Collections;
@@ -209,6 +209,18 @@ public class REBA_Score : MonoBehaviour
             body["legs_walking"] = 1;
             Debug.Log("Is not Grounded");
         }
+
+        if (LeftForeArmCollider.LeftForeArmCollision || RightForearmCollider.RightForearmCollison || BackSupport.BackSupported)
+        {
+            Debug.Log("Avatar Supported");
+            arms["leaning"] = 1;
+
+        }
+        else
+        {
+            arms["leaning"] = 0;
+        }
+
         // TODO: calculation if wrists are twisted (if rotations x = 0 and y = 0, then wrists are not in normal position) 
         // TODO: calculation if upper arms are abducted (if rotations x = 0 and y = 0, then upper arms are not in normal position) 
 
@@ -235,9 +247,9 @@ public class REBA_Score : MonoBehaviour
         Debug.Log("Trunk twisted: " + body["trunk_twisted"]);
 #endif
         Debug.Log("Leg grounded?: " + body["legs_walking"]);
-        Debug.Log("Score A: " + result_sore_a);
+        Debug.Log("Score A: " + result_sore_a.Item1);
         Debug.Log("REBA-Score: " + result_sore_c.Item1);
-        
+
     }
 
     public (int, int[]) ComputeScoreA()

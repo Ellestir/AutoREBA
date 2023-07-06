@@ -27,6 +27,7 @@ public class REBA_Score : MonoBehaviour
     public int[,] tableC;
     public Dictionary<string, float> body;
     public Dictionary<string, float> arms;
+    public REBAScoreHUD rebaScoreHUD;
 
     void Start()
     {
@@ -229,6 +230,8 @@ public class REBA_Score : MonoBehaviour
         var result_sore_b = ComputeScoreB();
         var result_sore_c = ComputeScoreC(result_sore_a.Item1, result_sore_b.Item1);
         int reba_score = ScoreCTo5Classes(result_sore_c.Item1);
+        UpdateHUD(reba_score);
+
 #if LogAngles
         // Print the angle
         Debug.Log("Angle between neck and torso (neck position): " + angleNeck);
@@ -249,9 +252,12 @@ public class REBA_Score : MonoBehaviour
         Debug.Log("Leg grounded?: " + body["legs_walking"]);
         Debug.Log("Score A: " + result_sore_a.Item1);
         Debug.Log("REBA-Score: " + result_sore_c.Item1);
-
     }
 
+    private void UpdateHUD(int rebaScore)
+    {
+        rebaScoreHUD.UpdateScore(rebaScore);
+    }
     public (int, int[]) ComputeScoreA()
     {
         int neckScore = 0, trunkScore = 0, legScore = 0, loadScore = 0;

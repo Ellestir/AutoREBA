@@ -158,7 +158,7 @@ public class AutoREBA : MonoBehaviour
         rotCalFootQuadL = rotCalFootL.transform.rotation;
         calibrated = true;
     }
-    // Start is called before the first frame update
+    // start is called before the first frame update
     void Start()
     {
         lowerArmR_calibrated = new Vector3();
@@ -176,7 +176,7 @@ public class AutoREBA : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // update is called once per frame
     void Update()
     {
         Quaternion qUpperArmR = Quaternion.Inverse(rotCalUpperArmQuadR) * upperArmR.transform.rotation;

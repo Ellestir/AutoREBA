@@ -230,7 +230,7 @@ public class REBA_Score : MonoBehaviour
         var result_sore_b = ComputeScoreB();
         var result_sore_c = ComputeScoreC(result_sore_a.Item1, result_sore_b.Item1);
         int reba_score = ScoreCTo5Classes(result_sore_c.Item1);
-        //UpdateHUD(reba_score);
+        UpdateHUD(result_sore_c.Item1);
         Debug.Log("Leg grounded?: " + body["legs_walking"]);
         Debug.Log("Score A: " + result_sore_a.Item1);
         Debug.Log("REBA-Score: " + result_sore_c.Item1);
@@ -257,7 +257,7 @@ public class REBA_Score : MonoBehaviour
 
     private void UpdateHUD(int rebaScore)
     {
-        rebaScoreHUD.UpdateScore(rebaScore);
+        rebaScoreHUD.UpdateScoreText(rebaScore);
     }
     public (int, int[]) ComputeScoreA()
     {

@@ -230,7 +230,10 @@ public class REBA_Score : MonoBehaviour
         var result_sore_b = ComputeScoreB();
         var result_sore_c = ComputeScoreC(result_sore_a.Item1, result_sore_b.Item1);
         int reba_score = ScoreCTo5Classes(result_sore_c.Item1);
-        UpdateHUD(reba_score);
+        //UpdateHUD(reba_score);
+        Debug.Log("Leg grounded?: " + body["legs_walking"]);
+        Debug.Log("Score A: " + result_sore_a.Item1);
+        Debug.Log("REBA-Score: " + result_sore_c.Item1);
 
 #if LogAngles
         // Print the angle
@@ -249,9 +252,7 @@ public class REBA_Score : MonoBehaviour
         Debug.Log("Trunk sided: " + body["trunk_side"]);
         Debug.Log("Trunk twisted: " + body["trunk_twisted"]);
 #endif
-        Debug.Log("Leg grounded?: " + body["legs_walking"]);
-        Debug.Log("Score A: " + result_sore_a.Item1);
-        Debug.Log("REBA-Score: " + result_sore_c.Item1);
+
     }
 
     private void UpdateHUD(int rebaScore)

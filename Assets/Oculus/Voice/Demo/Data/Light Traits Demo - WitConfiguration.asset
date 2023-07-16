@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5a46bda3295124c99b0e6537ac7252, type: 3}
   m_Name: Light Traits Demo - WitConfiguration
   m_EditorClassIdentifier: 
-  _clientAccessToken: 
+  _clientAccessToken: UNAWXMYICVVMMZWJL2RHKEXPXL6J6HRX
   _appInfo:
     name: traits_demo
     id: 378845660994729
@@ -152,16 +152,21 @@ MonoBehaviour:
       - formal
       - fast
       - projected
+    composer:
+      canvases: []
   _configurationId: 4d0b4b78-ad03-4294-8500-3054d1acfeb0
   timeoutMS: 10000
   endpointConfiguration:
-    uriScheme: 
-    authority: 
-    port: 0
-    witApiVersion: 
-    speech: 
-    message: 
-    dictation: 
+    _uriScheme: 
+    _authority: 
+    _port: 0
+    _witApiVersion: 
+    _message: 
+    _speech: 
+    _dictation: 
+    _synthesize: 
+    _event: 
+    _converse: 
   isDemoOnly: 1
   useConduit: 1
   _manifestLocalPath: ConduitManifest-565ac746-634c-4383-80a1-c35291949d85.json

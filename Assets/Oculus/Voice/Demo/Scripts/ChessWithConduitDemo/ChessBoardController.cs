@@ -23,17 +23,6 @@ namespace Oculus.Voice.Demo.ConduitChessDemo
             chessPiece.transform.position = Vector3.Lerp(chessPiece.transform.position, _targetPosition, Time.deltaTime);
         }
 
-        public enum ChessBoardNumber
-        {
-           One,
-           Two,
-           Three,
-           Four,
-           Five,
-           Six,
-           Seven,
-           Eight
-        }
         public enum ChessBoardLetter
         {
             A,
@@ -46,20 +35,21 @@ namespace Oculus.Voice.Demo.ConduitChessDemo
             H
         }
         [MatchIntent("MoveChessPiece")]
-        public void MoveChessPiece(ChessBoardLetter letter,ChessBoardNumber number)
+        public void MoveChessPiece(ChessBoardLetter letter, int number)
         {
             Debug.Log("Move chess piece to " + letter + number);
 
             _targetPosition = new Vector3(letters.transform.GetChild((int)letter).position.x, _targetPosition.y,
-                numbers.transform.GetChild((int)number).position.z);
+                numbers.transform.GetChild(number - 1).position.z);
 
         }
 
-        [OnConduitFailedParameterResolution()]
-        public void OnConduitFailedParameterResolution(string intent , Exception ex)
+        [HandleEntityResolutionFailure]
+        public void OnHandleEntityResolutionFailure(string intent , Exception ex)
         {
             Debug.Log("Failed to resolve parameter for intent " + intent + " with error " + ex.Message);
             errorText.text = ex.Message;
         }
+
     }
 }

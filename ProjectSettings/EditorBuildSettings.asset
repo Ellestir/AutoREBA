@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Oculus/Interaction/Samples/Scenes/Examples/GestureExamples.unity
     guid: 4ee2a082a0e621b49ab01667c66f1599
+  - enabled: 1
+    path: Assets/Scenes/Passtrough.unity
+    guid: 3453ceedd1eaf5e4781926ac33d75c0b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4b47052cf3d90cc4c820d8c393ea1f00, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 2d0e503e40fcc4a4b835efcfbe353805, type: 2}

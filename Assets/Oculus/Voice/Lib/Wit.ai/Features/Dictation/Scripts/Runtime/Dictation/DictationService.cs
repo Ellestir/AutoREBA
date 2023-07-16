@@ -48,7 +48,7 @@ namespace Meta.WitAi.Dictation
         /// </summary>
         public abstract bool MicActive { get; }
 
-        public DictationEvents DictationEvents
+        public virtual DictationEvents DictationEvents
         {
             get => dictationEvents;
             set => dictationEvents = value;

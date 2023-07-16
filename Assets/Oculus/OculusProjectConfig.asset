@@ -33,5 +33,5 @@ MonoBehaviour:
   requiresSystemKeyboard: 0
   experimentalFeaturesEnabled: 0
   insightPassthroughEnabled: 0
-  _insightPassthroughSupport: 2
+  _insightPassthroughSupport: 1
   systemSplashScreen: {fileID: 0}

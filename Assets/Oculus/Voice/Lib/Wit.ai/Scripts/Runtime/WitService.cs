@@ -9,11 +9,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-#if DEBUG_SAMPLE
-using System.IO;
-#endif
-using System.Linq;
-using System.Net;
 using Meta.Voice;
 using Meta.WitAi.Configuration;
 using Meta.WitAi.Data;
@@ -27,7 +22,7 @@ using UnityEngine.SceneManagement;
 
 namespace Meta.WitAi
 {
-    public class WitService : MonoBehaviour, IVoiceEventProvider, ITelemetryEventsProvider, IWitRuntimeConfigProvider, IWitConfigurationProvider
+    public class WitService : MonoBehaviour, IVoiceEventProvider, IVoiceActivationHandler, ITelemetryEventsProvider, IWitRuntimeConfigProvider, IWitConfigurationProvider
     {
         private float _lastMinVolumeLevelTime;
         private WitRequest _recordingRequest;
@@ -103,7 +98,7 @@ namespace Meta.WitAi
         }
 
         public WitRuntimeConfiguration RuntimeConfiguration =>
-            _runtimeConfigProvider.RuntimeConfiguration;
+            _runtimeConfigProvider?.RuntimeConfiguration;
 
         public VoiceEvents VoiceEvents => _voiceEventProvider.VoiceEvents;
 
@@ -335,6 +330,9 @@ namespace Meta.WitAi
                 return;
             }
 
+            // Sound wake active
+            _isSoundWakeActive = false;
+
             // Execute request
             if (ShouldSendMicData)
             {
@@ -354,7 +352,10 @@ namespace Meta.WitAi
 
             // Set request & events
             _recordingRequest = newRequest;
-            _recordingRequest.Events.OnComplete.AddListener(HandleResult);
+            _recordingRequest.Events.OnCancel.AddListener(HandleResult);
+            _recordingRequest.Events.OnFailed.AddListener(HandleResult);
+            _recordingRequest.Events.OnSuccess.AddListener(HandleResult);
+            _recordingRequest.Events.OnComplete.AddListener(HandleComplete);
 
             // Call service events
             VoiceEvents.OnRequestOptionSetup?.Invoke(_recordingRequest.Options);
@@ -374,7 +375,9 @@ namespace Meta.WitAi
             _recordingRequest.Events.OnPartialTranscription.AddListener(OnPartialTranscription);
             _recordingRequest.Events.OnFullTranscription.AddListener(OnFullTranscription);
             _recordingRequest.Events.OnPartialResponse.AddListener(HandlePartialResult);
+            #pragma warning disable CS0618
             VoiceEvents.OnRequestCreated?.Invoke(_recordingRequest);
+            VoiceEvents.OnSend?.Invoke(_recordingRequest);
             _timeLimitCoroutine = StartCoroutine(DeactivateDueToTimeLimit());
             _recordingRequest.Send();
         }
@@ -382,22 +385,39 @@ namespace Meta.WitAi
 
         #region TEXT REQUESTS
         /// <summary>
-        /// Send text data to Wit.ai for NLU processing
+        /// Activate the microphone and send data to Wit for NLU processing.
         /// </summary>
-        /// <param name="text">Text to be used for NLU processing</param>
-        /// <param name="requestOptions">Additional options such as dynamic entities</param>
-        /// <param name="requestEvents">Events specific to the request's lifecycle</param>
-        public VoiceServiceRequest GetTextRequest(WitRequestOptions requestOptions, VoiceServiceRequestEvents requestEvents)
+        public void Activate(string text) => Activate(text, new WitRequestOptions());
+        public void Activate(string text, WitRequestOptions requestOptions) => Activate(text, requestOptions, new VoiceServiceRequestEvents());
+        public VoiceServiceRequest Activate(string text, WitRequestOptions requestOptions, VoiceServiceRequestEvents requestEvents)
         {
-            // Call an error without a valid configuration
+            // Not valid
             if (!IsConfigurationValid())
             {
                 VLog.E($"Your AppVoiceExperience \"{gameObject.name}\" does not have a wit config assigned. Understanding Viewer activations will not trigger in game events..");
                 return null;
             }
 
-            // Return request
-            return Configuration.CreateMessageRequest(requestOptions, requestEvents, _dynamicEntityProviders);
+            // Handle option setup
+            VoiceEvents.OnRequestOptionSetup?.Invoke(requestOptions);
+
+            // Generate request
+            VoiceServiceRequest request = Configuration.CreateMessageRequest(requestOptions, requestEvents, _dynamicEntityProviders);
+            request.Events.OnCancel.AddListener(HandleResult);
+            request.Events.OnFailed.AddListener(HandleResult);
+            request.Events.OnSuccess.AddListener(HandleResult);
+            request.Events.OnComplete.AddListener(HandleComplete);
+            _transmitRequests.Add(request);
+
+            // Call on create delegates
+            VoiceEvents?.OnRequestInitialized?.Invoke(request);
+            #pragma warning disable CS0618
+            VoiceEvents?.OnRequestCreated?.Invoke(null);
+            VoiceEvents?.OnSend?.Invoke(request);
+
+            // Send & return
+            request.Send(text);
+            return request;
         }
         #endregion TEXT REQUESTS
 
@@ -477,9 +497,6 @@ namespace Meta.WitAi
                     (buffer, offset, length) =>
                     {
                         _recordingRequest.Write(buffer, offset, length);
-                        #if DEBUG_SAMPLE
-                        sampleFile?.Write(buffer, offset, length);
-                        #endif
                     },
                     (buffer, offset, length) => VoiceEvents?.OnByteDataSent?.Invoke(buffer, offset, length),
                     (buffer, offset, length) =>
@@ -514,7 +531,6 @@ namespace Meta.WitAi
             else if (_isSoundWakeActive && levelMax > RuntimeConfiguration.soundWakeThreshold)
             {
                 VoiceEvents?.OnMinimumWakeThresholdHit?.Invoke();
-                _isSoundWakeActive = false;
                 SendRecordingRequest();
                 _lastSampleMarker.Offset(RuntimeConfiguration.sampleLengthInMs * -2);
             }
@@ -579,6 +595,18 @@ namespace Meta.WitAi
         {
             DeactivateRequest(AudioBuffer.Instance.IsRecording(this) ? VoiceEvents?.OnStoppedListeningDueToDeactivation : null, false);
         }
+
+        /// <summary>
+        /// Stop listening and cancel a specific report
+        /// </summary>
+        public void DeactivateAndAbortRequest(VoiceServiceRequest request)
+        {
+            if (request != null)
+            {
+                VoiceEvents?.OnAborting?.Invoke();
+                request.Cancel();
+            }
+        }
         /// <summary>
         /// Stop listening and abort any requests that may be active without waiting for a response.
         /// </summary>
@@ -598,6 +626,12 @@ namespace Meta.WitAi
         }
         private void DeactivateRequest(UnityEvent onComplete = null, bool abort = false)
         {
+            // Aborting
+            if (abort)
+            {
+                VoiceEvents?.OnAborting?.Invoke();
+            }
+
             // Stop timeout coroutine
             if (null != _timeLimitCoroutine)
             {
@@ -720,12 +754,18 @@ namespace Meta.WitAi
                 VoiceEvents?.OnError?.Invoke("HTTP Error " + request.Results.StatusCode, request.Results.Message);
                 VoiceEvents?.OnRequestCompleted?.Invoke();
             }
-
             // Remove from transmit list, missing if aborted
             if ( _transmitRequests.Contains(request))
             {
                 _transmitRequests.Remove(request);
             }
+        }
+        /// <summary>
+        /// Handle request completion
+        /// </summary>
+        private void HandleComplete(VoiceServiceRequest request)
+        {
+            VoiceEvents?.OnComplete?.Invoke(request);
         }
         #endregion
     }

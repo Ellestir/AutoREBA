@@ -185,7 +185,7 @@ namespace Meta.WitAi
         ///
         /// NOTE: This response comes back on a different thread.
         /// </summary>
-        [Obsolete("Deprecated for Events.OnFinalTranscription")]
+        [Obsolete("Deprecated for Events.OnFullTranscription")]
         public event Action<string> onFullTranscription;
 
         /// <summary>
@@ -462,7 +462,7 @@ namespace Meta.WitAi
 
             // No longer active
             StatusCode = WitConstants.ERROR_CODE_TIMEOUT;
-            StatusDescription = $"Request timed out after {(DateTime.UtcNow - _requestStartTime):0.00}seconds";
+            StatusDescription = $"Request timed out after {(DateTime.UtcNow - _requestStartTime).Seconds:0.00} seconds";
 
             // Clean up the current request if it is still going
             if (null != _request)
@@ -474,7 +474,7 @@ namespace Meta.WitAi
             CloseActiveStream();
 
             // Complete
-            HandleNlpResponse(null, StatusDescription);
+            MainThreadCallback(() => HandleNlpResponse(null, StatusDescription));
         }
 
         // Write stream
@@ -734,15 +734,20 @@ namespace Meta.WitAi
 
             MainThreadCallback(() =>
             {
-                // Call final transcription
-                if (!string.IsNullOrEmpty(Transcription) && !_lastResponseData.GetIsFinal())
-                {
-                    onFullTranscription?.Invoke(Transcription);
-                }
-                // Send partial if not previously sent
+                // Send partial data if not previously sent
                 if (!_lastResponseData.HasResponse())
                 {
                     ResponseData = _lastResponseData;
+                }
+
+                // Apply error if needed
+                if (null != _lastResponseData)
+                {
+                    var error = _lastResponseData["error"];
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        StatusDescription += $"\n{error}";
+                    }
                 }
 
                 // Call completion delegate
@@ -844,11 +849,7 @@ namespace Meta.WitAi
                 // Set transcription
                 if (!string.IsNullOrEmpty(transcription) && (!hasResponse || isFinal))
                 {
-                    Transcription = transcription;
-                    if (isFinal)
-                    {
-                        onFullTranscription?.Invoke(transcription);
-                    }
+                    ApplyTranscription(transcription, isFinal);
                 }
 
                 // Set response
@@ -861,7 +862,14 @@ namespace Meta.WitAi
         // On text change callback
         protected override void OnTranscriptionChanged()
         {
-            onPartialTranscription?.Invoke(Results?.Transcription);
+            if (!IsFinalTranscription)
+            {
+                onPartialTranscription?.Invoke(Transcription);
+            }
+            else
+            {
+                onFullTranscription?.Invoke(Transcription);
+            }
             base.OnTranscriptionChanged();
         }
         // On response data change callback
@@ -935,6 +943,20 @@ namespace Meta.WitAi
         protected override void OnComplete()
         {
             base.OnComplete();
+
+            // Close write stream if still existing
+            if (null != _writeStream)
+            {
+                CloseActiveStream();
+            }
+            // Abort request if still existing
+            if (null != _request)
+            {
+                _request.Abort();
+                _request = null;
+            }
+
+            // Finalize response
             onResponse?.Invoke(this);
             onResponse = null;
         }

@@ -24,7 +24,7 @@ namespace Meta.WitAi.Inspectors
         {
             base.OnInspectorGUI();
 
-            if (Application.isPlaying && target is VoiceService)
+            if (Application.isPlaying)
             {
                 wit = (VoiceService) target;
 

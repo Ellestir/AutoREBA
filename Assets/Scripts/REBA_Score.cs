@@ -1,4 +1,4 @@
-//#define LogAngles
+#define LogAngles
 
 using System;
 using System.Collections;
@@ -264,7 +264,7 @@ public class REBA_Score : MonoBehaviour
         int neckScore = 0, trunkScore = 0, legScore = 0, loadScore = 0;
 
         // Neck position
-        if (10 <= body["neck_angle"] && body["neck_angle"] <= 20)
+        if (body["neck_angle"] <= 20)
             neckScore += 1;
         else
             neckScore += 2;
@@ -305,9 +305,20 @@ public class REBA_Score : MonoBehaviour
         if (neckScore <= 0 || trunkScore <= 0 || legScore <= 0) { 
             throw new InvalidOperationException("Neck score, trunk score and leg score must all be greater than zero");
         }
-        else if(neckScore > 3 || trunkScore > 5 || legScore > 4)
+        if(neckScore > 3)
         {
-            neckScore =  3; trunkScore = 5; legScore = 4;
+            Debug.Log("Reset neck Score from: " + neckScore);
+            neckScore =  3;
+        }
+        if(trunkScore > 5)
+        {
+            Debug.Log("Reset trunk Score from: " + trunkScore);
+            trunkScore = 5;
+        }
+        if(legScore > 4)
+        {
+            Debug.Log("Reset leg Score from: " + legScore);
+            legScore = 4;
         }
         int scoreA = tableA[(neckScore - 1), (trunkScore - 1), (legScore - 1)];
         return (scoreA, new int[] { neckScore, trunkScore, legScore });

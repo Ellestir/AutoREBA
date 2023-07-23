@@ -201,8 +201,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   usePerEyeCameras: 0
   useFixedUpdateForTracking: 0
   disableEyeAnchorCameras: 0
@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e933e81d3c20c74ea6fdc708a67e3a5, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   useRecommendedMSAALevel: 1
   _monoscopic: 0
   enableDynamicResolution: 0
@@ -261,31 +261,6 @@ MonoBehaviour:
   virtualGreenScreenDepthTolerance: 0.2
   mrcActivationMode: 0
   isInsightPassthroughEnabled: 0
-  expandFeatureFidelitySystemPropertySheet: 0
-  featureFidelitySystemActivated: 0
-  handTrackingFeatureFidelityGroup:
-    targetFeatureEnabled: -1
-    targetFeatureFidelity: -1
-  keyboardTrackingFeatureFidelityGroup:
-    targetFeatureEnabled: -1
-    targetFeatureFidelity: -1
-  eyeTrackingFeatureFidelityGroup:
-    targetFeatureEnabled: -1
-    targetFeatureFidelity: -1
-  faceTrackingFeatureFidelityGroup:
-    targetFeatureEnabled: -1
-    targetFeatureFidelity: -1
-  bodyTrackingFeatureFidelityGroup:
-    targetFeatureEnabled: -1
-    targetFeatureFidelity: -1
-  passthroughFeatureFidelityGroup:
-    targetFeatureEnabled: -1
-    targetFeatureFidelity: -1
-  gaseBasedFoveatedRenderingFeatureFidelityGroup:
-    targetFeatureEnabled: -1
-    targetFeatureFidelity: -1
-  handTrackingFeatureEnabled: 0
-  handTrackingFeatureFidelity: 0
   requestBodyTrackingPermissionOnStartup: 0
   requestFaceTrackingPermissionOnStartup: 0
   requestEyeTrackingPermissionOnStartup: 0
@@ -308,8 +283,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5178bc8574ce2bf4388e787a2e2af326, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   opMode: 1
   resetHmdPoseOnRelease: 1
   resetHmdPoseByMiddleMouseButton: 1

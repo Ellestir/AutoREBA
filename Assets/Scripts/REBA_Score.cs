@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class REBA_Score : MonoBehaviour
 {
+    public int Score;
     public Transform neck;
     public Transform torso;
     public Transform upperRightLeg;
@@ -88,11 +89,12 @@ public class REBA_Score : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
         // REBA description: https://hci-studies.org/methods-and-measures/downloads/REBA-Guide-v-5.0.pdf
-
-        // Get the rotation quaternion between two objects for Table A
+        //Switched objects to Spine 1 and Spine 4, because the align more
+        /* Get the rotation quaternion between two objects for Table A
         Quaternion qNeckTorso = Quaternion.Inverse(neck.rotation) * torso.rotation;
+        
         Quaternion qHipTorso = Quaternion.Inverse(hip.rotation) * torso.rotation;
         Quaternion qUpperRightLegLowerRightLeg = Quaternion.Inverse(upperRightLeg.rotation) * lowerRightLeg.rotation;
         Quaternion qUpperLeftLegLowerLeftLeg = Quaternion.Inverse(upperLeftLeg.rotation) * lowerLeftLeg.rotation;
@@ -102,53 +104,63 @@ public class REBA_Score : MonoBehaviour
         Quaternion qLowerLeftArmUpperLeftArm = Quaternion.Inverse(lowerLeftArm.rotation) * upperLeftArm.rotation;
         Quaternion qRightHandLowerRightArm = Quaternion.Inverse(rightHand.rotation) * lowerRightArm.rotation;
         Quaternion qLeftHandLowerLeftArm = Quaternion.Inverse(leftHand.rotation) * lowerLeftArm.rotation;
+        //un-used
+        float angleRightLeg = Quaternion.Angle(qUpperRightLegLowerRightLeg, Quaternion.identity);
+        float angleLeftLeg = Quaternion.Angle(qUpperLeftLegLowerLeftLeg, Quaternion.identity);
+        float angleNeck = Quaternion.Angle(qNeckTorso, Quaternion.identity);
+        float angleTrunk = Quaternion.Angle(qHipTorso, Quaternion.identity);
+        float angleUpperRightArm = Quaternion.Angle(qUpperRightArmTorso, Quaternion.identity);
+        float angleUpperLeftArm = Quaternion.Angle(qUpperLeftArmTorso, Quaternion.identity);
+        */
 
         // Calculate the angles for table A
 
         // angle of neck
-        float angleNeck = Quaternion.Angle(qNeckTorso, Quaternion.identity);
-        body["neck_angle"] = angleNeck;
+
+        body["neck_angle"] = neck.localRotation.eulerAngles.x;
         // if neck is side bending
         body["neck_side"] = neck.localRotation.eulerAngles.z;
         // if neck is twisted
         body["neck_twisted"] = neck.localRotation.eulerAngles.y;
 
         // angle of trunk
-        float angleTrunk = Quaternion.Angle(qHipTorso, Quaternion.identity);
-        body["trunk_angle"] = angleTrunk;
+        body["trunk_angle"] = hip.localRotation.eulerAngles.x;
         // if trunk is side bending
-        body["trunk_side"] = torso.localRotation.eulerAngles.z;
+        body["trunk_side"] = hip.localRotation.eulerAngles.z;
         // if trunk is twisted
-        body["trunk_twisted"]  = torso.localRotation.eulerAngles.y;
+        body["trunk_twisted"]  = hip.localRotation.eulerAngles.y;
 
         // angle of legs
-        float angleRightLeg = Quaternion.Angle(qUpperRightLegLowerRightLeg, Quaternion.identity);
-        float angleLeftLeg = Quaternion.Angle(qUpperLeftLegLowerLeftLeg, Quaternion.identity);
-        if(Mathf.Abs(angleRightLeg) > Mathf.Abs(angleLeftLeg)) {
-             body["legs_angle"] = angleRightLeg;
+        if(Mathf.Abs(lowerRightLeg.localRotation.x) > Mathf.Abs(lowerLeftLeg.localRotation.x)) {
+             body["legs_angle"] = lowerRightLeg.localRotation.x;
         }
         else {
-             body["legs_angle"] = angleLeftLeg;
-        }  
-
+             body["legs_angle"] = lowerLeftLeg.localRotation.x;
+        }
+        if (GroundCheckLeft.LeftFootGrounded == true && GroundCheckRight.RightFootGrounded == true)
+        {
+            body["legs_walking"] = 0;
+            Debug.Log("Is Grounded");
+        }
+        else
+        {
+            body["legs_walking"] = 1;
+            Debug.Log("Is not Grounded");
+        }
         // Calculate the angles for table B
 
         // angle of upper arm
-        float angleUpperRightArm = Quaternion.Angle(qUpperRightArmTorso, Quaternion.identity);
-        float angleUpperLeftArm = Quaternion.Angle(qUpperLeftArmTorso, Quaternion.identity);
-        if(Mathf.Abs(angleUpperRightArm) > Mathf.Abs(angleUpperLeftArm)) {
-             arms["upper_arm_angle"] = angleUpperRightArm;
+        if(Mathf.Abs(upperRightArm.localRotation.y) > Mathf.Abs(upperLeftArm.localRotation.y)) {
+             arms["upper_arm_angle"] = upperRightArm.localRotation.y;
         }
         else {
-             arms["upper_arm_angle"] = angleUpperLeftArm;
+             arms["upper_arm_angle"] = upperLeftArm.localRotation.y;
         }
         // if upper arm is abducted
-        float upperRightArmAbducted = upperRightArm.localRotation.eulerAngles.y;
-        float upperLeftArmAbducted = upperLeftArm.localRotation.eulerAngles.y;
-        if(upperRightArmAbducted > upperLeftArmAbducted) {
-            arms["arm_abducted"] = upperRightArmAbducted;
+        if(upperRightArm.localRotation.eulerAngles.y > upperLeftArm.localRotation.eulerAngles.y) {
+            arms["arm_abducted"] = upperRightArm.localRotation.eulerAngles.y;
         } else {
-            arms["arm_abducted"] = upperLeftArmAbducted;
+            arms["arm_abducted"] = upperLeftArm.localRotation.eulerAngles.y;
         }
         // if shoulder is raised
         float rightShoulderRaised = rightShoulder.localPosition.x;
@@ -162,9 +174,9 @@ public class REBA_Score : MonoBehaviour
         // TODO: If arm is supported or person is leaning: -1
 
         // angle of lower arm
-        float angleLowerRightArm = Quaternion.Angle(qLowerRightArmUpperRightArm, Quaternion.identity);
-        float angleLowerLeftArm = Quaternion.Angle(qLowerLeftArmUpperLeftArm, Quaternion.identity);
-         if(Mathf.Abs(angleLowerRightArm) > Mathf.Abs(angleLowerLeftArm)) {
+        float angleLowerRightArm = lowerRightArm.localRotation.x;
+        float angleLowerLeftArm = lowerLeftArm.localRotation.x;
+        if (Mathf.Abs(angleLowerRightArm) > Mathf.Abs(angleLowerLeftArm)) {
              arms["lower_arm_angle"] = angleLowerRightArm;
         }
         else {
@@ -172,9 +184,9 @@ public class REBA_Score : MonoBehaviour
         }
 
         // angle of wrist
-        float angleRightWrist = Quaternion.Angle(qRightHandLowerRightArm, Quaternion.identity);
-        float angleLeftWrist = Quaternion.Angle(qLeftHandLowerLeftArm, Quaternion.identity);
-        if(Mathf.Abs(angleRightWrist) > Mathf.Abs(angleLeftWrist)) {
+        float angleRightWrist = rightHand.localRotation.eulerAngles.x;
+        float angleLeftWrist = leftHand.localRotation.eulerAngles.x;
+        if (Mathf.Abs(angleRightWrist) > Mathf.Abs(angleLeftWrist)) {
              arms["wrist_angle"] = angleRightWrist;
         }
         else {
@@ -200,17 +212,6 @@ public class REBA_Score : MonoBehaviour
              arms["wrist_bent"] = leftWristBent;
         }
 
-        if (GroundCheckLeft.LeftFootGrounded == true && GroundCheckRight.RightFootGrounded == true)
-        {
-            body["legs_walking"] = 0;
-            Debug.Log("Is Grounded");
-        }
-        else
-        {
-            body["legs_walking"] = 1;
-            Debug.Log("Is not Grounded");
-        }
-
         if (LeftForeArmCollider.LeftForeArmCollision || RightForearmCollider.RightForearmCollison || BackSupport.BackSupported)
         {
             Debug.Log("Avatar Supported");
@@ -230,6 +231,7 @@ public class REBA_Score : MonoBehaviour
         var result_sore_b = ComputeScoreB();
         var result_sore_c = ComputeScoreC(result_sore_a.Item1, result_sore_b.Item1);
         int reba_score = ScoreCTo5Classes(result_sore_c.Item1);
+        Score = result_sore_c.Item1;
         UpdateHUD(result_sore_c.Item1);
         Debug.Log("Leg grounded?: " + body["legs_walking"]);
         Debug.Log("Score A: " + result_sore_a.Item1);
@@ -237,16 +239,16 @@ public class REBA_Score : MonoBehaviour
 
 #if LogAngles
         // Print the angle
-        Debug.Log("Angle between neck and torso (neck position): " + angleNeck);
-        Debug.Log("Angle between hip and torso (trunk position): " + angleTrunk);
-        Debug.Log("Angle between upper right arm and torso (upper right arm position): " + angleUpperRightArm);
-        Debug.Log("Angle between upper left arm and torso (upper left arm position): " + angleUpperLeftArm);
+        Debug.Log("Angle between neck and torso (neck position): " + body["neck_angle"]); //checked
+        Debug.Log("Angle between hip and torso (trunk position): " + body["trunk_angle"]); //checked
+        //Debug.Log("Angle between upper right arm and torso (upper right arm position): " + angleUpperRightArm);
+        //Debug.Log("Angle between upper left arm and torso (upper left arm position): " + angleUpperLeftArm);
         Debug.Log("Angle between lower right arm and upper right arm (lower right arm position): " + angleLowerRightArm);
         Debug.Log("Angle between lower left arm and upper left arm (lower left arm position): " + angleLowerLeftArm);
         Debug.Log("Angle between right hand and lower right arm (right wrist position): " + angleRightWrist);
         Debug.Log("Angle between left hand and lower left arm (left wrist position): " + angleLeftWrist);
-        Debug.Log("Angle between right upper leg and right lower leg (right leg position): " + angleRightLeg);
-        Debug.Log("Angle between left upper leg and left lower leg (left leg position): " + angleLeftLeg);
+        //Debug.Log("Angle between right upper leg and right lower leg (right leg position): " + angleRightLeg);
+        //Debug.Log("Angle between left upper leg and left lower leg (left leg position): " + angleLeftLeg);
         Debug.Log("Neck sided: " + body["neck_side"]);
         Debug.Log("Neck twisted: " + body["neck_twisted"]);
         Debug.Log("Trunk sided: " + body["trunk_side"]);
@@ -274,18 +276,18 @@ public class REBA_Score : MonoBehaviour
         neckScore += body["neck_twisted"] != 0 ? 1 : 0;
 
         // Trunk position
-        if (0 <= body["trunk_angle"] && body["trunk_angle"] <= 1)
+        if ((0 <= body["trunk_angle"] && body["trunk_angle"] <= 1) || (360 <= body["trunk_angle"] && body["trunk_angle"] >= 359))
             trunkScore += 1;
-        else if (body["trunk_angle"] <= 20)
+        else if ((body["trunk_angle"] > 1 && body["trunk_angle"] <= 20) || (body["trunk_angle"] < 359 && body["trunk_angle"] >= 339))
             trunkScore += 2;
-        else if (20 <= body["trunk_angle"] && body["trunk_angle"] <= 60)
+        else if ((20 < body["trunk_angle"] && body["trunk_angle"] <= 60) || (body["trunk_angle"] < 339 && body["trunk_angle"] >= 300))
             trunkScore += 3;
-        else if (body["trunk_angle"] > 60)
+        else if ((body["trunk_angle"] > 60 && body["trunk_angle"] < 180) || (body["trunk_angle"] < 300 && body["trunk_angle"] > 180))
             trunkScore += 4;
 
         // Trunk adjust
-        trunkScore += body["trunk_side"] != 180 ? 1 : 0;
-        trunkScore += body["trunk_twisted"] != 180 ? 1 : 0;
+        trunkScore += body["trunk_side"] != 0 ? 1 : 0;
+        trunkScore += body["trunk_twisted"] != 0 ? 1 : 0;
 
         // Legs position
         legScore += body["legs_walking"] == 1 ? 2 : 1;

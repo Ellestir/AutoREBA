@@ -25,7 +25,7 @@ public class VisualFeedback : MonoBehaviour
     [HideInInspector] public bool RebaScoreNumberEnabled = true;  // Add a variable to enable or disable the reba number
     [HideInInspector] public bool SamFaceEnabled = true;  // Add a variable to enable or disable the SVG images
 
-    [HideInInspector] public bool ImageEnabled = true;  // Add a variable to enable or disable the SVG images
+    [HideInInspector] public bool ImageEnabled = false;  // Add a variable to enable or disable the SVG images
 
 
     void Start()

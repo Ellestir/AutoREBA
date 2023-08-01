@@ -3,7 +3,17 @@ guid: 33cae454200a36746a77a6471a6fd41c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rebaBar: {instanceID: 0}
+  - extraImage: {instanceID: 0}
+  - rebaImage: {instanceID: 0}
+  - level1Sprite: {fileID: 3286163911610860551, guid: ae5b7836f8a2bb44c871556fa160b4e8, type: 3}
+  - level2Sprite: {fileID: 3286163911610860551, guid: eb25e009f24644643a69b50d71300c0b, type: 3}
+  - level3Sprite: {fileID: 3286163911610860551, guid: 4b83d364c8de5a54a9ad683f94c4b1d7, type: 3}
+  - level4Sprite: {fileID: 3286163911610860551, guid: 23d4183bca500c5458162b6c9a0b2773, type: 3}
+  - level5Sprite: {fileID: 3286163911610860551, guid: 8903357217c5ec449b83f379fe92c48b, type: 3}
+  - rebaScoreText: {instanceID: 0}
+  - rebaScoreNumber: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

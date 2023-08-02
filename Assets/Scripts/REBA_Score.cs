@@ -172,7 +172,6 @@ public class REBA_Score : MonoBehaviour
         else {
              arms["shoulder_raised"] = 0;
         }
-        // TODO: If arm is supported or person is leaning: -1
 
         // angle of lower arm
         float angleLowerRightArm = (lowerRightArm.localRotation.eulerAngles.x);

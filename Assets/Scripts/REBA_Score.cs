@@ -6,7 +6,7 @@ using System.IO;
 public class REBA_Score : MonoBehaviour
 {
     public bool LogAnglesConsole;
-    public bool LogAnlesCSV;
+    public bool LogAnglesCSV;
     public int Score;
     public Transform neck;
     public Transform torso;
@@ -278,9 +278,9 @@ public class REBA_Score : MonoBehaviour
             Debug.Log("Right leg position: " + lowerLeftLeg.localRotation.x);
             Debug.Log("Left leg position): " + lowerRightLeg.localRotation.x);
         }
-        if (LogAnlesCSV)
+        if (LogAnglesCSV)
         {
-
+            LogToCSV("Hello");
         }
 
 

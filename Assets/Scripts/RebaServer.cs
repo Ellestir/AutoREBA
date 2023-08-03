@@ -9,7 +9,7 @@ public class RebaServer : MonoBehaviour
     public int port = 8888;
     public int bufferSize = 1024;
 
-    private UdpClient udpClient;
+    private UdpClient udpServer;
     private IPEndPoint endPoint;
 
     void Start()

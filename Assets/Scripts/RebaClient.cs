@@ -14,7 +14,7 @@ public class RebaClient : MonoBehaviour
     private IPEndPoint serverEndPoint;
 
     public VisualFeedback visualFeedback;
-    public MusicCube musicCube;
+    //public MusicCube musicCube;
 
 
     void Start()
@@ -32,14 +32,16 @@ public class RebaClient : MonoBehaviour
         try
         {
             byte[] receivedBytes = udpClient.EndReceive(ar, ref serverEndPoint);
-            rebaScore = Encoding.UTF8.GetString(receivedBytes);
+            String receivedData = Encoding.UTF8.GetString(receivedBytes);
 
             int rebaScore;
+
+
             if (int.TryParse(receivedData, out rebaScore))
             {
                 Debug.Log("Received REBA Score: " + rebaScore);
                 visualFeedback.rebaScore = rebaScore;
-                musicCube.REBA = rebaScore;
+                //musicCube.REBA = rebaScore;
             } 
             else
             {

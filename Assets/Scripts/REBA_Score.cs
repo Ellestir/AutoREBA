@@ -471,7 +471,7 @@ public class REBA_Score : MonoBehaviour
     }
     public void LogToCSV(int data)
     {
-        string filePath = Application.dataPath + "/LogFile.csv";
+        string filePath = Application.dataPath + "/../Logs/AutoREBALogFile.csv";
 
         if (!File.Exists(filePath))
         {

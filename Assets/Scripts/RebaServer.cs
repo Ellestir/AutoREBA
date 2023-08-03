@@ -12,22 +12,22 @@ public class RebaServer : MonoBehaviour
     private UdpClient udpServer;
     private IPEndPoint endPoint;
     private string previousRebaScore;
-    private AutoReba autoReba; 
+    private AutoREBA autoReba; 
 
     void Start()
     {
         endPoint = new IPEndPoint(IPAddress.Any, port);
         udpServer = new UdpClient(endPoint);
 
-        previousRebaScore = autoReba.rebaScore;
+        previousRebaScore = autoReba.score;
 
         Debug.Log("Server started on port: " + port);   
     }
 
     void Update() {
-        if (autoReba != null && previousRebaScore != autoReba.rebaScore)
+        if (autoReba != null && previousRebaScore != autoReba.score)
         {
-            previousRebaScore = autoReba.rebaScore;
+            previousRebaScore = autoReba.score;
 
             // Send the updated REBA Score to the client
             SendRebaScoreToClient(previousRebaScore);

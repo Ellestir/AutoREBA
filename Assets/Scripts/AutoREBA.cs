@@ -17,7 +17,7 @@ public class AutoREBA : MonoBehaviour
     public TextMeshProUGUI tmp_userScore;
     public Button Btn_show_score;
     public Button btn_hide_score;
-    private String score;
+    public String score;
 
     public GameObject collarR;
     public GameObject upperArmR;

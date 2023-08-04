@@ -6,25 +6,25 @@ using UnityEngine;
 
 public class RebaClient : MonoBehaviour
 {
-    public string serverIP = "192.168.2.92"; 
-    public int serverPort = 8888;
+    public int port = 8888;
     public int bufferSize = 1024;
 
-    private UdpClient udpClient;
     private IPEndPoint serverEndPoint;
+    private IPEndPoint endPoint;
+    private UdpClient udpClient;
 
-    public VisualFeedback visualFeedback;
-    //public MusicCube musicCube;
+    public static int RebaScore;
 
 
     void Start()
     {
-        udpClient = new UdpClient();
-        serverEndPoint = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
+        endPoint = new IPEndPoint(IPAddress.Any, port);
+        udpClient = new UdpClient(endPoint);
+        
 
         udpClient.BeginReceive(ReceiveDataCallback, null);
 
-        Debug.Log("Client connected to server: " + serverIP + ":" + serverPort);
+        Debug.Log("Server started on port: " + port);
     }
 
     private void ReceiveDataCallback(IAsyncResult ar)
@@ -40,8 +40,7 @@ public class RebaClient : MonoBehaviour
             if (int.TryParse(receivedData, out rebaScore))
             {
                 Debug.Log("Received REBA Score: " + rebaScore);
-                visualFeedback.rebaScore = rebaScore;
-                //musicCube.REBA = rebaScore;
+                RebaScore = rebaScore;
             } 
             else
             {

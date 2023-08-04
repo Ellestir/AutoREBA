@@ -46,7 +46,7 @@ public class AnchorUIManager : MonoBehaviour
 
     private Anchor _selectedAnchor;
 
-    private AnchorMode _mode = AnchorMode.Create;
+    private AnchorMode _mode = AnchorMode.Select;
 
     [SerializeField, FormerlySerializedAs("buttonList_")]
     private List<Button> _buttonList;
@@ -92,14 +92,17 @@ public class AnchorUIManager : MonoBehaviour
     {
         _raycastOrigin = _trackedDevice;
 
+        // Start in select mode
+        _mode = AnchorMode.Select;
+        StartSelectMode();
+
+        _menuIndex = 0;
         _selectedButton = _buttonList[0];
-        _buttonList[0].OnSelect(null);
+        _selectedButton.OnSelect(null);
 
         _lineRenderer.startWidth = 0.005f;
         _lineRenderer.endWidth = 0.005f;
 
-
-        ToggleCreateMode();
     }
 
 

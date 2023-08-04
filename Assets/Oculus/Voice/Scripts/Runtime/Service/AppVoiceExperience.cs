@@ -58,10 +58,9 @@ namespace Oculus.Voice
         private IPlatformVoiceService platformService;
         private IVoiceService voiceServiceImpl;
         private IVoiceSDKLogger voiceSDKLoggerImpl;
-#if UNITY_ANDROID && !UNITY_EDITOR
+
         // This version is auto-updated for a release build
-        private readonly string PACKAGE_VERSION = "54.0.0.135.284";
-#endif
+        public const string PACKAGE_VERSION = "55.0.0.126.272";
 
         private bool Initialized => null != voiceServiceImpl;
 
@@ -122,8 +121,6 @@ namespace Oculus.Voice
         {
             if (CanSend())
             {
-                voiceSDKLoggerImpl.LogInteractionStart(requestOptions.RequestId, "message");
-                LogRequestConfig();
                 return voiceServiceImpl.Activate(text, requestOptions, requestEvents);
             }
             return null;
@@ -149,8 +146,6 @@ namespace Oculus.Voice
         {
             if (CanActivateAudio() && CanSend())
             {
-                voiceSDKLoggerImpl.LogInteractionStart(requestOptions.RequestId, "speech");
-                LogRequestConfig();
                 return voiceServiceImpl.Activate(requestOptions, requestEvents);
             }
             return null;
@@ -160,8 +155,6 @@ namespace Oculus.Voice
         {
             if (CanActivateAudio() && CanSend())
             {
-                voiceSDKLoggerImpl.LogInteractionStart(requestOptions.RequestId, "speech");
-                LogRequestConfig();
                 return voiceServiceImpl.ActivateImmediately(requestOptions, requestEvents);
             }
             return null;
@@ -282,7 +275,8 @@ namespace Oculus.Voice
             platformService?.SetRuntimeConfiguration(witRuntimeConfiguration);
             #endif
 
-            // Logging
+            // Listeners
+            VoiceEvents.OnRequestInitialized?.AddListener(OnRequestInit);
             VoiceEvents.OnResponse?.AddListener(OnWitResponseListener);
             VoiceEvents.OnStartListening?.AddListener(OnStartedListening);
             VoiceEvents.OnMinimumWakeThresholdHit?.AddListener(OnMinimumWakeThresholdHit);
@@ -315,7 +309,8 @@ namespace Oculus.Voice
             voiceServiceImpl = null;
             voiceSDKLoggerImpl = null;
 
-            // Logging
+            // Listeners
+            VoiceEvents.OnRequestInitialized?.RemoveListener(OnRequestInit);
             VoiceEvents.OnResponse?.RemoveListener(OnWitResponseListener);
             VoiceEvents.OnStartListening?.RemoveListener(OnStartedListening);
             VoiceEvents.OnMinimumWakeThresholdHit?.RemoveListener(OnMinimumWakeThresholdHit);
@@ -343,6 +338,22 @@ namespace Oculus.Voice
         }
 
         #region Event listeners for logging
+        void OnRequestInit(VoiceServiceRequest request)
+        {
+            voiceSDKLoggerImpl.LogInteractionStart(request.Options?.RequestId, request.InputType == NLPRequestInputType.Text ? "message" : "speech");
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            voiceSDKLoggerImpl.LogAnnotation("clientSDKVersion", PACKAGE_VERSION);
+#endif
+            voiceSDKLoggerImpl.LogAnnotation("minWakeThreshold",
+                RuntimeConfiguration?.soundWakeThreshold.ToString(CultureInfo.InvariantCulture));
+            voiceSDKLoggerImpl.LogAnnotation("minKeepAliveTimeSec",
+                RuntimeConfiguration?.minKeepAliveTimeInSeconds.ToString(CultureInfo.InvariantCulture));
+            voiceSDKLoggerImpl.LogAnnotation("minTranscriptionKeepAliveTimeSec",
+                RuntimeConfiguration?.minTranscriptionKeepAliveTimeInSeconds.ToString(CultureInfo.InvariantCulture));
+            voiceSDKLoggerImpl.LogAnnotation("maxRecordingTime",
+                RuntimeConfiguration?.maxRecordingTime.ToString(CultureInfo.InvariantCulture));
+        }
 
         void OnWitResponseListener(WitResponseNode witResponseNode)
         {
@@ -419,7 +430,7 @@ namespace Oculus.Voice
         {
             if (request.State == VoiceRequestState.Failed)
             {
-                VLog.E($"Request Failed\nError: {request.Results.Message}");
+                VLog.E($"Request Failed\nError: {request.Results.Message}\n{request.Results.ResponseData}");
                 voiceSDKLoggerImpl.LogInteractionEndFailure(request.Results.Message);
             }
             else if (request.State == VoiceRequestState.Canceled)
@@ -432,21 +443,6 @@ namespace Oculus.Voice
                 VLog.D($"Request Success");
                 voiceSDKLoggerImpl.LogInteractionEndSuccess();
             }
-        }
-
-        void LogRequestConfig()
-        {
-#if UNITY_ANDROID && !UNITY_EDITOR
-            voiceSDKLoggerImpl.LogAnnotation("clientSDKVersion", PACKAGE_VERSION);
-#endif
-            voiceSDKLoggerImpl.LogAnnotation("minWakeThreshold",
-                RuntimeConfiguration?.soundWakeThreshold.ToString(CultureInfo.InvariantCulture));
-            voiceSDKLoggerImpl.LogAnnotation("minKeepAliveTimeSec",
-                RuntimeConfiguration?.minKeepAliveTimeInSeconds.ToString(CultureInfo.InvariantCulture));
-            voiceSDKLoggerImpl.LogAnnotation("minTranscriptionKeepAliveTimeSec",
-                RuntimeConfiguration?.minTranscriptionKeepAliveTimeInSeconds.ToString(CultureInfo.InvariantCulture));
-            voiceSDKLoggerImpl.LogAnnotation("maxRecordingTime",
-                RuntimeConfiguration?.maxRecordingTime.ToString(CultureInfo.InvariantCulture));
         }
         #endregion
     }

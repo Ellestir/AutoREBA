@@ -30,7 +30,15 @@ namespace Meta.Voice
     [MetaHubPage("About", VoiceHubConstants.CONTEXT_VOICE,  priority: 1000)]
     public class AboutWindow : IMetaHubPage
     {
+        private Vector2 _offset;
+
         public void OnGUI()
+        {
+            Vector2 size;
+            WitEditorUI.LayoutWindow(VoiceSDKStyles.Texts.AboutTitleLabel, null, null, null, OnWindowGUI, ref _offset, out size);
+        }
+
+        private void OnWindowGUI()
         {
             WitEditorUI.LayoutKeyLabel(VoiceSDKStyles.Texts.AboutVoiceSdkVersionLabel, VoiceSDKVersion.VERSION);
             WitEditorUI.LayoutKeyLabel(VoiceSDKStyles.Texts.AboutWitSdkVersionLabel, WitConstants.SDK_VERSION);
@@ -38,7 +46,7 @@ namespace Meta.Voice
 
             GUILayout.Space(16);
 
-            if (GUILayout.Button(VoiceSDKStyles.Texts.AboutTutorialButtonLabel, WitStyles.TextButton))
+            if (WitEditorUI.LayoutTextButton(VoiceSDKStyles.Texts.AboutTutorialButtonLabel))
             {
                 Application.OpenURL(VoiceSDKStyles.Texts.AboutTutorialButtonUrl);
             }

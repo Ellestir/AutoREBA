@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: a1434a7df0ace064eb3e00ac394933dc
+labels:
+- oculus_interaction_deprecated
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -85,7 +87,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0085
+    globalScale: 0.85
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

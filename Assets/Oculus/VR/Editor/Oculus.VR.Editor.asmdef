@@ -79,6 +79,11 @@
             "name": "com.unity.xr.oculus",
             "expression": "4.0.0",
             "define": "OCULUS_XR_PLUGIN_QUEST_ONE_REMOVED"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "3.3.0",
+            "define": "OCULUS_XR_VULKAN_DYNAMIC_RESOLUTION"
         }
     ],
     "noEngineReferences": false

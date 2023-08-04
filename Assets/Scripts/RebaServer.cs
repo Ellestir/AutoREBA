@@ -6,28 +6,31 @@ using UnityEngine;
 
 public class RebaServer : MonoBehaviour
 {
-    public int port = 8888;
+    public string serverIP = "192.168.2.92";
+    public int serverPort = 8888;
     public int bufferSize = 1024;
 
     private UdpClient udpServer;
     private IPEndPoint endPoint;
     private string previousRebaScore;
-    private AutoREBA autoReba; 
+    private string currentRebaScore;
 
     void Start()
     {
-        endPoint = new IPEndPoint(IPAddress.Any, port);
-        udpServer = new UdpClient(endPoint);
+        udpServer = new UdpClient();
+        endPoint = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
 
-        previousRebaScore = autoReba.score;
+        previousRebaScore = REBA_Score.Score.ToString();
 
-        Debug.Log("Server started on port: " + port);   
+
+        Debug.Log("Client connected to server: " + serverIP + ":" + serverPort);
     }
 
     void Update() {
-        if (autoReba != null && previousRebaScore != autoReba.score)
+        currentRebaScore = REBA_Score.Score.ToString();
+        if (previousRebaScore != currentRebaScore)
         {
-            previousRebaScore = autoReba.score;
+            previousRebaScore = currentRebaScore;
 
             // Send the updated REBA Score to the client
             SendRebaScoreToClient(previousRebaScore);

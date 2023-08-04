@@ -6,8 +6,6 @@ public class VisualFeedback : MonoBehaviour
 {
     private int maxReba = 15;
     private int currentReba;
-    [Range(1, 15)]
-    public int rebaScore;
     public RebaBar rebaBar;
     // Start is called before the first frame update
     [HideInInspector] public UnityEngine.UI.Image extraImage;
@@ -47,9 +45,9 @@ public class VisualFeedback : MonoBehaviour
     void UpdateRebaBar()
     {
         // Reverse the logic of the tape filling RebaBar
-        if (rebaScore != currentReba)
+        if (REBA_Score.Score != currentReba)
         {
-            currentReba = rebaScore;
+            currentReba = REBA_Score.Score;
             rebaBar.SetRebaBar(maxReba - currentReba + 1);
         }
     }

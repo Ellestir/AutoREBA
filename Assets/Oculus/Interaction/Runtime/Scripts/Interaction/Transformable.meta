@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: fa6d00ce7b511b14ba12411c6bff3052
+guid: 9117510a41dbeec408f5877904d9f24a
 folderAsset: yes
 DefaultImporter:
+  labels: ["oculus_interaction_deprecated"]
   externalObjects: {}
   userData: 
   assetBundleName: 

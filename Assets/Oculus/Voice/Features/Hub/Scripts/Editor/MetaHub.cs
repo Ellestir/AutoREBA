@@ -26,9 +26,9 @@ namespace Meta.Voice.Hub
         [SerializeField] private Texture2D _logoImage;
 
         private int _leftPanelWidth = 200;
-        
+
         private List<string> _contextFilter = new List<string>();
-        
+
         private List<MetaHubContext> _contexts = new List<MetaHubContext>();
         private Dictionary<string, MetaHubContext> _contextMap = new Dictionary<string, MetaHubContext>();
 
@@ -45,19 +45,19 @@ namespace Meta.Voice.Hub
                     if (_contextMap.TryGetValue(filter, out var context))
                     {
                         return context;
-                    } 
+                    }
                 }
-                
+
 
                 return _contexts[0];
             }
         }
-        
+
         public GUIContent TitleContent => new GUIContent(PrimaryContext.Title, PrimaryContext.Icon);
         public Texture2D LogoImage => PrimaryContext.LogoImage ? PrimaryContext.LogoImage : _logoImage;
 
         public const string DEFAULT_CONTEXT = "";
-        
+
         public virtual List<string> ContextFilter => _contextFilter;
         public string SelectedPage { get; set; } = "";
 
@@ -96,7 +96,7 @@ namespace Meta.Voice.Hub
                     }
                     var path = "/" + prefix + page.info.Name;
                     _foldoutHierarchy.Add(path, new FoldoutHierarchyItem<PageReference> {
-                        path = path, 
+                        path = path,
                         item = page,
                         onDraw = _onDrawPage
                     });
@@ -121,7 +121,7 @@ namespace Meta.Voice.Hub
                 {
                     var path = "/" + page.info.Prefix + page.info.Name;
                     _foldoutHierarchy.Add(path, new FoldoutHierarchyItem<PageReference> {
-                        path = path, 
+                        path = path,
                         item = page,
                         onDraw = _onDrawPage
                     });
@@ -150,7 +150,7 @@ namespace Meta.Voice.Hub
 
         public void UpdateContextFilter()
         {
-            
+
             if(null == _rootPageGroup) _rootPageGroup = new PageGroup(null, DrawPageEntry);
             _contexts = ContextFinder.FindAllContextAssets<MetaHubContext>();
             _contexts.Sort((a, b) => a.Priority.CompareTo(b.Priority));
@@ -240,18 +240,18 @@ namespace Meta.Voice.Hub
         protected virtual void OnGUI()
         {
             titleContent = TitleContent;
-            
+
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            _searchString = EditorGUILayout.TextField(_searchString, GUI.skin.FindStyle("ToolbarSeachTextField"));
+            _searchString = EditorGUILayout.TextField(_searchString, EditorStyles.toolbarSearchField);
             GUILayout.EndHorizontal();
-            
+
             EditorGUILayout.BeginHorizontal();
             DrawLeftPanel();
             DrawRightPanel();
             EditorGUILayout.EndHorizontal();
         }
-        
+
         private void DrawLeftPanel()
         {
             EditorGUILayout.BeginVertical(GUILayout.Width(_leftPanelWidth));
@@ -292,11 +292,11 @@ namespace Meta.Voice.Hub
                     }
                 }
             }
-            
+
             if (ContextFilter.Count == 0 && (string.IsNullOrEmpty(_searchString) || pages.Count > 0))
             {
-                if (null != group.Context && 
-                    (string.IsNullOrEmpty(_searchString) && group.PageCount > 0 || pages.Count > 0) && 
+                if (null != group.Context &&
+                    (string.IsNullOrEmpty(_searchString) && group.PageCount > 0 || pages.Count > 0) &&
                     !string.IsNullOrEmpty(group.Context.Name) && group.Context.ShowPageGroupTitle)
                 {
                     GUILayout.Space(8);
@@ -338,7 +338,7 @@ namespace Meta.Voice.Hub
 
         private bool IsGroupVisible(PageGroup group)
         {
-            return group.PageCount > 0 && 
+            return group.PageCount > 0 &&
                    ContextFilter.Count == 0 && (!group.Context || group.Context.AllowWithoutContextFilter) ||
                    ContextFilter.Contains(group.Context ? group.Context.Name : "");
         }
@@ -408,7 +408,7 @@ namespace Meta.Voice.Hub
                 }
             }
             _selectedPage?.OnGUI();
-            
+
             EditorGUILayout.EndVertical();
         }
 
@@ -442,7 +442,7 @@ namespace Meta.Voice.Hub
         public string Context => _context;
         public Editor Editor => _editor;
         public int Priority => _priority;
-        
+
         public ScriptableObjectPage(ScriptableObject page, MetaHubPageAttribute pageInfo)
         {
             _page = page;
@@ -452,7 +452,7 @@ namespace Meta.Voice.Hub
 
             UpdatePageInfo();
         }
-        
+
         public ScriptableObjectPage(ScriptableObject page, string context, string prefix = "", int priority = 0)
         {
             _page = page;

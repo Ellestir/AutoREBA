@@ -12,14 +12,13 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Meta.WitAi;
 using Meta.WitAi.TTS.Data;
 using Meta.WitAi.Data.Configuration;
 using Meta.WitAi.Json;
 using Meta.WitAi.TTS.Utilities;
 using UnityEngine.SceneManagement;
 
-namespace Meta.WitAi.TTS.Editor.Preload
+namespace Meta.WitAi.TTS.Preload
 {
     public static class TTSPreloadUtility
     {
@@ -248,7 +247,7 @@ namespace Meta.WitAi.TTS.Editor.Preload
                 // Failed
                 if (!phraseData.downloaded)
                 {
-                    log += $"\n-{voiceSettings.settingsID} Preload Failed: {phraseData.textToSpeak}";
+                    log += $"\n-{voiceSettings.SettingsId} Preload Failed: {phraseData.textToSpeak}";
                 }
                 // Next
                 running = false;
@@ -257,7 +256,7 @@ namespace Meta.WitAi.TTS.Editor.Preload
             // Wait for running to complete
             while (running)
             {
-                //Debug.Log($"Preload Wait: {voiceSettings.settingsID} - {phraseData.textToSpeak}");
+                //Debug.Log($"Preload Wait: {voiceSettings.SettingsId} - {phraseData.textToSpeak}");
                 yield return null;
             }
 

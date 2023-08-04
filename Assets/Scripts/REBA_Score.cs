@@ -30,7 +30,7 @@ public class REBA_Score : MonoBehaviour
     public int[,] tableC;
     public Dictionary<string, float> body;
     public Dictionary<string, float> arms;
-    public REBAScoreHUD rebaScoreHUD;
+    //public REBAScoreHUD rebaScoreHUD;
 
     void Start()
     {
@@ -216,14 +216,14 @@ public class REBA_Score : MonoBehaviour
              arms["wrist_bent"] = 0;
         }
 
-        if (LeftForeArmCollider.LeftForeArmCollision || RightForearmCollider.RightForearmCollison || BackSupport.BackSupported)
-        {
-            arms["leaning"] = 1;
-        }
-        else
-        {
-            arms["leaning"] = 0;
-        }
+        //if (LeftForeArmCollider.LeftForeArmCollision || RightForearmCollider.RightForearmCollison || BackSupport.BackSupported)
+        //{
+        //    arms["leaning"] = 1;
+        //}
+        //else
+        //{
+        //    arms["leaning"] = 0;
+        //}
 
         // score calculations
         var result_sore_a = ComputeScoreA();
@@ -282,7 +282,7 @@ public class REBA_Score : MonoBehaviour
 
     private void UpdateHUD(int rebaScore)
     {
-        rebaScoreHUD.UpdateScoreText(rebaScore);
+        //rebaScoreHUD.UpdateScoreText(rebaScore);
     }
     public (int, int[]) ComputeScoreA()
     {

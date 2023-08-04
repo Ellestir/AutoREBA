@@ -8,15 +8,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Meta.WitAi.Interfaces;
 using Meta.WitAi.Data.Configuration;
 using Meta.WitAi.TTS.Data;
 using Meta.WitAi.TTS.Events;
 using Meta.WitAi.TTS.Interfaces;
 using Meta.WitAi.Requests;
-using UnityEngine.Serialization;
 
 namespace Meta.WitAi.TTS.Integrations
 {
@@ -419,15 +420,15 @@ namespace Meta.WitAi.TTS.Integrations
         {
             get
             {
-                if (_presetVoiceSettings == null || _presetVoiceSettings.Length == 0)
+                if (_presetVoiceSettings == null)
                 {
-                    _presetVoiceSettings = new TTSWitVoiceSettings[] { new TTSWitVoiceSettings() };
+                    _presetVoiceSettings = new TTSWitVoiceSettings[] { };
                 }
                 return _presetVoiceSettings;
             }
         }
         // Default voice setting uses the first voice in the list
-        public TTSVoiceSettings VoiceDefaultSettings => PresetVoiceSettings[0];
+        public TTSVoiceSettings VoiceDefaultSettings => PresetVoiceSettings == null || PresetVoiceSettings.Length == 0 ? null : PresetVoiceSettings[0];
 
         #if UNITY_EDITOR
         // Apply settings
@@ -438,7 +439,6 @@ namespace Meta.WitAi.TTS.Integrations
         #endif
 
         // Convert voice settings into dictionary to be used with web requests
-        private const string SETTINGS_KEY = "settingsID";
         private const string VOICE_KEY = "voice";
         private const string STYLE_KEY = "style";
         public Dictionary<string, string> EncodeVoiceSettings(TTSVoiceSettings voiceSettings)
@@ -446,13 +446,12 @@ namespace Meta.WitAi.TTS.Integrations
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             if (voiceSettings != null)
             {
-                foreach (FieldInfo field in voiceSettings.GetType().GetFields())
+                foreach (FieldInfo field in GetVoiceSettingsFields(voiceSettings))
                 {
-                    if (!field.IsStatic && !string.Equals(field.Name, SETTINGS_KEY, StringComparison.CurrentCultureIgnoreCase))
+                    // Ensure field value exists
+                    object fieldVal = field.GetValue(voiceSettings);
+                    if (fieldVal != null)
                     {
-                        // Get field value
-                        object fieldVal = field.GetValue(voiceSettings);
-
                         // Clamp in between range
                         RangeAttribute range = field.GetCustomAttribute<RangeAttribute>();
                         if (range != null && field.FieldType == typeof(int))
@@ -482,6 +481,28 @@ namespace Meta.WitAi.TTS.Integrations
                 }
             }
             return parameters;
+        }
+        // Obtain all fields for a specific voice settings
+        private static readonly Dictionary<Type, FieldInfo[]> _settingsFields = new Dictionary<Type, FieldInfo[]>();
+        private static FieldInfo[] GetVoiceSettingsFields(TTSVoiceSettings voiceSettings)
+        {
+            // Return fields if already found
+            Type settingsType = voiceSettings.GetType();
+            if (_settingsFields.ContainsKey(settingsType))
+            {
+                return _settingsFields[settingsType];
+            }
+
+            // Get public/instance fields
+            FieldInfo[] fields = settingsType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+            // Remove fields from TTSVoiceSettings
+            Type baseType = typeof(TTSVoiceSettings);
+            fields = fields.ToList().FindAll((field) => field.DeclaringType != baseType).ToArray();
+
+            // Apply & return
+            _settingsFields[settingsType] = fields;
+            return fields;
         }
         // Returns an error if request is not valid
         private string IsRequestValid(TTSClipData clipData, WitConfiguration configuration)

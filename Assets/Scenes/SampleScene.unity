@@ -981,9 +981,6 @@ MonoBehaviour:
   LogAnglesConsole: 1
   LogAnglesCSV: 0
   LogScoresToConsole: 1
-<<<<<<< Updated upstream
-  WISOB: 20
-=======
   threshold: 0
   neck: {fileID: 517922279}
   head: {fileID: 1058008180}

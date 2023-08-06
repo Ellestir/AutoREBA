@@ -8,12 +8,8 @@ public class REBA_Score : MonoBehaviour
     public bool LogAnglesConsole;
     public bool LogAnglesCSV;
     public bool LogScoresToConsole;
-<<<<<<< Updated upstream
-    public int WISOB;
-=======
     //"What is sided or bend" determines at which angle the condition is met 
     public int threshold;
->>>>>>> Stashed changes
     public static int Score;
     public Transform neck;
     public Transform head;
@@ -119,13 +115,6 @@ public class REBA_Score : MonoBehaviour
         NeckEulerRotation = averageTrunkRotation.eulerAngles;
         body["neck_angle"] = NeckEulerRotation.x;
         // if neck is side bending
-<<<<<<< Updated upstream
-        if( 0 < NeckEulerRotation.y &&  NeckEulerRotation.y < WISOB|| (360 - WISOB) < NeckEulerRotation.y && NeckEulerRotation.y < 360){
-            body["neck_side"] = 1;
-        }else{
-            body["neck_side"] = 0;
-        } 
-=======
         if (NeckEulerRotation.z > threshold || NeckEulerRotation.z < (360 - threshold)) 
         {
             body["neck_side"] = 1; // Neck is outside the threshold
@@ -135,7 +124,6 @@ public class REBA_Score : MonoBehaviour
             body["neck_side"] = 0; // Neck is within the threshold
         }
 
->>>>>>> Stashed changes
         // if neck is twisted
         if (NeckEulerRotation.y > threshold || NeckEulerRotation.y < (360 - threshold)) 
         {
@@ -158,21 +146,13 @@ public class REBA_Score : MonoBehaviour
         //Debug.Log("Spine Sided Average: " + TrunkEulerRotation.z);
         //Debug.Log("Spine twisted Average: " + TrunkEulerRotation.y);
         // if trunk is side bending
-<<<<<<< Updated upstream
-        if(0 < TrunkEulerRotation.y && TrunkEulerRotation.y < 30 || 330 > TrunkEulerRotation.y && TrunkEulerRotation.y < 360){
-=======
         if(TrunkEulerRotation.z > threshold || TrunkEulerRotation.z < (360 - threshold)){
->>>>>>> Stashed changes
             body["trunk_side"] = 1;
         }else{
             body["trunk_side"] = 0;
         }
         // if trunk is twisted
-<<<<<<< Updated upstream
-        if(0 < TrunkEulerRotation.z && TrunkEulerRotation.z < 30 || 330 > TrunkEulerRotation.z && TrunkEulerRotation.z < 360){
-=======
         if(TrunkEulerRotation.y > threshold || TrunkEulerRotation.y < (360 - threshold)){
->>>>>>> Stashed changes
             body["trunk_twisted"] = 1;
         }else{
             body["trunk_twisted"] = 0;
@@ -383,11 +363,7 @@ public class REBA_Score : MonoBehaviour
         // Legs adjust
         if ((30 <= body["legs_angle"] && body["legs_angle"] <= 60))
             legScore += 1;
-<<<<<<< Updated upstream
-        else if (body["legs_angle"] > 60)
-=======
         else if (60 < body["legs_angle"] || body["legs_angle"] > 300 )
->>>>>>> Stashed changes
             legScore += 2;
 
         // Load
@@ -399,10 +375,7 @@ public class REBA_Score : MonoBehaviour
         if (neckScore <= 0 || trunkScore <= 0 || legScore <= 0) { 
             throw new InvalidOperationException("Neck score, trunk score and leg score must all be greater than zero");
         }
-<<<<<<< Updated upstream
-=======
         //if neck is 4 -> Index out of bounds, because REBA-PDF Table A shows max neck-score = 3 
->>>>>>> Stashed changes
         if(neckScore > 3)
         {
             Debug.Log("Reset neck Score from: " + neckScore);

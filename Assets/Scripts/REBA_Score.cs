@@ -7,8 +7,11 @@ public class REBA_Score : MonoBehaviour
 {
     public bool LogAnglesConsole;
     public bool LogAnglesCSV;
+    public bool LogScoresToConsole;
+    public int WISOB;
     public static int Score;
     public Transform neck;
+    public Transform head;
     public Transform torso;
     public Transform upperRightLeg;
     public Transform upperLeftLeg;
@@ -30,6 +33,10 @@ public class REBA_Score : MonoBehaviour
     public int[,] tableC;
     public Dictionary<string, float> body;
     public Dictionary<string, float> arms;
+    Quaternion averageTrunkRotation;
+    Vector3 TrunkEulerRotation;
+    Quaternion averageNeckRotation;
+    Vector3 NeckEulerRotation;
     //public REBAScoreHUD rebaScoreHUD;
 
     void Start()
@@ -87,6 +94,8 @@ public class REBA_Score : MonoBehaviour
         {11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12},
         {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12},
         };
+
+        
    
     }
 
@@ -100,39 +109,63 @@ public class REBA_Score : MonoBehaviour
         
         // Calculate the angles for table A
         // angle of neck
-
-        body["neck_angle"] = neck.localEulerAngles.x;
+        averageNeckRotation = Quaternion.Slerp(Quaternion.Euler(neck.rotation.eulerAngles), Quaternion.Euler(head.rotation.eulerAngles), 0.5f);
+        NeckEulerRotation = averageTrunkRotation.eulerAngles;
+        body["neck_angle"] = NeckEulerRotation.x;
         // if neck is side bending
-        body["neck_side"] = neck.localEulerAngles.z;
+        if( 0 < NeckEulerRotation.y &&  NeckEulerRotation.y < WISOB|| (360 - WISOB) < NeckEulerRotation.y && NeckEulerRotation.y < 360){
+            body["neck_side"] = 1;
+        }else{
+            body["neck_side"] = 0;
+        } 
         // if neck is twisted
-        body["neck_twisted"] = neck.localEulerAngles.y;
-
+        if(0 < NeckEulerRotation.z &&  NeckEulerRotation.z < WISOB|| (360 - WISOB) < NeckEulerRotation.z && NeckEulerRotation.z < 360){
+            body["neck_twisted"] = 1;
+        }else{
+            body["neck_twisted"] = 0;
+        } 
+        //Debug.Log("Neck Angle: " + NeckEulerRotation.x);
+        //Debug.Log("Neck Side Angle: " + NeckEulerRotation.y);
+        //Debug.Log("Neck Twist Angle: " + NeckEulerRotation.z);
         // angle of trunk
         // get average angle of all spines
-        float SpineAverage = ((hip.localEulerAngles.x ) + Spine2.localEulerAngles.x + Spine3.localEulerAngles.x + torso.localEulerAngles.x) / 4;
-        Debug.Log("Spine Average: " + SpineAverage);
-        body["trunk_angle"] = hip.localEulerAngles.x;
+        averageTrunkRotation = Quaternion.Slerp(Quaternion.Euler(hip.rotation.eulerAngles), Quaternion.Euler(Spine2.rotation.eulerAngles), 0.5f);
+        TrunkEulerRotation = averageTrunkRotation.eulerAngles;
+        //float SpineAverageX = (hip.localEulerAngles.x  + Spine2.localEulerAngles.x ) / 2;
+        body["trunk_angle"] = TrunkEulerRotation.x;
+        //Debug.Log("Spine Average: " + body["trunk_angle"]);
+        //Debug.Log("Spine Sided Average: " + TrunkEulerRotation.z);
+        //Debug.Log("Spine twisted Average: " + TrunkEulerRotation.y);
         // if trunk is side bending
-        body["trunk_side"] = hip.localEulerAngles.z;
+        if(0 < TrunkEulerRotation.y && TrunkEulerRotation.y < 30 || 330 > TrunkEulerRotation.y && TrunkEulerRotation.y < 360){
+            body["trunk_side"] = 1;
+        }else{
+            body["trunk_side"] = 0;
+        }
         // if trunk is twisted
-        body["trunk_twisted"]  = hip.localEulerAngles.y;
+        if(0 < TrunkEulerRotation.z && TrunkEulerRotation.z < 30 || 330 > TrunkEulerRotation.z && TrunkEulerRotation.z < 360){
+            body["trunk_twisted"] = 1;
+        }else{
+            body["trunk_twisted"] = 0;
+        }
+        
 
         // angle of legs
         if(Mathf.Abs(lowerRightLeg.localEulerAngles.x) > Mathf.Abs(lowerLeftLeg.localEulerAngles.x)) {
-             body["legs_angle"] = lowerRightLeg.localEulerAngles.x;
+             body["legs_angle"] = upperRightLeg.localEulerAngles.x;
         }
         else {
-             body["legs_angle"] = lowerLeftLeg.localEulerAngles.x;
+             body["legs_angle"] = upperLeftLeg.localEulerAngles.x;
         }
+
+
         if (GroundCheckLeft.LeftFootGrounded && GroundCheckRight.RightFootGrounded)
         {
             body["legs_walking"] = 0;
-            
         }
         else
         {
             body["legs_walking"] = 1;
-            
         }
         // Calculate the angles for table B
 
@@ -216,14 +249,14 @@ public class REBA_Score : MonoBehaviour
              arms["wrist_bent"] = 0;
         }
 
-        //if (LeftForeArmCollider.LeftForeArmCollision || RightForearmCollider.RightForearmCollison || BackSupport.BackSupported)
-        //{
-        //    arms["leaning"] = 1;
-        //}
-        //else
-        //{
-        //    arms["leaning"] = 0;
-        //}
+        if (LeftForeArmCollider.LeftForeArmCollision || RightForearmCollider.RightForearmCollison || BackSupport.BackSupported)
+        {
+            arms["leaning"] = 1;
+        }
+        else
+        {
+            arms["leaning"] = 0;
+        }
 
         // score calculations
         var result_sore_a = ComputeScoreA();
@@ -231,7 +264,6 @@ public class REBA_Score : MonoBehaviour
         var result_sore_c = ComputeScoreC(result_sore_a.Item1, result_sore_b.Item1);
         int reba_score = ScoreCTo5Classes(result_sore_c.Item1);
         Score = result_sore_c.Item1;
-        UpdateHUD(result_sore_c.Item1);
         Debug.Log("Score A: " + result_sore_a.Item1);
         Debug.Log("REBA-Score: " + result_sore_c.Item1);
 
@@ -277,19 +309,27 @@ public class REBA_Score : MonoBehaviour
             LogToCSV(Score);
         }
 
+        if(LogScoresToConsole){
+            //Log the table Scores to console
+            Debug.Log("Neck Score: " + result_sore_a.Item2[0]);
+            Debug.Log("Trunk Score: " + result_sore_a.Item2[1]);
+            Debug.Log("Leg Score: " + result_sore_a.Item2[2]);
+
+            Debug.Log("Upper Arm Score: " + result_sore_b.Item2[0]);
+            Debug.Log("Lower Arm Score: " + result_sore_a.Item2[1]);
+            Debug.Log("Wrist Score: " + result_sore_a.Item2[2]);
+
+        }
+
 
     }
 
-    private void UpdateHUD(int rebaScore)
-    {
-        //rebaScoreHUD.UpdateScoreText(rebaScore);
-    }
     public (int, int[]) ComputeScoreA()
     {
         int neckScore = 0, trunkScore = 0, legScore = 0, loadScore = 0;
 
         // Neck position
-        if (body["neck_angle"] <= 20)
+        if (body["neck_angle"] <= 20 || 340 <= body["neck_angle"])
             neckScore += 1;
         else
             neckScore += 2;
@@ -299,25 +339,41 @@ public class REBA_Score : MonoBehaviour
         neckScore += body["neck_twisted"] != 0 ? 1 : 0;
 
         // Trunk position
-        if ((0 <= body["trunk_angle"] && body["trunk_angle"] <= 1) || (360 <= body["trunk_angle"] && body["trunk_angle"] >= 359))
+        if ((0 <= body["trunk_angle"] && body["trunk_angle"] < 1)|| body["trunk_angle"] >= 359)
+        {
             trunkScore += 1;
-        else if ((body["trunk_angle"] > 1 && body["trunk_angle"] <= 20) || (body["trunk_angle"] < 359 && body["trunk_angle"] >= 339))
+            Debug.Log("Trunk +1");
+        }            
+        else if ((body["trunk_angle"] <= 20)|| body["trunk_angle"] >= 339)
+        {
             trunkScore += 2;
-        else if ((20 < body["trunk_angle"] && body["trunk_angle"] <= 60) || (body["trunk_angle"] < 339 && body["trunk_angle"] >= 300))
+            Debug.Log("Trunk +2");
+        }           
+        else if ((body["trunk_angle"] <= 60)|| body["trunk_angle"] >= 300)
+        {
             trunkScore += 3;
-        else if ((body["trunk_angle"] > 60 && body["trunk_angle"] < 180) || (body["trunk_angle"] < 300 && body["trunk_angle"] > 180))
+            Debug.Log("Trunk +3");
+        }            
+        else if ((body["trunk_angle"] > 60) && body["trunk_angle"] < 300){
             trunkScore += 4;
+            Debug.Log("Trunk +4");
+        }
+            
 
         // Trunk adjust
-        //180 because standard value is 180
-        trunkScore += body["trunk_side"] != 180 ? 1 : 0;
-        trunkScore += body["trunk_twisted"] != 180 ? 1 : 0;
-
+        if(body["trunk_side"] == 1){
+            trunkScore++;
+            Debug.Log("Trunk Sided ++");
+        }
+        if(body["trunk_twisted"] == 1){
+            trunkScore++;
+            Debug.Log("Trunk Twisted ++");
+        }
         // Legs position
         legScore += body["legs_walking"] == 1 ? 2 : 1;
 
         // Legs adjust
-        if (30 <= body["legs_angle"] && body["legs_angle"] <= 60)
+        if ((30 <= body["legs_angle"] && body["legs_angle"] <= 60))
             legScore += 1;
         else if (body["legs_angle"] > 60)
             legScore += 2;

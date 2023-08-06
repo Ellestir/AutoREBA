@@ -4,24 +4,28 @@ using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
-using static Kalibrierung;
 
 public class Kalibrierung : MonoBehaviour
 {
+    private float timeSinceLastVibration;
     //[Range(1, 2)]
     //public int motorSlider;
 
     public enum MotorSlider { one, two }
     public MotorSlider motorSlider;
 
-    public enum StepsSlider { five , fifteen }
+    public enum StepsSlider { five, fifteen }
     public StepsSlider stepsSlider;
 
     public enum Intensity { Low, Medium, High }
     public Intensity intensitySlider;
 
+    [Range(1, 15)]
+    public int rebaScoreSlider;
+    private int rebaScore;
+
     //public Button vibrateButton;  // Button to start vibration
-    // VibrationsintensitÃ¤t, die an das Arduino-GerÃ¤t gesendet werden soll
+    // Vibrationsintensität, die an das Arduino-Gerät gesendet werden soll
 
 
     private UdpClient udpClient;
@@ -68,30 +72,61 @@ public class Kalibrierung : MonoBehaviour
     {
         endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
         udpClient = new UdpClient();
+        timeSinceLastVibration = -1f; // Initialisiere den Timer so, dass er anfangs inaktiv ist
+
 
         //vibrateButton.onClick.AddListener(OnButtonPress);
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        rebaScore = rebaScoreSlider;
+
+        if (timeSinceLastVibration >= 0f) // Wenn der Timer aktiv ist
         {
-            OnButtonPress();
+            timeSinceLastVibration += Time.deltaTime; // Aktualisiere den Timer
+
+            if (timeSinceLastVibration >= 1f) // Wenn eine Sekunde vergangen ist
+            {
+                timeSinceLastVibration = -1f; // Deaktiviere den Timer
+                SendVibration(); // Sende die Vibration erneut
+            }
         }
+
     }
 
-
-    private void OnButtonPress()
+    public void OnButtonPress()
     {
+        timeSinceLastVibration = 0f;
+        SendVibration();
+    }
 
+    private void SendVibration()
+    {
         int[] motor1StrengthArray = SelectStrengthArray(motorSlider, stepsSlider, intensitySlider, true);
         int[] motor2StrengthArray = SelectStrengthArray(motorSlider, stepsSlider, intensitySlider, false);
 
-        // Send the maximum value from the selected arrays.
-        int motor1Strength = motor1StrengthArray[motor1StrengthArray.Length - 1]; // Correction here
-        int motor2Strength = motor2StrengthArray[motor2StrengthArray.Length - 1]; // Correction here
+        int mappedRebaScore = MapRebaScore(rebaScore, stepsSlider);
+
+        int motor1Strength = motor1StrengthArray[Mathf.Min(mappedRebaScore - 1, motor1StrengthArray.Length - 1)];
+        int motor2Strength = motor2StrengthArray[Mathf.Min(mappedRebaScore - 1, motor2StrengthArray.Length - 1)];
 
         SendData("start vibration," + motor1Strength.ToString() + "," + motor2Strength.ToString());
+    }
+
+    // Eine Methode, um den REBA-Score zu mappen, basierend auf der Anzahl der Schritte
+    private int MapRebaScore(int rebaScore, StepsSlider stepsSlider)
+    {
+        if (stepsSlider == StepsSlider.five)
+        {
+            // Nutzen Sie Mathf.Lerp, um den REBA-Score zu mappen, wenn nur 5 Schritte vorhanden sind
+            return Mathf.RoundToInt(Mathf.Lerp(1, 5, (rebaScore - 1) / 14.0f));
+        }
+        else
+        {
+            // Wenn es 15 Schritte gibt, geben Sie einfach den REBA-Score zurück
+            return rebaScore;
+        }
     }
 
 

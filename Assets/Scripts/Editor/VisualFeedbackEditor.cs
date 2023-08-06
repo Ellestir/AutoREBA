@@ -13,6 +13,14 @@ public class VisualFeedbackEditor : Editor
 
         // Draw the default inspector
         DrawDefaultInspector();
+        // Draw rebaBarEnabled toggle
+        visualFeedback.rebaBarEnabled = EditorGUILayout.Toggle("Reba Bar Enabled", visualFeedback.rebaBarEnabled);
+
+        // Disable GUI for rebaBar if rebaBarEnabled is false
+        GUI.enabled = visualFeedback.rebaBarEnabled;
+
+        // Draw RebaBar field
+        visualFeedback.rebaBar = (RebaBar)EditorGUILayout.ObjectField("Reba Bar", visualFeedback.rebaBar, typeof(RebaBar), true);
 
         // Ensure GUI is enabled before drawing RebaScoreTextEnabled toggle
         GUI.enabled = true;

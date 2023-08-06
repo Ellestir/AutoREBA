@@ -6,7 +6,10 @@ public class VisualFeedback : MonoBehaviour
 {
     private int maxReba = 15;
     private int currentReba;
-    public RebaBar rebaBar;
+    [Range(1, 15)]
+    public int rebaScore;
+    [HideInInspector] public bool rebaBarEnabled = true; // Add this variable to control the visibility of the RebaBar Slider and Fill
+    [HideInInspector] public RebaBar rebaBar;
     // Start is called before the first frame update
     [HideInInspector] public UnityEngine.UI.Image extraImage;
 
@@ -24,7 +27,6 @@ public class VisualFeedback : MonoBehaviour
     [HideInInspector] public bool SamFaceEnabled = true;  // Add a variable to enable or disable the SVG images
 
     [HideInInspector] public bool ImageEnabled = false;  // Add a variable to enable or disable the SVG images
-
 
     void Start()
     {
@@ -45,11 +47,13 @@ public class VisualFeedback : MonoBehaviour
     void UpdateRebaBar()
     {
         // Reverse the logic of the tape filling RebaBar
-        if (REBA_Score.Score != currentReba)
+        if (rebaScore != currentReba)
         {
-            currentReba = REBA_Score.Score;
+            currentReba = rebaScore;
             rebaBar.SetRebaBar(maxReba - currentReba + 1);
         }
+        rebaBar.border.gameObject.SetActive(rebaBarEnabled);
+        rebaBar.fill.gameObject.SetActive(rebaBarEnabled);
     }
 
     void UpdateRebaImage()
@@ -153,35 +157,48 @@ public class VisualFeedback : MonoBehaviour
         rebaScoreNumber.enabled = RebaScoreNumberEnabled;
         if (RebaScoreNumberEnabled)
         {
+            Color newColor;
             if (currentReba == 1)
             {
                 rebaScoreNumber.text = currentReba.ToString();
                 rebaScoreNumber.fontSize = 44;
+                ColorUtility.TryParseHtmlString("#92D050", out newColor); // Green in HEX
+                rebaScoreNumber.color = newColor;
             }
             else if (currentReba >= 2 && currentReba <= 3)
             {
                 rebaScoreNumber.text = currentReba.ToString();
                 rebaScoreNumber.fontSize = 54;
+                ColorUtility.TryParseHtmlString("#FFDA65", out newColor); // Green in HEX
+                rebaScoreNumber.color = newColor;
             }
             else if (currentReba >= 4 && currentReba <= 7)
             {
                 rebaScoreNumber.text = currentReba.ToString();
                 rebaScoreNumber.fontSize = 65;
+                ColorUtility.TryParseHtmlString("#FFC000", out newColor); // Green in HEX
+                rebaScoreNumber.color = newColor;
             }
             else if (currentReba >= 8 && currentReba <= 10)
             {
                 rebaScoreNumber.text = currentReba.ToString();
                 rebaScoreNumber.fontSize = 74;
+                ColorUtility.TryParseHtmlString("#F60000", out newColor); // Green in HEX
+                rebaScoreNumber.color = newColor;
             }
             else if (currentReba >= 11 && currentReba <= 15)
             {
                 rebaScoreNumber.text = currentReba.ToString();
                 rebaScoreNumber.fontSize = 84;
+                ColorUtility.TryParseHtmlString("#C00000", out newColor); // Green in HEX
+                rebaScoreNumber.color = newColor;
             }
             else
             {
                 rebaScoreNumber.text = "Invalid REBA score";
                 rebaScoreNumber.fontSize = 44;
+                ColorUtility.TryParseHtmlString("#92D050", out newColor); // Green in HEX
+                rebaScoreNumber.color = newColor;
             }
             // If RebaScoreNumberEnabled is true, enable the RebaScoreNumber
             rebaScoreNumber.enabled = true;
@@ -192,7 +209,4 @@ public class VisualFeedback : MonoBehaviour
             rebaScoreNumber.enabled = false;
         }
     }
-
-
-
 }

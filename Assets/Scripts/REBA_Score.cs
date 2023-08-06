@@ -124,18 +124,18 @@ public class REBA_Score : MonoBehaviour
         }else{
             body["neck_twisted"] = 0;
         } 
-         Debug.Log("Neck Angle: " + NeckEulerRotation.x);
-        Debug.Log("Neck Side Angle: " + NeckEulerRotation.y);
-        Debug.Log("Neck Twist Angle: " + NeckEulerRotation.z);
+        //Debug.Log("Neck Angle: " + NeckEulerRotation.x);
+        //Debug.Log("Neck Side Angle: " + NeckEulerRotation.y);
+        //Debug.Log("Neck Twist Angle: " + NeckEulerRotation.z);
         // angle of trunk
         // get average angle of all spines
         averageTrunkRotation = Quaternion.Slerp(Quaternion.Euler(hip.rotation.eulerAngles), Quaternion.Euler(Spine2.rotation.eulerAngles), 0.5f);
         TrunkEulerRotation = averageTrunkRotation.eulerAngles;
         //float SpineAverageX = (hip.localEulerAngles.x  + Spine2.localEulerAngles.x ) / 2;
         body["trunk_angle"] = TrunkEulerRotation.x;
-        Debug.Log("Spine Average: " + body["trunk_angle"]);
-        Debug.Log("Spine Sided Average: " + TrunkEulerRotation.z);
-        Debug.Log("Spine twisted Average: " + TrunkEulerRotation.y);
+        //Debug.Log("Spine Average: " + body["trunk_angle"]);
+        //Debug.Log("Spine Sided Average: " + TrunkEulerRotation.z);
+        //Debug.Log("Spine twisted Average: " + TrunkEulerRotation.y);
         // if trunk is side bending
         if(0 < TrunkEulerRotation.y && TrunkEulerRotation.y < 30 || 330 > TrunkEulerRotation.y && TrunkEulerRotation.y < 360){
             body["trunk_side"] = 1;
@@ -152,20 +152,20 @@ public class REBA_Score : MonoBehaviour
 
         // angle of legs
         if(Mathf.Abs(lowerRightLeg.localEulerAngles.x) > Mathf.Abs(lowerLeftLeg.localEulerAngles.x)) {
-             body["legs_angle"] = lowerRightLeg.localEulerAngles.x;
+             body["legs_angle"] = upperRightLeg.localEulerAngles.x;
         }
         else {
-             body["legs_angle"] = lowerLeftLeg.localEulerAngles.x;
+             body["legs_angle"] = upperLeftLeg.localEulerAngles.x;
         }
+
+
         if (GroundCheckLeft.LeftFootGrounded && GroundCheckRight.RightFootGrounded)
         {
             body["legs_walking"] = 0;
-            
         }
         else
         {
             body["legs_walking"] = 1;
-            
         }
         // Calculate the angles for table B
 
@@ -373,7 +373,7 @@ public class REBA_Score : MonoBehaviour
         legScore += body["legs_walking"] == 1 ? 2 : 1;
 
         // Legs adjust
-        if (30 <= body["legs_angle"] && body["legs_angle"] <= 60)
+        if ((30 <= body["legs_angle"] && body["legs_angle"] <= 60))
             legScore += 1;
         else if (body["legs_angle"] > 60)
             legScore += 2;

@@ -8,6 +8,7 @@ public class RebaBar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public Image border;
     public void SetMaxReba(int reba)
     {
         slider.minValue = 1;

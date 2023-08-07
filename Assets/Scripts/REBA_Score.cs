@@ -8,7 +8,6 @@ public class REBA_Score : MonoBehaviour
     public bool LogAnglesConsole;
     public bool LogAnglesCSV;
     public bool LogScoresToConsole;
-
     //"What is sided or bend" determines at which angle the condition is met 
     public int threshold;
     public static int Score;
@@ -119,14 +118,12 @@ public class REBA_Score : MonoBehaviour
         // if neck is side bending
         if (NeckEulerRotation.z > threshold || NeckEulerRotation.z < (360 - threshold))       
         {
-            body["neck_side"] = 0; // Neck is inside the threshold
-            
+            body["neck_side"] = 0; // Neck is inside the threshold            
         }
         else
         {
             body["neck_side"] = 1; // Neck is outside the threshold
         }
-
 
         // if neck is twisted
         if (NeckEulerRotation.y <= threshold || NeckEulerRotation.y >= (330 - threshold)) 
@@ -154,12 +151,10 @@ public class REBA_Score : MonoBehaviour
         //Debug.Log("Spine twisted Average: " + TrunkEulerRotation.y);
         // if trunk is side bending
         if(TrunkEulerRotation.z > threshold || TrunkEulerRotation.z < (360 - threshold)){
-
             body["trunk_side"] = 1;
         }else{
             body["trunk_side"] = 0;
         }
-
         if(TrunkEulerRotation.z < threshold || TrunkEulerRotation.z > (360 - threshold)){
             body["trunk_side"] = 0;
             //angle within threshold

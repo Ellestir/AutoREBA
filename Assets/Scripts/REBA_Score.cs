@@ -8,12 +8,9 @@ public class REBA_Score : MonoBehaviour
     public bool LogAnglesConsole;
     public bool LogAnglesCSV;
     public bool LogScoresToConsole;
-<<<<<<< Updated upstream
-    public int WISOB;
-=======
+
     //"What is sided or bend" determines at which angle the condition is met 
     public int threshold;
->>>>>>> Stashed changes
     public static int Score;
     public Transform neck;
     public Transform head;
@@ -62,7 +59,8 @@ public class REBA_Score : MonoBehaviour
         { "upper_right_arm_angle", 0},
         { "upper_left_arm_angle", 0},
         { "shoulder_raised", 0},
-        { "arm_abducted", 0},
+        { "right_arm_abducted", 0},
+        { "left_arm_abducted", 0},
         { "leaning", 0},
         { "lower_right_arm_angle", 0},
         { "lower_left_arm_angle", 0},
@@ -119,28 +117,17 @@ public class REBA_Score : MonoBehaviour
         NeckEulerRotation = averageNeckRotation.eulerAngles;
         body["neck_angle"] = NeckEulerRotation.x;
         // if neck is side bending
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        if( 0 < NeckEulerRotation.y &&  NeckEulerRotation.y < WISOB|| (360 - WISOB) < NeckEulerRotation.y && NeckEulerRotation.y < 360){
-            body["neck_side"] = 1;
-        }else{
-            body["neck_side"] = 0;
-        } 
-=======
-        if (NeckEulerRotation.z > threshold || NeckEulerRotation.z < (360 - threshold)) 
-=======
-        if ( NeckEulerRotation.z <= threshold || NeckEulerRotation.z >= (360 - threshold)) 
+        if (NeckEulerRotation.z > threshold || NeckEulerRotation.z < (360 - threshold))       
         {
             body["neck_side"] = 0; // Neck is inside the threshold
             
         }
         else
->>>>>>> Stashed changes
         {
             body["neck_side"] = 1; // Neck is outside the threshold
         }
 
->>>>>>> Stashed changes
+
         // if neck is twisted
         if (NeckEulerRotation.y <= threshold || NeckEulerRotation.y >= (330 - threshold)) 
         {
@@ -166,28 +153,16 @@ public class REBA_Score : MonoBehaviour
         //Debug.Log("Spine Sided Average: " + TrunkEulerRotation.z);
         //Debug.Log("Spine twisted Average: " + TrunkEulerRotation.y);
         // if trunk is side bending
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        if(0 < TrunkEulerRotation.y && TrunkEulerRotation.y < 30 || 330 > TrunkEulerRotation.y && TrunkEulerRotation.y < 360){
-=======
         if(TrunkEulerRotation.z > threshold || TrunkEulerRotation.z < (360 - threshold)){
->>>>>>> Stashed changes
+
             body["trunk_side"] = 1;
         }else{
             body["trunk_side"] = 0;
         }
-        // if trunk is twisted
-<<<<<<< Updated upstream
-        if(0 < TrunkEulerRotation.z && TrunkEulerRotation.z < 30 || 330 > TrunkEulerRotation.z && TrunkEulerRotation.z < 360){
-=======
-        if(TrunkEulerRotation.y > threshold || TrunkEulerRotation.y < (360 - threshold)){
->>>>>>> Stashed changes
-            body["trunk_twisted"] = 1;
-=======
+
         if(TrunkEulerRotation.z < threshold || TrunkEulerRotation.z > (360 - threshold)){
             body["trunk_side"] = 0;
             //angle within threshold
->>>>>>> Stashed changes
         }else{
             body["trunk_side"] = 1;
         }
@@ -201,11 +176,16 @@ public class REBA_Score : MonoBehaviour
         Debug.Log("Trunk Y-Angle: "+ TrunkEulerRotation.y);
 
         // angle of legs
-        if(upperRightLeg.localEulerAngles.x > upperLeftLeg.localEulerAngles.x) {
-             body["legs_angle"] = upperRightLeg.localEulerAngles.x;
+        float leftLegAngle = Vector3.Angle(upperLeftLeg.up, lowerLeftLeg.up);
+        float rightLegAngle = Vector3.Angle(upperRightLeg.up, lowerRightLeg.up);
+        Debug.Log("left Leg Angle: " + leftLegAngle);
+        Debug.Log("right Leg Angle: " + rightLegAngle);
+
+        if(leftLegAngle > rightLegAngle) {
+             body["legs_angle"] = leftLegAngle;
         }
         else {
-             body["legs_angle"] = upperLeftLeg.localEulerAngles.x;
+             body["legs_angle"] = rightLegAngle;
         }
 
 
@@ -224,16 +204,20 @@ public class REBA_Score : MonoBehaviour
         arms["upper_left_arm_angle"] = upperLeftArm.localRotation.y;
         
         // if upper arm is abducted
-        if((upperRightArm.localEulerAngles.x >= 80)) {
-            arms["arm_abducted"] = 1;
-        } 
-        else if ((upperLeftArm.localEulerAngles.x >= 280) )
-        {
-            arms["arm_abducted"] = 1;
+        // right and left shoulder 
+        if(rightShoulder.localEulerAngles.x < 90) {
+            arms["right_arm_abducted"] = 1;
         }
         else
         {
-            arms["arm_abducted"] = 0;
+            arms["right_arm_abducted"] = 0;
+        }
+        if(leftShoulder.localEulerAngles.x < 270) {
+            arms["left_arm_abducted"] = 1;
+        }
+        else
+        {
+            arms["left_arm_abducted"] = 0;
         }
         // if shoulder is raised
         // difficult to compute, because the shoulder does not really change its possition in avatar
@@ -402,23 +386,14 @@ public class REBA_Score : MonoBehaviour
         legScore += body["legs_walking"] == 1 ? 2 : 1;
 
         // Legs adjust
-<<<<<<< Updated upstream
-        if ((30 <= body["legs_angle"] && body["legs_angle"] <= 60))
-            legScore += 1;
-<<<<<<< Updated upstream
-        else if (body["legs_angle"] > 60)
-=======
-        else if (60 < body["legs_angle"] || body["legs_angle"] > 300 )
->>>>>>> Stashed changes
-            legScore += 2;
-=======
-        if (((30 <= body["legs_angle"] && body["legs_angle"] <= 60)) || body["legs_angle"] < 30 ){
+        if (((30 <= body["legs_angle"] && body["legs_angle"] <= 60)) ){
             legScore += 1; Debug.Log("Leg ++");
+        }else if( body["legs_angle"] < 30){
+
         }
         else if (60 < body["legs_angle"] || body["legs_angle"] > 300 ){
             legScore += 2;Debug.Log("Leg +2");
         }
->>>>>>> Stashed changes
 
         // Load
         if (5 <= body["load"] && body["load"] <= 10)
@@ -429,10 +404,7 @@ public class REBA_Score : MonoBehaviour
         if (neckScore <= 0 || trunkScore <= 0 || legScore <= 0) { 
             throw new InvalidOperationException("Neck score, trunk score and leg score must all be greater than zero");
         }
-<<<<<<< Updated upstream
-=======
         //if neck is 4 -> Index out of bounds, because REBA-PDF Table A shows max neck-score = 3 
->>>>>>> Stashed changes
         if(neckScore > 3)
         {
             Debug.Log("Reset neck Score from: " + neckScore);
@@ -473,9 +445,11 @@ public class REBA_Score : MonoBehaviour
         {
             upperLeftArm += 4;
         }
+        if (arms["left_arm_abducted"]==1)
+        upperLeftArm++;
 
         int upperRightArm = 0;
-        //calculate left Arm
+        //calculate right Arm
         if ((340 <= arms["upper_right_arm_angle"] && arms["upper_right_arm_angle"] <= 360) || (0 <= arms["upper_right_arm_angle"] && arms["upper_right_arm_angle"] <= 20))
         {
             upperRightArm++;
@@ -491,6 +465,9 @@ public class REBA_Score : MonoBehaviour
         {
             upperRightArm += 4;
         }
+        if (arms["right_arm_abducted"]==1)
+            upperRightArm++;
+
         // use higher score
         if(upperLeftArm <= upperRightArm)
         {
@@ -504,8 +481,7 @@ public class REBA_Score : MonoBehaviour
         // Upper arm adjust
         if (arms["shoulder_raised"] > 0)
             upperArmScore++;
-        if (arms["arm_abducted"]==1)
-            upperArmScore++;
+        
         if (arms["leaning"]==1)
             upperArmScore--;
 

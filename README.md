@@ -31,10 +31,12 @@ Installation und Verwendung:
     Starte die Szene, verändere die Stellung der Gliedmaßen und siehe wie sich die Score im Output verändert
 
 Beitragende:
-    [Pouya Nikbakhsh](http://github.com/pouya-nik)
-    Frederik Wiemer
-    Jonas
-    Luke Werle
+- Patricia Bombik
+- Albin Hoti
+- Luke Werle
+- Frederik Wiemer
+- [Pouya Nikbakhsh](http://github.com/pouya-nik)
+- Jonas
 
 Lizenz:
 Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der LICENSE-Datei.

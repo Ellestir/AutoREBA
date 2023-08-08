@@ -265,7 +265,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316949493}
-  m_LocalRotation: {x: 0.06812508, y: 0.02286011, z: -0.00658673, w: -0.99739313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -6.9}
   m_LocalScale: {x: 0.15725492, y: 0.1572549, z: 0.15725495}
   m_ConstrainProportionsScale: 0
@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LogAnglesConsole: 1
-  LogAnglesCSV: 0
+  LogScoresCSV: 0
   LogScoresToConsole: 1
   threshold: 0
   windowSize: 5

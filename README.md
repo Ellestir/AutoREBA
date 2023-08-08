@@ -7,7 +7,7 @@ AutoREBA (Automatische Rapid Entire Body Assessment Score) ist ein großes Proje
 
 Das Projekt umfasst insgesamt ca 13 Studierende, die in Teamarbeit an der Lösung der Forschungsfrage arbeiten. Das Team besteht aus vier Gruppen, von denen jede aus drei Mitgliedern und einem Projektmanager besteht. Die Gruppen sind wie folgt aufgeteilt:
 
-    Computation und Visualization (dieses Repository)
+    Computation und Visualization
     Multi Device Communication
     Ground Truth
     Multimodal Feedback 

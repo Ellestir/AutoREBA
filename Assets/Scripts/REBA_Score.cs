@@ -602,7 +602,7 @@ public class REBA_Score : MonoBehaviour
             File.WriteAllText(filePath, header + "\n");
         }
 
-        string time = System.DateTime.Now.ToString();
+        string time = System.DateTime.Now.Ticks.ToString();
         string result = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}\n", time, neck, trunk, leg, tableA, upperArm, lowerArm, wrist, tabeleB, reba);
         File.AppendAllText(filePath, result);
     }

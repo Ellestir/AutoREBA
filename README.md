@@ -31,7 +31,6 @@ Installation und Verwendung:
     Starte die Szene, verändere die Stellung der Gliedmaßen und siehe wie sich die Score im Output verändert
 
 Beitragende:
-
     [Pouya Nikbakhsh](http://github.com/pouya-nik)
     Frederik Wiemer
     Jonas

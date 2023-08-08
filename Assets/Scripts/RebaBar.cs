@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class RebaBar : MonoBehaviour
 {
     public Slider slider;
-    public Gradient gradient;
+    public Gradient gradientAscending;
+    public Gradient gradientDescending;
     public Image fill;
     public Image border;
     public void SetMaxReba(int reba)
@@ -14,11 +15,11 @@ public class RebaBar : MonoBehaviour
         slider.minValue = 1;
         slider.maxValue = reba;
         slider.value = 1;
-        fill.color = gradient.Evaluate(0f);
+        fill.color = gradientAscending.Evaluate(0f);
     }
     public void SetRebaBar(int reba)
     {
         slider.value = reba;
-        fill.color = gradient.Evaluate(1f - slider.normalizedValue);
+        fill.color = gradientAscending.Evaluate(1f - slider.normalizedValue);
     }
 }

@@ -6,10 +6,11 @@ public class VisualFeedback : MonoBehaviour
 {
     private int maxReba = 15;
     private int currentReba;
-    //[Range(1, 15)]
-    [HideInInspector] public int rebaScore;
+    [Range(1, 15)]
+    public int rebaScore;
     [HideInInspector] public bool rebaBarEnabled = true; // Add this variable to control the visibility of the RebaBar Slider and Fill
     [HideInInspector] public RebaBar rebaBar;
+    public bool useInverseRebaBar = true;
     // Start is called before the first frame update
     [HideInInspector] public UnityEngine.UI.Image extraImage;
 
@@ -47,11 +48,26 @@ public class VisualFeedback : MonoBehaviour
 
     void UpdateRebaBar()
     {
-        // Reverse the logic of the tape filling RebaBar
-        if (rebaScore != currentReba)
+        // Check the value of the new bool variable
+        if (useInverseRebaBar)
         {
-            currentReba = rebaScore;
-            rebaBar.SetRebaBar(maxReba - currentReba + 1);
+            // Inverse the REBA bar
+            if (rebaScore != currentReba)
+            {
+                currentReba = rebaScore;
+                rebaBar.SetRebaBar(maxReba - currentReba + 1);
+            }
+            rebaBar.fill.color = rebaBar.gradientAscending.Evaluate(1f - rebaBar.slider.normalizedValue);
+        }
+        else
+        {
+            // Regular behavior of the REBA bar
+            if (rebaScore != currentReba)
+            {
+                currentReba = rebaScore;
+                rebaBar.SetRebaBar(currentReba);
+            }
+            rebaBar.fill.color = rebaBar.gradientDescending.Evaluate(1f - rebaBar.slider.normalizedValue);
         }
         rebaBar.border.gameObject.SetActive(rebaBarEnabled);
         rebaBar.fill.gameObject.SetActive(rebaBarEnabled);

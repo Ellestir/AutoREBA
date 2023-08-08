@@ -22,7 +22,7 @@ Clone the repository to your local computer: `git clone https://github.com/"Dein
 Open the Unity project and navigate to the relevant scene. Start the scene, adjust the limb positions, and observe how the score changes in the output.
 
 ## Contributors:
-- Patricia Bombik
+- [Patricia Bombik](http://github.com/PatPatDango)
 - [Albin Hoti](http://github.com/albinh55)
 - [Luke Werle](https://github.com/Luke-Werle-99)
 - [Frederik Wiemer](http://github.com/FreddyOs)

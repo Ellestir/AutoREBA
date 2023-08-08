@@ -10,7 +10,14 @@ public class REBA_Score : MonoBehaviour
     public bool LogScoresToConsole;
     //"What is sided or bend" determines at which angle the condition is met 
     public int threshold;
+    [Tooltip("The size of the rolling window for averaging")]
+    public int windowSize = 5; // Default size, but can be adjusted in Unity's inspector
+    private Queue<float> lastValues = new Queue<float>();
+    float smooth = 0;
+    //Score Attributes
     public static int Score;
+    public static int SmoothScore;
+    //Bones from Skeleton
     public Transform neck;
     public Transform head;
     public Transform torso;
@@ -28,17 +35,19 @@ public class REBA_Score : MonoBehaviour
     public Transform rightShoulder; 
     public Transform leftShoulder;
     public Transform Spine2;
-    public Transform Spine3;
+    public Transform Spine4;
+    // REBA-Tables from PDF
     public int[,,] tableA;
     public int[,,] tableB;
     public int[,] tableC;
+    // Scores 
     public Dictionary<string, float> body;
     public Dictionary<string, float> arms;
     Quaternion averageTrunkRotation;
     Vector3 TrunkEulerRotation;
     Quaternion averageNeckRotation;
-    Vector3 NeckEulerRotation;
-    //public REBAScoreHUD rebaScoreHUD;
+    Vector3 NeckEulerRotation;    
+    private float previousSmoothedScore = 0f; // To store the previously smoothed REBA score.
 
     void Start()
     {
@@ -163,7 +172,8 @@ public class REBA_Score : MonoBehaviour
         }
         Debug.Log("Trunk Z-Angle: "+ TrunkEulerRotation.z);
         // if trunk is twisted
-        if(TrunkEulerRotation.y < threshold || TrunkEulerRotation.y > (330 - threshold)){
+        //250 because the initial angle is 275 when standing straight
+        if(TrunkEulerRotation.y < (275 + threshold) || TrunkEulerRotation.y < (275 - threshold)){
             body["trunk_twisted"] = 0;
         }else{
             body["trunk_twisted"] = 1;
@@ -200,14 +210,19 @@ public class REBA_Score : MonoBehaviour
         
         // if upper arm is abducted
         // right and left shoulder 
-        if(rightShoulder.localEulerAngles.x < 90) {
+        float leftArmAbduction = Vector3.Angle(Spine4.up, upperLeftArm.up);
+        Debug.Log("XXXLeft Arm Abduction: " + leftArmAbduction);
+        float rightArmAbduction = Vector3.Angle(Spine4.up, upperRightArm.up);
+        Debug.Log("XXXRight Arm Abduction: " + rightArmAbduction);
+
+        if(rightArmAbduction < (160 - threshold)) {
             arms["right_arm_abducted"] = 1;
         }
         else
         {
             arms["right_arm_abducted"] = 0;
         }
-        if(leftShoulder.localEulerAngles.x < 270) {
+        if(leftArmAbduction < (160 - threshold)) {
             arms["left_arm_abducted"] = 1;
         }
         else
@@ -273,8 +288,10 @@ public class REBA_Score : MonoBehaviour
         var result_sore_c = ComputeScoreC(result_sore_a.Item1, result_sore_b.Item1);
         int reba_score = ScoreCTo5Classes(result_sore_c.Item1);
         Score = result_sore_c.Item1;
+        SmoothScore = AverageScore(result_sore_c.Item1);
         Debug.Log("Score A: " + result_sore_a.Item1);
         Debug.Log("REBA-Score: " + result_sore_c.Item1);
+        Debug.Log("Smooth REBA-Score: " + SmoothScore);
 
         if (LogAnglesConsole) {
             Debug.Log("Neck position: " + body["neck_angle"]);
@@ -314,7 +331,7 @@ public class REBA_Score : MonoBehaviour
        
         if (LogAnglesCSV)
         {
-            LogToCSV(Score);
+            LogToCSV(result_sore_a.Item2[0],result_sore_a.Item2[1], result_sore_a.Item2[2], result_sore_a.Item1, result_sore_b.Item2[0], result_sore_b.Item2[1], result_sore_b.Item2[2],result_sore_b.Item1,result_sore_c.Item1 );
         }
 
         if(LogScoresToConsole){
@@ -573,47 +590,31 @@ public class REBA_Score : MonoBehaviour
 
         return ret;
     }
-    public void LogToCSV(int data)
+    public void LogToCSV(int neck, int trunk, int leg, int tableA, int upperArm, int lowerArm, int wrist, int tabeleB, int reba)
     {
         string filePath = Application.dataPath + "/../Logs/AutoREBALogFile.csv";
 
         if (!File.Exists(filePath))
         {
-            string header = "Timestamp, Data";
+            string header = "Timestamp, Neck-Score, Trunk-Score, Leg-Score, Table A, Upper-Arm-Score, Lower-Arm-Score, Wrist-Score, Table B, REBA-Score";
             File.WriteAllText(filePath, header + "\n");
         }
 
         string time = System.DateTime.Now.ToString();
-        string result = string.Format("{0},{1}\n", time, data);
+        string result = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}\n", time, neck, trunk, leg, tableA, upperArm, lowerArm, wrist, tabeleB, reba);
         File.AppendAllText(filePath, result);
     }
 
-}
-
-
-
-/*
-public class RebaCalculator
-{
-    private int[,] tableC; // This needs to be initialized with the same values as the Python version
-
-    public Tuple<int, string> ComputeScoreC(int scoreA, int scoreB)
+    public int AverageScore(float currentREBAScore)
     {
-        string[] rebaScoring = new string[] {
-            "Negligible Risk",
-            "Low Risk. Change may be needed",
-            "Medium Risk. Further Investigate. Change Soon",
-            "High Risk. Investigate and Implement Change",
-            "Very High Risk. Implement Change"
-        };
-
-        int scoreC = this.tableC[scoreA - 1, scoreB - 1];
-        int ix = ScoreCTo5Classes(scoreC);
-        string caption = rebaScoring[ix];
-
-        return new Tuple<int, string>(scoreC, caption);
-    }
-
+        lastValues.Enqueue(currentREBAScore);        
+        smooth += currentREBAScore; 
+        // If the window size is exceeded, remove the oldest value
+        if (lastValues.Count > windowSize)
+        {
+            smooth -= lastValues.Dequeue();
+        }   
     
+        return (int)Math.Ceiling(smooth/lastValues.Count);
+    }
 }
-*/

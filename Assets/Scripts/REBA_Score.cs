@@ -6,7 +6,7 @@ using System.IO;
 public class REBA_Score : MonoBehaviour
 {
     public bool LogAnglesConsole;
-    public bool LogAnglesCSV;
+    public bool LogScoresCSV;
     public bool LogScoresToConsole;
     //"What is sided or bend" determines at which angle the condition is met 
     public int threshold;
@@ -16,7 +16,6 @@ public class REBA_Score : MonoBehaviour
     float smooth = 0;
     //Score Attributes
     public static int Score;
-    public static int SmoothScore;
     //Bones from Skeleton
     public Transform neck;
     public Transform head;
@@ -287,11 +286,10 @@ public class REBA_Score : MonoBehaviour
         var result_sore_b = ComputeScoreB();
         var result_sore_c = ComputeScoreC(result_sore_a.Item1, result_sore_b.Item1);
         int reba_score = ScoreCTo5Classes(result_sore_c.Item1);
-        Score = result_sore_c.Item1;
-        SmoothScore = AverageScore(result_sore_c.Item1);
+        Score = AverageScore(result_sore_c.Item1);
         Debug.Log("Score A: " + result_sore_a.Item1);
         Debug.Log("REBA-Score: " + result_sore_c.Item1);
-        Debug.Log("Smooth REBA-Score: " + SmoothScore);
+        Debug.Log("Smooth REBA-Score: " + Score);
 
         if (LogAnglesConsole) {
             Debug.Log("Neck position: " + body["neck_angle"]);
@@ -329,9 +327,9 @@ public class REBA_Score : MonoBehaviour
             }           
         }
        
-        if (LogAnglesCSV)
+        if (LogScoresCSV)
         {
-            LogToCSV(result_sore_a.Item2[0],result_sore_a.Item2[1], result_sore_a.Item2[2], result_sore_a.Item1, result_sore_b.Item2[0], result_sore_b.Item2[1], result_sore_b.Item2[2],result_sore_b.Item1,result_sore_c.Item1 );
+            LogToCSV(result_sore_a.Item2[0],result_sore_a.Item2[1], result_sore_a.Item2[2], result_sore_a.Item1, result_sore_b.Item2[0], result_sore_b.Item2[1], result_sore_b.Item2[2],result_sore_b.Item1,result_sore_c.Item1);
         }
 
         if(LogScoresToConsole){

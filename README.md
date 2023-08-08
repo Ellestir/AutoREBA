@@ -1,4 +1,5 @@
 # AutoREBA
+
 AutoREBA - Multimodal Feedback Group
 
 Projektbeschreibung:
@@ -7,10 +8,10 @@ AutoREBA (Automatische Rapid Entire Body Assessment Score) ist ein großes Proje
 
 Das Projekt umfasst insgesamt ca 13 Studierende, die in Teamarbeit an der Lösung der Forschungsfrage arbeiten. Das Team besteht aus vier Gruppen, von denen jede aus drei Mitgliedern und einem Projektmanager besteht. Die Gruppen sind wie folgt aufgeteilt:
 
-    Computation und Visualization (dieses Repository)
+    Computation und Visualization
     Multi Device Communication
     Ground Truth
-    Multimodal Feedback 
+    Multimodal Feedback
 
 In der Computation und Visualization Gruppe konzentrieren wir uns auf die Berechnung des so genannten REBA-Scores. Die Rapid Entire Body Assessment (REBA) ist eine Methode zur Bewertung der Körperhaltung und Bewegung.
 Sie wurde entwickelt, um das Risiko von Muskel-Skelett-Erkrankungen bei der Arbeit zu bewerten. Die Methode basiert auf der Beobachtung der Körperhaltung, der Bewegung, der Kraftanforderungen und der Muskelaktivität.

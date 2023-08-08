@@ -25,7 +25,7 @@ Klone das Repository auf deinen lokalen Computer:
 
 ## Beitragende:
 - Patricia Bombik
-- Albin Hoti
+- [Albin Hoti](http://github.com/albinh55)
 - Luke Werle
 - Frederik Wiemer
 - [Pouya Nikbakhsh](http://github.com/pouya-nik)

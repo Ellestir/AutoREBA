@@ -17,7 +17,7 @@ To execute the project, the following components are required:
 - Additional dependencies are specified in the respective directory of the component.
 
 ## Installation and Usage:
-Klone das Repository auf deinen lokalen Computer: `git clone https://github.com/"DeinBenutzername"/AutoREBA`
+Clone the repository to your local computer: `git clone https://github.com/"DeinBenutzername"/AutoREBA`
 
 Open the Unity project and navigate to the relevant scene. Start the scene, adjust the limb positions, and observe how the score changes in the output.
 

@@ -1000,6 +1000,7 @@ MonoBehaviour:
   leftShoulder: {fileID: 1255371361}
   Spine2: {fileID: 598865487}
   Spine3: {fileID: 1293949393}
+  alpha: 0.5
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

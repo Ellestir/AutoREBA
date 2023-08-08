@@ -6,8 +6,8 @@ public class VisualFeedback : MonoBehaviour
 {
     private int maxReba = 15;
     private int currentReba;
-    [Range(1, 15)]
-    public int rebaScore;
+    //[Range(1, 15)]
+    [HideInInspector] public int rebaScore;
     [HideInInspector] public bool rebaBarEnabled = true; // Add this variable to control the visibility of the RebaBar Slider and Fill
     [HideInInspector] public RebaBar rebaBar;
     // Start is called before the first frame update
@@ -38,6 +38,7 @@ public class VisualFeedback : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rebaScore = REBA_Score.Score;
         UpdateRebaBar();
         UpdateRebaImage();
         UpdateRebaScoreText();

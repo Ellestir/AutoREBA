@@ -34,7 +34,7 @@ public class REBA_Score : MonoBehaviour
     public Transform rightShoulder; 
     public Transform leftShoulder;
     public Transform Spine2;
-    public Transform Spine3;
+    public Transform Spine4;
     // REBA-Tables from PDF
     public int[,,] tableA;
     public int[,,] tableB;
@@ -209,14 +209,19 @@ public class REBA_Score : MonoBehaviour
         
         // if upper arm is abducted
         // right and left shoulder 
-        if(rightShoulder.localEulerAngles.x < 90) {
+        float leftArmAbduction = Vector3.Angle(Spine4.up, upperLeftArm.up);
+        Debug.Log("XXXLeft Arm Abduction: " + leftArmAbduction);
+        float rightArmAbduction = Vector3.Angle(Spine4.up, upperRightArm.up);
+        Debug.Log("XXXRight Arm Abduction: " + rightArmAbduction);
+
+        if(rightArmAbduction < (160 - threshold)) {
             arms["right_arm_abducted"] = 1;
         }
         else
         {
             arms["right_arm_abducted"] = 0;
         }
-        if(leftShoulder.localEulerAngles.x < 270) {
+        if(leftArmAbduction < (160 - threshold)) {
             arms["left_arm_abducted"] = 1;
         }
         else

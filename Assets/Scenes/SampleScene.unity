@@ -451,37 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08311d53f503c642b41b26cb30c7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 568660809}
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0.5764706, g: 0.8235295, b: 0.3137255, a: 1}
-    key1: {r: 1, g: 0.8588236, b: 0.40000004, a: 1}
-    key2: {r: 1, g: 0.7568628, b: 0.003921569, a: 1}
-    key3: {r: 0.9803922, g: 0.007843138, b: 0.007843138, a: 1}
-    key4: {r: 0.7607844, g: 0.003921569, b: 0.011764707, a: 1}
-    key5: {r: 0, g: 0, b: 0, a: 1}
-    key6: {r: 0, g: 0, b: 0, a: 1}
-    key7: {r: 0, g: 0, b: 0, a: 1}
-    ctime0: 3277
-    ctime1: 13107
-    ctime2: 29491
-    ctime3: 42598
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 15998
-    atime2: 22166
-    atime3: 23323
-    atime4: 36237
-    atime5: 44525
-    atime6: 52621
-    atime7: 65535
-    m_Mode: 1
-    m_NumColorKeys: 5
-    m_NumAlphaKeys: 8
-  fill: {fileID: 1014110087}
 --- !u!1001 &587651681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -982,6 +951,7 @@ MonoBehaviour:
   LogAnglesCSV: 0
   LogScoresToConsole: 1
   threshold: 10
+  alpha: 0.5
   neck: {fileID: 517922279}
   head: {fileID: 1058008180}
   torso: {fileID: 346122891}
@@ -999,8 +969,7 @@ MonoBehaviour:
   rightShoulder: {fileID: 1131516030}
   leftShoulder: {fileID: 1255371361}
   Spine2: {fileID: 598865487}
-  Spine3: {fileID: 1293949393}
-  alpha: 0.5
+  Spine4: {fileID: 346122891}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,20 +1464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1e0286624f51b4e95e36dec9eb8117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rebaBar: {fileID: 568660810}
-  extraImage: {fileID: 473966919}
-  rebaImage: {fileID: 753893534}
-  level1Sprite: {fileID: 3286163911610860551, guid: 741d37041c8b2d946bd3ac8acbb89043, type: 3}
-  level2Sprite: {fileID: 3286163911610860551, guid: 3f1a683da8c94124e9cb8a855c3e3ca5, type: 3}
-  level3Sprite: {fileID: 3286163911610860551, guid: 6effc2bcc032f594480b83848a2c1440, type: 3}
-  level4Sprite: {fileID: 3286163911610860551, guid: 72371d75898919644aec494be5a4dc3a, type: 3}
-  level5Sprite: {fileID: 3286163911610860551, guid: f50fbde3b2a29334cb7b2738a899593c, type: 3}
-  rebaScoreText: {fileID: 1624078703}
-  RebaScoreTextEnabled: 1
-  rebaScoreNumber: {fileID: 1013152320}
-  RebaScoreNumberEnabled: 1
-  SamFaceEnabled: 1
-  ImageEnabled: 0
 --- !u!114 &1280479210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1591,11 +1546,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!4 &1293949393 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -6203876506131192488, guid: b08b8fbc52b208844aa535f6ef4120f3, type: 3}
-  m_PrefabInstance: {fileID: 1806920352}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1364491353
 PrefabInstance:
   m_ObjectHideFlags: 0

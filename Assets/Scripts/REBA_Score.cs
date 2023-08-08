@@ -5,10 +5,14 @@ using UnityEngine;
 using System.IO;
 public class REBA_Score : MonoBehaviour
 {
+    [Tooltip("Logs the angles of the dictionary to the console")]
     public bool LogAnglesConsole;
+    [Tooltip("Logs the limb and table scores to a CSV-File")]
     public bool LogScoresCSV;
+    [Tooltip("Logs the scores of limbs and tables to the console")]
     public bool LogScoresToConsole;
     //"What is sided or bend" determines at which angle the condition is met 
+    [Tooltip("Determines the threshold at which angle condittions like sided, twisted or bend are met")]
     public int threshold;
     [Tooltip("The size of the rolling window for averaging")]
     public int windowSize = 5; // Default size, but can be adjusted in Unity's inspector
@@ -598,12 +602,12 @@ public class REBA_Score : MonoBehaviour
             File.WriteAllText(filePath, header + "\n");
         }
 
-        string time = System.DateTime.Now.ToString();
+        string time = System.DateTime.Now.Ticks.ToString();
         string result = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}\n", time, neck, trunk, leg, tableA, upperArm, lowerArm, wrist, tabeleB, reba);
         File.AppendAllText(filePath, result);
     }
 
-    public int AverageScore(float currentREBAScore)
+    public int AverageScore(int currentREBAScore)
     {
         lastValues.Enqueue(currentREBAScore);        
         smooth += currentREBAScore; 
@@ -613,6 +617,6 @@ public class REBA_Score : MonoBehaviour
             smooth -= lastValues.Dequeue();
         }   
     
-        return (int)Math.Ceiling(smooth/lastValues.Count);
+        return (int)Math.Round(smooth/lastValues.Count);
     }
 }

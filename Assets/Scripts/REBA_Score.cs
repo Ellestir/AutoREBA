@@ -10,10 +10,11 @@ public class REBA_Score : MonoBehaviour
     public bool LogScoresToConsole;
     //"What is sided or bend" determines at which angle the condition is met 
     public int threshold;
-    // Smoothing factor. Can be adjusted from Unity interface.
-    // alpha closer to 1 => The smoothed value will be more responsive to recent changes in the data
-    [Range(0.0f, 1.0f)]
-    public float alpha = 0.5f; 
+    [Tooltip("The size of the rolling window for averaging")]
+    public int windowSize = 5; // Default size, but can be adjusted in Unity's inspector
+    private Queue<float> lastValues = new Queue<float>();
+    float smooth = 0;
+    //Score Attributes
     public static int Score;
     public static int SmoothScore;
     //Bones from Skeleton
@@ -287,7 +288,7 @@ public class REBA_Score : MonoBehaviour
         var result_sore_c = ComputeScoreC(result_sore_a.Item1, result_sore_b.Item1);
         int reba_score = ScoreCTo5Classes(result_sore_c.Item1);
         Score = result_sore_c.Item1;
-        SmoothScore = ExponentialAveraging(result_sore_c.Item1);
+        SmoothScore = AverageScore(result_sore_c.Item1);
         Debug.Log("Score A: " + result_sore_a.Item1);
         Debug.Log("REBA-Score: " + result_sore_c.Item1);
         Debug.Log("Smooth REBA-Score: " + SmoothScore);
@@ -604,10 +605,16 @@ public class REBA_Score : MonoBehaviour
         File.AppendAllText(filePath, result);
     }
 
-    public int ExponentialAveraging(float currentREBAScore)
+    public int AverageScore(float currentREBAScore)
     {
-        float smoothedScore = alpha * currentREBAScore + (1 - alpha) * previousSmoothedScore;
-        previousSmoothedScore = smoothedScore; // Update the previous smoothed score for the next calculation
-        return (int)Math.Ceiling(smoothedScore);
+        lastValues.Enqueue(currentREBAScore);        
+        smooth += currentREBAScore; 
+        // If the window size is exceeded, remove the oldest value
+        if (lastValues.Count > windowSize)
+        {
+            smooth -= lastValues.Dequeue();
+        }   
+    
+        return (int)Math.Ceiling(smooth/lastValues.Count);
     }
 }

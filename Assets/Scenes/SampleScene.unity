@@ -209,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a331805347588fe4a8161c8875d24396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ServerAddress: 192.168.2.112
-  LocalAddress: 192.168.2.112
+  ServerAddress: 10.12.17.182
+  LocalAddress: 10.12.17.182
   ConnectionType: 0
   SkeletonCoordinates: 0
   BoneNamingConvention: 0
@@ -1021,6 +1021,7 @@ MonoBehaviour:
   LogAnglesCSV: 0
   LogScoresToConsole: 1
   threshold: 0
+  windowSize: 5
   neck: {fileID: 517922279}
   head: {fileID: 1058008180}
   torso: {fileID: 346122891}
@@ -1038,7 +1039,7 @@ MonoBehaviour:
   rightShoulder: {fileID: 1131516030}
   leftShoulder: {fileID: 1255371361}
   Spine2: {fileID: 598865487}
-  Spine3: {fileID: 1293949393}
+  Spine4: {fileID: 346122891}
 --- !u!1 &954557566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,11 +1426,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e09d962f56189d46ad6bcd146c01a77, type: 3}
---- !u!4 &1293949393 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -6203876506131192488, guid: b08b8fbc52b208844aa535f6ef4120f3, type: 3}
-  m_PrefabInstance: {fileID: 1806920352}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1333725075
 GameObject:
   m_ObjectHideFlags: 0

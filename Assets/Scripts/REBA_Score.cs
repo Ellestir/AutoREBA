@@ -607,7 +607,7 @@ public class REBA_Score : MonoBehaviour
         File.AppendAllText(filePath, result);
     }
 
-    public int AverageScore(float currentREBAScore)
+    public int AverageScore(int currentREBAScore)
     {
         lastValues.Enqueue(currentREBAScore);        
         smooth += currentREBAScore; 
@@ -617,6 +617,6 @@ public class REBA_Score : MonoBehaviour
             smooth -= lastValues.Dequeue();
         }   
     
-        return (int)Math.Ceiling(smooth/lastValues.Count);
+        return (int)Math.Round(smooth/lastValues.Count);
     }
 }

@@ -27,9 +27,10 @@ Klone das Repository auf deinen lokalen Computer:
 - Patricia Bombik
 - [Albin Hoti](http://github.com/albinh55)
 - Luke Werle
-- Frederik Wiemer
+- [Frederik Wiemer](http://github.com/FreddyOs)
 - [Pouya Nikbakhsh](http://github.com/pouya-nik)
 - Jonas
+- 
 
 ##    Lizenz:
 Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der LICENSE-Datei.

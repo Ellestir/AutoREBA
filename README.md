@@ -5,10 +5,10 @@
 AutoREBA (Automatische Rapid Entire Body Assessment Score) ist ein großes Projekt im Bereich der Mensch-Computer-Interaktion. Das Ziel des Projekts ist es, eine Forschungsfrage im Bereich der Haltungsergonomie in Mixed Reality zu beantworten. Das übergeordnete Thema des Projekts ist "Multimodales Biofeedback zur Verbesserung der Haltungsergonomie in Mixed Reality".
 
 Das Projekt umfasst insgesamt ca 13 Studierende, die in Teamarbeit an der Lösung der Forschungsfrage arbeiten. Das Team besteht aus vier Gruppen, von denen jede aus drei Mitgliedern und einem Projektmanager besteht. Die Gruppen sind wie folgt aufgeteilt:
-- [Computation und Visualization](Documentation/)
-- [Multi Device Communication]()
-- [Ground Truth]()
-- [Multimodal Feedback]()
+- [Computation und Visualization](Documentation/Computation&Visualization.md)
+- [Multi Device Communication](Documentation/)
+- [Ground Truth](Documentation/)
+- [Multimodal Feedback](Documentation/)
 
 Anforderungen:
 

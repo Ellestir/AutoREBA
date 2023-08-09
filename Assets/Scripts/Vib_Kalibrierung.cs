@@ -5,18 +5,17 @@ using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Kalibrierung : MonoBehaviour
+public class Vib_Kalibrierung : MonoBehaviour
 {
-    private float timeSinceLastVibration;
-    //[Range(1, 2)]
-    //public int motorSlider;
-
+    // Enumeration for controlling motor sliders
     public enum MotorSlider { one, two }
     public MotorSlider motorSlider;
 
+    // Enumeration for controlling steps sliders
     public enum StepsSlider { five, fifteen }
     public StepsSlider stepsSlider;
 
+    // Enumeration for controlling intensity
     public enum Intensity { Low, Medium, High }
     public Intensity intensitySlider;
 
@@ -24,117 +23,110 @@ public class Kalibrierung : MonoBehaviour
     public int rebaScoreSlider;
     private int rebaScore;
 
-    //public Button vibrateButton;  // Button to start vibration
-    // Vibrationsintensität, die an das Arduino-Gerät gesendet werden soll
-
-
     private UdpClient udpClient;
     private IPEndPoint endPoint;
     private string ip = "192.168.2.182";  // Replace this with the IP of your Arduino
     private int port = 8888;  // The port your Arduino is listening to
 
-    // Define all your motorStrength arrays here as in your code.
-    //two motors
-    private int[] motorStrength1_high = new int[] { 105, 115, 125, 135, 155, 160, 170, 180, 190, 200, 210, 220, 230, 240, 255 };
-    private int[] motorStrength2_high = new int[] { 0, 0, 0, 0, 0, 115, 130, 145, 160, 175, 190, 205, 220, 235, 255 };
+    //Vibration Mapping for two motors and fifteen Steps and Intesity for High, Medium, Low
+    private int[] motorStrength1_high = new int[] {   0, 115, 125, 135, 155, 160, 170, 180, 190, 200, 210, 220, 230, 240, 255 };
+    private int[] motorStrength2_high = new int[] {   0,   0,   0,   0,   0, 120, 135, 150, 160, 175, 190, 205, 225, 235, 255 };
 
-    private int[] motorStrength1_medium = new int[] { 100, 110, 120, 130, 150, 150, 160, 170, 180, 190, 200, 210, 220, 230, 245 };
-    private int[] motorStrength2_medium = new int[] { 0, 0, 0, 0, 0, 115, 130, 145, 155, 170, 190, 205, 220, 235, 245 };
+    private int[] motorStrength1_medium = new int[] { 0, 104, 118, 130, 145, 150, 160, 170, 180, 190, 200, 210, 220, 230, 245 };
+    private int[] motorStrength2_medium = new int[] { 0,   0,   0,   0,   0, 115, 130, 145, 155, 170, 185, 200, 210, 225, 245 };
 
-    private int[] motorStrength1_low = new int[] { 90, 100, 110, 120, 130, 150, 160, 170, 175, 185, 195, 200, 220, 230, 235 };
-    private int[] motorStrength2_low = new int[] { 0, 0, 0, 0, 0, 100, 115, 130, 145, 160, 175, 190, 205, 220, 235 };
-
-    private int[] motorStrength1_high_5 = new int[] { 105, 155, 180, 210, 255 };
-    private int[] motorStrength2_high_5 = new int[] { 0, 100, 145, 190, 255 };
-
-    private int[] motorStrength1_medium_5 = new int[] { 100, 135, 160, 190, 245 };
-    private int[] motorStrength2_medium_5 = new int[] { 0, 0, 130, 175, 245 };
-
-    private int[] motorStrength1_low_5 = new int[] { 90, 120, 150, 200, 235 };
-    private int[] motorStrength2_low_5 = new int[] { 0, 0, 120, 165, 235 };
+    private int[] motorStrength1_low = new int[] {    0,  93, 106, 119, 135, 150, 160, 170, 175, 185, 195, 205, 215, 230, 235 };
+    private int[] motorStrength2_low = new int[] {    0,   0,   0,   0,   0, 100, 115, 130, 145, 160, 175, 190, 200, 215, 235 };
+    
 
 
+    //Vibration Mapping for two motors and five Steps and Intesity for High, Medium, Low
+    private int[] motorStrength1_high_5 = new int[] { 0, 135, 170, 210, 255 };
+    private int[] motorStrength2_high_5 = new int[] { 0, 120, 155, 195, 255 };
+    
+    private int[] motorStrength1_medium_5 = new int[] { 0, 110, 160, 190, 245 };
+    private int[] motorStrength2_medium_5 = new int[] { 0, 100, 130, 185, 245 };
+                                        
+    private int[] motorStrength1_low_5 = new int[] { 0, 100, 130, 180, 235 };
+    private int[] motorStrength2_low_5 = new int[] { 0,   0, 130, 165, 235 };
+                                       
 
-    //one motor
-    private int[] motorStrength1_high_one = new int[] { 105, 115, 125, 135, 155, 160, 170, 180, 190, 200, 210, 220, 230, 240, 255 };
-
-    private int[] motorStrength1_medium_one = new int[] { 100, 110, 120, 130, 150, 150, 160, 170, 180, 190, 200, 210, 220, 230, 245 };
-
-    private int[] motorStrength1_low_one = new int[] { 90, 100, 110, 120, 130, 150, 160, 170, 180, 190, 200, 210, 220, 230, 235 };
-
-    private int[] motorStrength1_high_5_one = new int[] { 105, 155, 180, 210, 255 };
-
-    private int[] motorStrength1_medium_5_one = new int[] { 100, 130, 160, 200, 245 };
-
-    private int[] motorStrength1_low_5_one = new int[] { 90, 120, 150, 190, 235 };
+    //Vibration Mapping for one motor and fifteen Steps and Intesity for High, Medium, Low
+    private int[] motorStrength1_high_one = new int[] { 0  , 105, 115, 125, 135, 155, 170, 180, 190, 200, 210, 220, 230, 240, 255};
+                                                    //
+    private int[] motorStrength1_medium_one = new int[] { 0,   100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 245 };
+                                                      //
+    private int[] motorStrength1_low_one = new int[] { 0,   91, 102, 113, 124, 145, 156, 167, 178, 189, 200, 210, 220, 230, 235 };
+               
+    
+    //Vibration Mapping for one motor and five Steps and Intesity for High, Medium, Low                                    //
+    private int[] motorStrength1_high_5_one = new int[] { 0, 120, 160, 200, 255 };
+                                                        //
+    private int[] motorStrength1_medium_5_one = new int[] { 0, 105, 140, 190, 245 };
+                                                        //
+    private int[] motorStrength1_low_5_one = new int[] { 0, 90, 130, 180, 235 };
 
     private void Start()
     {
+        // UDP connection
         endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
         udpClient = new UdpClient();
-        timeSinceLastVibration = -1f; // Initialisiere den Timer so, dass er anfangs inaktiv ist
-
-
-        //vibrateButton.onClick.AddListener(OnButtonPress);
     }
 
     private void Update()
     {
-        rebaScore = rebaScoreSlider;
-
-        if (timeSinceLastVibration >= 0f) // Wenn der Timer aktiv ist
-        {
-            timeSinceLastVibration += Time.deltaTime; // Aktualisiere den Timer
-
-            if (timeSinceLastVibration >= 1f) // Wenn eine Sekunde vergangen ist
-            {
-                timeSinceLastVibration = -1f; // Deaktiviere den Timer
-                SendVibration(); // Sende die Vibration erneut
-            }
-        }
+        rebaScore = rebaScoreSlider; 
 
     }
 
     public void OnButtonPress()
     {
-        timeSinceLastVibration = 0f;
         SendVibration();
     }
 
     private void SendVibration()
     {
+         // Select appropriate strength arrays based on the sliders and score
         int[] motor1StrengthArray = SelectStrengthArray(motorSlider, stepsSlider, intensitySlider, true);
         int[] motor2StrengthArray = SelectStrengthArray(motorSlider, stepsSlider, intensitySlider, false);
-
         int mappedRebaScore = MapRebaScore(rebaScore, stepsSlider);
 
+        // Determine the motor strength based on the REBA score
         int motor1Strength = motor1StrengthArray[Mathf.Min(mappedRebaScore - 1, motor1StrengthArray.Length - 1)];
         int motor2Strength = motor2StrengthArray[Mathf.Min(mappedRebaScore - 1, motor2StrengthArray.Length - 1)];
 
-        SendData("start vibration," + motor1Strength.ToString() + "," + motor2Strength.ToString());
+        // Send the computed motor strengths as a message
+        SendData("start kalibration," + motor1Strength.ToString() + "," + motor2Strength.ToString());
     }
 
-    // Eine Methode, um den REBA-Score zu mappen, basierend auf der Anzahl der Schritte
+    // Mapping the REBA score based on the number of steps
     private int MapRebaScore(int rebaScore, StepsSlider stepsSlider)
     {
         if (stepsSlider == StepsSlider.five)
         {
-            // Nutzen Sie Mathf.Lerp, um den REBA-Score zu mappen, wenn nur 5 Schritte vorhanden sind
-            return Mathf.RoundToInt(Mathf.Lerp(1, 5, (rebaScore - 1) / 14.0f));
+            if (rebaScore == 1)
+                return 1;
+            if (rebaScore >= 2 && rebaScore <= 3)
+                return 2;
+            if (rebaScore >= 4 && rebaScore <= 7)
+                return 3;
+            if (rebaScore >= 8 && rebaScore <= 10)
+                return 4;
+            if (rebaScore >= 11 && rebaScore <= 15)
+                return 5;
         }
         else
         {
-            // Wenn es 15 Schritte gibt, geben Sie einfach den REBA-Score zurück
-            return rebaScore;
+        return rebaScore;
         }
+
+        return 0; 
     }
 
-
+    // Select the appropriate motor strength array based on sliders and motor number
     private int[] SelectStrengthArray(MotorSlider motorSlider, StepsSlider stepsSlider, Intensity intensitySlider, bool isMotor1)
-    {
-        // Add your logic here to select the correct array based on the parameters.
-        // This is a placeholder and needs to be replaced with your own logic.
-        // For example, if motorSlider == 0, you might return motorStrength1_high, and so on.
+    {   
+        // Determine which array to use based on the values of the sliders
         if (isMotor1 == true)
         {
             if (motorSlider == MotorSlider.one)
@@ -210,7 +202,7 @@ public class Kalibrierung : MonoBehaviour
         }
     }
 
-
+    // Send a message to the connected device (Arduino)
     private void SendData(string message)
     {
         try
@@ -225,9 +217,10 @@ public class Kalibrierung : MonoBehaviour
         }
     }
 
-
+    /*
     private void OnDestroy()
     {
         udpClient.Close();
     }
+    */
 }

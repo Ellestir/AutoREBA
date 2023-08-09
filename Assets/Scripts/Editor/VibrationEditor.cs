@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Kalibrierung))]
+[CustomEditor(typeof(Vib_Kalibrierung))]
 public class VibrationEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -10,7 +10,7 @@ public class VibrationEditor : Editor
         DrawDefaultInspector();
 
         // Hole eine Referenz auf das Vibration-Script
-        Kalibrierung kalibrierung = (Kalibrierung)target;
+        Vib_Kalibrierung kalibrierung = (Vib_Kalibrierung)target;
 
         // Wenn der Button geklickt wird, führe die Funktion "OnButtonPress" aus
         if (GUILayout.Button("Vibration testen"))

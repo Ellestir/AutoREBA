@@ -30,8 +30,23 @@ a high degree of flexibility in fine-tuning the user experience.
   - 4-7: Orange
   - 8-10: Red
   - 11-15: Dark Red (Poor posture)
-For a detailed breakdown of how each color fills the bar in terms of percentages, refer to Figure 1. This figure provides a comprehensive visual guide on the color distribution and settings.
-- **Invertible Direction**: Within Unity, there's an option to invert the direction of the REBA-Bar. This means the bar can fill in the opposite direction, offering the user a different visual representation based on their preference.
+
+  For a detailed breakdown of how each color fills the bar in terms of percentages, refer to Figure 1. This figure provides a comprehensive visual guide on the color distribution and settings.
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/visual_Colores.png" alt="visual_Colores.png" width="500" />
+  <br>
+  Figure 1: REBA-Bar Color Distribution and Percentage Fill
+</p>
+
+- **Invertible Direction**: Within Unity, there's an option to invert the direction of the REBA-Bar. This means the bar can fill in the opposite direction, offering the user a different visual representation based on their preference. Refer to Figure 2 for a visual depiction of the invertible direction.
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/visual_Colores_Reverse.png" alt="visual_Colores_Reverse.pn" width="500" />
+  <br>
+  Figure 2: REBA-Bar Color Distribution and Percentage Fill
+</p>
+
 #### 2- REBA-Number & REBA-Score Text:
 - **REBA-Text**: Depending on the REBA score, a pertinent message is showcased:
   - 1: "Negligible risk, no action required"
@@ -48,25 +63,32 @@ For a detailed breakdown of how each color fills the bar in terms of percentages
 - **Faces Spectrum**: SAM encapsulates a spectrum of five unique faces, portraying emotions from very negative to very positive. Each face is associated with levels 1 (very positive) through 5 (very negative), providing clear emotional feedback based on the REBA score.
 - **Integration in AutoREBA**: In the context of AutoREBA, SAM offers users an intuitive feedback mechanism regarding their posture, aiding in self-awareness and posture correction.
 
-The SAM faces, as seen in Figure 1, range from level 1 to level 5 . This progression visually reinforces the spectrum of emotions and its relation to the user's posture feedback.
+The SAM faces, as seen in Figure 3, range from level 1 to level 5 . This progression visually reinforces the spectrum of emotions and its relation to the user's posture feedback.
 
 <p align="center">
   <br>
   <img src="./Images/Multimodal_Feedback/visual_SAM.png" alt="visual_SAM.png" width="500" />
   <br>
-  Figure 1: Spectrum of SAM Faces from Level 1 (Very Positive) to Level 5 (Very Negative)
+  Figure 3: Spectrum of SAM Faces from Level 1 (Very Positive) to Level 5 (Very Negative)
 </p>
 
 
 #### 4- Extra-Image:
-- **Customization**: This feature allows users to integrate their images, allowing for a personalized feedback experience. It’s a way of infusing individuality into the feedback mechanism.
+- **Customization**: This feature provides users with the capability to incorporate their own images into the Unity scene, offering a bespoke feedback experience. As illustrated in Figure 4, users can seamlessly replace the default SAM images with their chosen visuals, thus adding a touch of personalization to the feedback mechanism.
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/visual_ExtraImage_References.png" alt="visual_ExtraImage_References.png" width="600" />
+  <br>
+  Figure 5: Final Implementation of Visual Feedback Features in Unity
+</p>
 
-As seen in Figure 2, the final implementation of the REBA-Bar in Unity reflects the described features.
+<br>
+As seen in Figure 5, the **final implementation of the REBA-Bar in Unity** reflects the described features.
 <p align="center">
   <br>
   <img src="./Images/Multimodal_Feedback/visual_REBA_Bar.png" alt="visual_REBA_Bar.png" width="600" />
   <br>
-  Figure 2: Final Implementation of Visual Feedback Features in Unity
+  Figure 5: Integration of User-defined Images as an Alternative to SAM in Unity Scene
 </p>
 
 ### Configuration & Usage:

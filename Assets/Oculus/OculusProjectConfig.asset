@@ -33,6 +33,6 @@ MonoBehaviour:
   requiresSystemKeyboard: 0
   experimentalFeaturesEnabled: 0
   insightPassthroughEnabled: 0
-  _insightPassthroughSupport: 0
+  _insightPassthroughSupport: 1
   systemSplashScreen: {fileID: 0}
   systemSplashScreenType: 0

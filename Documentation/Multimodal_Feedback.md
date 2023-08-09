@@ -30,7 +30,7 @@ a high degree of flexibility in fine-tuning the user experience.
   - 4-7: Orange
   - 8-10: Red
   - 11-15: Dark Red (Poor posture)
-  For a detailed breakdown of how each color fills the bar in terms of percentages, refer to Figure 1. This figure provides a comprehensive visual guide on the color distribution and settings.
+For a detailed breakdown of how each color fills the bar in terms of percentages, refer to Figure 1. This figure provides a comprehensive visual guide on the color distribution and settings.
 - **Invertible Direction**: Within Unity, there's an option to invert the direction of the REBA-Bar. This means the bar can fill in the opposite direction, offering the user a different visual representation based on their preference.
 #### 2- REBA-Number & REBA-Score Text:
 - **REBA-Text**: Depending on the REBA score, a pertinent message is showcased:

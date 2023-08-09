@@ -21,13 +21,11 @@ To execute the project, the following components are required:
 2. Open the Unity project and navigate to the relevant scene. Start the scene, adjust the limb positions, and observe how the score changes in the output.
 
 ## Contributors:
-- [Patricia Bombik](http://github.com/PatPatDango)
+- [Patricia Maria Bombik](http://github.com/PatPatDango)
 - [Albin Hoti](http://github.com/albinh55)
+- [Pouya Nikbakhsh](http://github.com/pouya-nik)
+- Tom Roman Rosenberger
+- Jonas Scheffner
 - [Luke Werle](https://github.com/Luke-Werle-99)
 - [Frederik Wiemer](http://github.com/FreddyOs)
-- [Pouya Nikbakhsh](http://github.com/pouya-nik)
-- Jonas
-- 
 
-## License:
-This project is licensed under the MIT License. For more details, please refer to the LICENSE file.

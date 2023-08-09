@@ -19,10 +19,18 @@ The Multimodal Feedback module is at the heart of our approach. It facilitates s
 The visual feedback utilizes various visualizations, like the REBA-Bar and SAM faces, all of which dynamically adapt to the user's REBA score. The primary goal of these mechanisms is to provide users with an intuitive means to understand their REBA score and adjust their posture in real-time accordingly.
 
 ### Components:
+Every component in this section is intricately tied to the REBA score, ensuring dynamic, real-time feedback to the user. 
+Through the Unity interface, each of these primary functions can be easily activated or deactivated, giving developers 
+a high degree of flexibility in fine-tuning the user experience.
 #### 1- REBA-Bar:
-- Represents the user's current REBA score, ranging from values 1 to 15.
+- **Purpose**: Represents the user's current REBA score, which can range from values 1 to 15.
 - **Invertible Direction**: Within Unity, there's an option to invert the direction of the REBA-Bar. This means the bar can fill in the opposite direction, offering the user a different visual representation based on their preference.
-- **Color Indication**: The bar's color varies with the score: 1 (Green), 2-3 (Yellow), 4-7 (Orange), 8-10 (Red), and 11-15 (Dark Red).
+- **Color Indication**: The bar's color varies with the score: The bar's color changes in accordance with the REBA score, providing instant visual feedback:
+  - 1: Green (Ideal posture)
+  - 2-3: Yellow
+  - 4-7: Orange
+  - 8-10: Red
+  - 11-15: Dark Red (Poor posture)
 #### 2- REBA-Number & REBA-Score Text:
 - **REBA-Text**: Depending on the REBA score, a pertinent message is showcased:
   - 1: "Negligible risk, no action required"
@@ -30,18 +38,16 @@ The visual feedback utilizes various visualizations, like the REBA-Bar and SAM f
   - 4-7: "Medium risk, further investigation, change soon"
   - 8-10: "High risk, investigate and implement change"
   - 11-15: "Very high risk, implement change"
-- **REBA-Number**: Visual cues that modulate in size and hue based on the posture's calibre, furnishing deeper posture insights.
+- **REBA-Number**: Depending on the REBA score, the number will change in size and color, providing an additional layer of visual feedback.
 #### 3- SELF-ASSESSMENT MANIKIN (SAM):
-- SAM, a non-verbal rating system, plays a crucial role in our feedback mechanism.
-- **Why SAM?**: SAM presents an intuitive mode to pictorially portray posture quality. By leveraging universally understood facial illustrations, SAM's feedback transcends
-linguistic confines, rendering it accessible to a broader spectrum of users.
-- **Why SVGs with SAM?**: SAM employs SVG images to ensure pristine image quality, irrespective of scaling, offering users sharp and clear feedback visuals.
-his accentuates the feedback's effectiveness and user comprehension.
-- **Visual Representation**: SAM adopts images of figures (manikins) over words to convey emotions.
-- **Faces Spectrum**: SAM spans five distinct faces delineating emotions from very negative to very positive. These faces signify levels 1 through 5, elucidating varied emotional feedback.
-- **Application in AutoREBA**: AM endows users with intuitive feedback concerning their posture, thus enhancing their posture cognizance.
+- **Function**: SAM is a pivotal aspect of the feedback system, acting as a non-verbal rating system.
+- **Rationale behind SAM**: Using universally comprehended facial expressions, SAM provides a language-agnostic approach to feedback. It conveys posture quality through facial expressions, making it accessible to a wide audience.
+- **Use of SVGs**: SAM employs SVG images, ensuring that the feedback retains impeccable quality regardless of scaling or screen resolution.
+- **Visual Representation**: Instead of words, SAM uses figures (manikins) to depict emotions, making it easier to understand and more engaging.
+- **Faces Spectrum**: SAM encapsulates a spectrum of five unique faces, portraying emotions from very negative to very positive. Each face is associated with levels 1 through 5, providing clear emotional feedback based on the REBA score.
+- **Integration in AutoREBA**: In the context of AutoREBA, SAM offers users an intuitive feedback mechanism regarding their posture, aiding in self-awareness and posture correction.
 #### 4- Extra-Image:
-- Users can seamlessly embed their personal images, infusing a bespoke touch to the feedback process.
+- **Customization**: This feature allows users to integrate their images, allowing for a personalized feedback experience. It’s a way of infusing individuality into the feedback mechanism.
 
 ### Configuration & Usage:
 After adding the "RebaBar" and "VisualFeedback" scripts to a GameObject in Unity, it's crucial to provide the necessary references in the Unity Editor.

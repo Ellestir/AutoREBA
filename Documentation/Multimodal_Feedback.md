@@ -24,13 +24,14 @@ Through the Unity interface, each of these primary functions can be easily activ
 a high degree of flexibility in fine-tuning the user experience.
 #### 1- REBA-Bar:
 - **Purpose**: Represents the user's current REBA score, which can range from values 1 to 15.
-- **Invertible Direction**: Within Unity, there's an option to invert the direction of the REBA-Bar. This means the bar can fill in the opposite direction, offering the user a different visual representation based on their preference.
 - **Color Indication**: The bar's color varies with the score: The bar's color changes in accordance with the REBA score, providing instant visual feedback:
   - 1: Green (Ideal posture)
   - 2-3: Yellow
   - 4-7: Orange
   - 8-10: Red
   - 11-15: Dark Red (Poor posture)
+  For a detailed breakdown of how each color fills the bar in terms of percentages, refer to Figure 1. This figure provides a comprehensive visual guide on the color distribution and settings.
+- **Invertible Direction**: Within Unity, there's an option to invert the direction of the REBA-Bar. This means the bar can fill in the opposite direction, offering the user a different visual representation based on their preference.
 #### 2- REBA-Number & REBA-Score Text:
 - **REBA-Text**: Depending on the REBA score, a pertinent message is showcased:
   - 1: "Negligible risk, no action required"
@@ -51,7 +52,7 @@ The SAM faces, as seen in Figure 1, range from level 1 to level 5 . This progres
 
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/visual_SAM.png" alt="visual_SAM.png" width="300" />
+  <img src="./Images/Multimodal_Feedback/visual_SAM.png" alt="visual_SAM.png" width="500" />
   <br>
   Figure 1: Spectrum of SAM Faces from Level 1 (Very Positive) to Level 5 (Very Negative)
 </p>
@@ -63,7 +64,7 @@ The SAM faces, as seen in Figure 1, range from level 1 to level 5 . This progres
 As seen in Figure 2, the final implementation of the REBA-Bar in Unity reflects the described features.
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/visual_REBA_Bar.png" alt="visual_REBA_Bar.png" width="300" />
+  <img src="./Images/Multimodal_Feedback/visual_REBA_Bar.png" alt="visual_REBA_Bar.png" width="600" />
   <br>
   Figure 2: Final Implementation of Visual Feedback Features in Unity
 </p>

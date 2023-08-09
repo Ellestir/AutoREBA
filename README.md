@@ -24,7 +24,7 @@ To execute the project, the following components are required:
 - [Patricia Maria Bombik](http://github.com/PatPatDango)
 - [Albin Hoti](http://github.com/albinh55)
 - [Pouya Nikbakhsh](http://github.com/pouya-nik)
-- Tom Roman Rosenberger
+- [Tom Roman Rosenberger](http://github.com/Ellestir)
 - Jonas Scheffner
 - [Luke Werle](https://github.com/Luke-Werle-99)
 - [Frederik Wiemer](http://github.com/FreddyOs)

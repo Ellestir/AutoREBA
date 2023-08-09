@@ -18,7 +18,7 @@ The Multimodal Feedback module is at the heart of our approach. It facilitates s
 
 The visual feedback utilizes various visualizations, like the REBA-Bar and SAM faces, all of which dynamically adapt to the user's REBA score. The primary goal of these mechanisms is to provide users with an intuitive means to understand their REBA score and adjust their posture in real-time accordingly.
 
-### Components:
+### Main components:
 Every component in this section is intricately tied to the REBA score, ensuring dynamic, real-time feedback to the user. 
 Through the Unity interface, each of these primary functions can be easily activated or deactivated, giving developers 
 a high degree of flexibility in fine-tuning the user experience.
@@ -44,23 +44,40 @@ a high degree of flexibility in fine-tuning the user experience.
 - **Rationale behind SAM**: Using universally comprehended facial expressions, SAM provides a language-agnostic approach to feedback. It conveys posture quality through facial expressions, making it accessible to a wide audience.
 - **Use of SVGs**: SAM employs SVG images, ensuring that the feedback retains impeccable quality regardless of scaling or screen resolution.
 - **Visual Representation**: Instead of words, SAM uses figures (manikins) to depict emotions, making it easier to understand and more engaging.
-- **Faces Spectrum**: SAM encapsulates a spectrum of five unique faces, portraying emotions from very negative to very positive. Each face is associated with levels 1 through 5, providing clear emotional feedback based on the REBA score.
+- **Faces Spectrum**: SAM encapsulates a spectrum of five unique faces, portraying emotions from very negative to very positive. Each face is associated with levels 1 (very positive) through 5 (very negative), providing clear emotional feedback based on the REBA score.
 - **Integration in AutoREBA**: In the context of AutoREBA, SAM offers users an intuitive feedback mechanism regarding their posture, aiding in self-awareness and posture correction.
 
+The SAM faces, as seen in Figure 1, range from level 1 to level 5 . This progression visually reinforces the spectrum of emotions and its relation to the user's posture feedback.
+
 <p align="center">
-  <img src="./Images/Multimodal_Feedback/visual_SAM.png" alt="Alternativtext" width="300" />
   <br>
-  Figure 1: 
+  <img src="./Images/Multimodal_Feedback/visual_SAM.png" alt="visual_SAM.png" width="300" />
+  <br>
+  Figure 1: Spectrum of SAM Faces from Level 1 (Very Positive) to Level 5 (Very Negative)
 </p>
 
 
 #### 4- Extra-Image:
 - **Customization**: This feature allows users to integrate their images, allowing for a personalized feedback experience. It’s a way of infusing individuality into the feedback mechanism.
 
+As seen in Figure 2, the final implementation of the REBA-Bar in Unity reflects the described features.
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/visual_REBA_Bar.png" alt="visual_REBA_Bar.png" width="300" />
+  <br>
+  Figure 2: Final Implementation of Visual Feedback Features in Unity
+</p>
+
 ### Configuration & Usage:
 After adding the "RebaBar" and "VisualFeedback" scripts to a GameObject in Unity, it's crucial to provide the necessary references in the Unity Editor.
-Figure (XXXX) illustrates the designated section within the Unity Inspector where these assignments can be made.
+Figure 6 illustrates the designated section within the Unity Inspector where these assignments can be made.
 It's paramount to ensure that the required sprites and text references are correctly mapped as depicted in this figure.
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/visual_REBA_Bar_References.png" alt="visual_REBA_Bar_References.png" width="600" />
+  <br>
+  Figure 6: Unity Inspector Reference Assignments for 'RebaBar' and 'VisualFeedback' Scripts
+</p>
 
 ### Dependencies:
 #### 1- **Vector Graphics Version 2.0.0**:

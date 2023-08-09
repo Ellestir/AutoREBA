@@ -46,6 +46,14 @@ a high degree of flexibility in fine-tuning the user experience.
 - **Visual Representation**: Instead of words, SAM uses figures (manikins) to depict emotions, making it easier to understand and more engaging.
 - **Faces Spectrum**: SAM encapsulates a spectrum of five unique faces, portraying emotions from very negative to very positive. Each face is associated with levels 1 through 5, providing clear emotional feedback based on the REBA score.
 - **Integration in AutoREBA**: In the context of AutoREBA, SAM offers users an intuitive feedback mechanism regarding their posture, aiding in self-awareness and posture correction.
+
+<p align="center">
+  <img src="./Images/Multimodal_Feedback/visual_SAM.png" alt="Alternativtext" width="300" />
+  <br>
+  Figure 1: 
+</p>
+
+
 #### 4- Extra-Image:
 - **Customization**: This feature allows users to integrate their images, allowing for a personalized feedback experience. It’s a way of infusing individuality into the feedback mechanism.
 

@@ -43,9 +43,9 @@ Figure (XXXX) illustrates the designated section within the Unity Inspector wher
 It's paramount to ensure that the required sprites and text references are correctly mapped as depicted in this figure.
 
 ## Dependencies:
-1- **Vector Graphics Version 2.0.0**:
+### 1- **Vector Graphics Version 2.0.0**:
 - Vital for the impeccable rendering of SAM SVGs and the ExtraImage feature. This package is currently in its experimental phase.
 - Integrate using the identifier com.unity.vectorgraphics.
-2- **TextMeshPro 3.0.6**:
+### 2- **TextMeshPro 3.0.6**:
 - A sophisticated text solution tailored for Unity. It seamlessly replaces Unity's UI Text and the legacy Text Mesh.
 - Integral in our module for the RebaText and RebaNumber elements.

@@ -118,3 +118,8 @@ text
 
 ## Auditory Feedback
 text
+
+## Contributors:
+- [Patricia Maria Bombik](http://github.com/PatPatDango)
+- [Albin Hoti](http://github.com/albinh55)
+- [Pouya Nikbakhsh](http://github.com/pouya-nik)

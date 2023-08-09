@@ -8,10 +8,10 @@ their posture based on their REBA score.
 
 In this README, we introduce the key components of the AutoREBA system, all of which revolve around the REBA score:
 
-- **Vibration Feedback**: Using Arduino, a vibration motor is controlled which vibrates based on the user's REBA score, offering haptic feedback about the current posture.
 - **Visual Feedback**: Dynamic visual indicators inform the user in real-time about their REBA score, providing cues about the current posture.
-- **Auditory Feedback**: Auditory signals, matched to the user's REBA score, inform about the posture.
+- **Tactile Feedback**: Using Arduino, a vibration motor is controlled which vibrates based on the user's REBA score, offering haptic feedback about the current posture.
 - **Arduino Communication**: The interface between software and hardware. The Arduino controls the vibration motor based on the REBA score, providing tactile feedback.
+- **Auditory Feedback**: Auditory signals, matched to the user's REBA score, inform about the posture.
 ## Visual Feedback
 ### Overview
 The Multimodal Feedback module is at the heart of our approach. It facilitates seamless communication between the Arduino Nano IoT and Unity, delivering comprehensive feedback to the user through a VR headset based on their REBA score.
@@ -105,7 +105,16 @@ It's paramount to ensure that the required sprites and text references are corre
 ### Dependencies:
 #### 1- **Vector Graphics Version 2.0.0**:
 - Vital for the impeccable rendering of SAM SVGs and the ExtraImage feature. This package is currently in its experimental phase.
-- Integrate using the identifier com.unity.vectorgraphics.
+- Integrate using the identifier [com.unity.vectorgraphics](https://docs.unity3d.com/Packages/com.unity.vectorgraphics@2.0/manual/index.html).
 #### 2- **TextMeshPro 3.0.6**:
 - A sophisticated text solution tailored for Unity. It seamlessly replaces Unity's UI Text and the legacy Text Mesh.
 - Integral in our module for the RebaText and RebaNumber elements.
+
+## Tactile Feedback Feedback
+text
+
+## Arduino Communication
+text
+
+## Auditory Feedback
+text

@@ -48,7 +48,7 @@ public class VisualFeedback : MonoBehaviour
 
     void UpdateRebaBar()
     {
-        // Step 3: Set the gradient you want to use before calling the SetRebaBar function
+        // Set the gradient you want to use before calling the SetRebaBar function
         rebaBar.useAscendingGradient = useInverseRebaBar;
 
         if (rebaScore != currentReba)

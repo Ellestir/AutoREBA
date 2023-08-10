@@ -127,6 +127,16 @@ For the final submission, we conceptualized a story set in a supermarket from th
 
 • Working at a cash register while standing with light and heavy boxes while also differentiating between normal movement or putting the box behind him and turning backwards for the movement
 
+### Camera Positioning
+For our initial takes, in addition to the Motive camera system, we used the following camera positioning:
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/OriginalCameraperspective.png" alt="OriginalCameraperspective.png" width="500" />
+  <br>
+  Figure 8: First Camera positioning we considered
+</p>
+
 ### 2. Test Recording:
 Before recording the final submission footage, we familiarized ourselves with Motive. We put on the suit and positioned the knobs (reflectors). In addition to Motive, we also set up a camera to capture video footage for later analysis. In our initial test recordings, we tested the following moves:
 
@@ -241,7 +251,7 @@ The timestamp of Motive and our shots show a person trying to place a box on the
 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/AbductedArm.png" alt="AbductedArm.png" width="500" />
+  <img src="./Images/Ground_Truth/ArmAbducted.png" alt="ArmAbducted.png" width="500" />
   <br>
   Figure 12: Abducted Arm
 </p>
@@ -254,10 +264,10 @@ Another posture that further boosts the REBA score is the abducted arm. From the
   <br>
   <img src="./Images/Ground_Truth/SideBendingNeck.png" alt="SideBendingNeck.png" width="500" />
   <br>
-  Figure 13: Side-bending neck
+  Figure 13: Twisted neck
 </p>
 
-Another posture that makes an important contribution to the REBA score is the neck posture. As you can see from the screenshots, the person is sitting at the checkout and placing a heavy box on the floor. During this movement, the neck is bent to the right. This raises the REBA score.
+Another posture that makes an important contribution to the REBA score is the neck posture. As you can see from the screenshots, the person is sitting at the checkout and placing a heavy box on the floor. During this movement, the neck is twisted to the right. This raises the REBA score.
 
 
 #### Raised Leg:
@@ -283,6 +293,54 @@ Secondly, if a certain movement is performed several times (4-5 times), the REBA
 The last activity movement that can move up the REBA score by 1 is an action that can lead to fast, large posture changes or an unstable base. An example would be if a heavy box was thrown at a person, causing his posture to change rapidly to a poor posture.
 
 ## Problems:
+
+### Coupling Score
+Problem: Vague descriptions of different hand holds
+
+Solution: Using a 6 pack of water with a handle 
+→ hard setting coupling scores for using the handle or not
+If the box is a light box we evaluate based on if the person is holding it with 1 or 2 hands and look at whether the grip looks uncomfortable or not which often is based on the width of the box or item.
+
+### Force Load
+Problem: Score based on the weight of carried object
+
+Solution: Using differently weighted boxes
+
+### Activity Score
+Problem: Need to make moves/ a story that ideally includes all 3, otherwise a score of 15 is not possible.
+
+Solution: Checkout, as you both hold the legs still and move your arms in the same motion repeatedly.
+
+Further problem: We were not able to include an action which causes rapid large range changes in posture or unstable base. If you did include it some possibilites would be pushing the person or having them stand on something wobbly etc.
+
+### Various camera perspectives for different point of views and angles
+Problem: For accurate evaluation of the score when not using Motive multiple perspectives are necessary.
+
+Solution: Using multiple cameras from different corners of the room. Originally we wanted one camera in each corner but could not make it work so we settled on two.
+
+### Motive and the Skeleton Body
+Problem: Inaccurate placement of the knobs cause weird and varying changes.
+
+Solution: It took multiple attempts for the recordings and the final take until it looked “right” in Motive.
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/NegativeExample.png" alt="NegativeExample.png" width="500" />
+  <br>
+  Figure 15: Foot does not align
+</p>
+
+Here is an early attempt we made with a negative example. Both screenshots were taken at the same moment in time in two different recordings. And yet the feet
+positioning does not reflect this. One could attribute this to one of two things:
+1. The Program Motive is faulty and inaccurate leading to wrong positioning of the foot, or 
+2. Human Error. The inaccurate positioning of the reflective knobs leading to the “Rigid Body” in Motive not being represented properly, leading to it detecting the positioning wrong. 
+
+### Room space and setting
+Problem: Finding the right setting to work with small space but sensible for a REBA evaluation.
+
+Solution: Small store with multiple little tasks
+
+Further problems: It offers a lack of diversity, maybe a fitness studio would have worked better overall.
 
 ## Conclusion
 

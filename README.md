@@ -1,8 +1,12 @@
 # AutoREBA
 
 ## Project Description:
+People in virtual and mixed reality spaces tend to worsen their posture, likely because of decreased awareness of their bodies inside of these simulations.
+With the upcoming shift to implementing these technologies at workspaces, humans will spend an increasing amount of time using virtual reality applications.
 
-AutoREBA (Automatic Rapid Entire Body Assessment Score) is a significant project in the field of human-computer interaction. The aim of this project is to address a research question related to posture ergonomics in Mixed Reality. The overarching theme of the project is "Multimodal Biofeedback for Enhancing Posture Ergonomics in Mixed Reality."
+In order to minimise the damage caused by suboptimal posture in these situations, we started: AutoREBA (Automatic Rapid Entire Body Assessment Score) a significant project in the field of human-computer interaction. 
+
+The aim of this project is to address a research question related to posture ergonomics in Mixed Reality. The overarching theme of the project is "Multimodal Biofeedback for Enhancing Posture Ergonomics in Mixed Reality."
 
 The project involves approximately 13 students working collaboratively to answer the research question. The team comprises four groups, each consisting of three members and a project manager. The groups are divided as follows:
 - [Computation and Visualization](Documentation/Computation&Visualization.md)
@@ -11,20 +15,27 @@ The project involves approximately 13 students working collaboratively to answer
 - [Ground Truth](Documentation/Ground_Truth.md)
 
 ## Requirements:
-
-## Requirements:
 To run the project, the following components are required:
+
 Unity (Version 2021.3.26f1) 
+
 VR Device and software
+
 Optitrack
+
 Further dependencies are specified in the respective directory of the component.
 
 ## Installation and Use:
 Set up your virtual reality device
+
 Clone the repository to your local computer: 
+
 Go to the desired folders location
+	 
 Open the command line and type:
+	 
 git clone https://github.com/Ellestir/AutoREBA
+	 
 Open the project in Unity 
 
 

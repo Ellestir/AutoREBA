@@ -219,6 +219,25 @@ The unpleasant and loud sound should create a conscious attitude.  The communica
 The auditory feedback serves as a memory support and learning environment whereby the user is actively supported in the learning process in relation to the posture by means of an immediate feedback about their actions.
 After each correction, the user learns to improve his posture in the long term by means of a reward over the sound, by a change for the better.  Here, the reward as well as the correction by the sound is better remembered, since sound is a strong indicator.  The reward system will remind the user of his/her attitude in the long-term process by means of a consistent alarm sound, to remind him/her of the risky attitude and sensitize him/her to the formation of a habit based on the emotional and communicative effect of the sound in the memory of the user, since he/she learns to pay more attention to his/her attitude.
 
+### Main components:
+The auditory feedback works with the REBA score and varies depending on the level of the score.  Feedback takes place in real-time to the user via the VR headset.  The REBA scores are divided into 5 different levels, so that there are 5 different sounds available and are played depending on the respective level.
+
+
+#### 1- REBA - Level:
+The REBA scores range over 5 levels which define the degree of incorrect posture, as can be seen from the table.
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_level.png" width="700" />
+  <br>
+  Figure 8: Vibration-Skript on Unity
+</p>
+
+Source : Ergo Plus, https://ergo-plus.com/reba-assessment-tool-guide/, 10.08.2023
+
+#### 2- Volume - Level:
+The volume of the REBA score corresponds to the respective level and can be precisely adjusted via the Inspector via Unity, so that the user can adjust the volume for themselves.  The volume can be adjusted from 0.1 to 1, whereby a volume of 0.2 is recommended.
+
+
 
 ## Contributors:
 - [Patricia Maria Bombik](http://github.com/PatPatDango)

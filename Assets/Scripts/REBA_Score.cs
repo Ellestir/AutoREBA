@@ -16,14 +16,17 @@ public class REBA_Score : MonoBehaviour
     [Range(0, 360)]
     public int threshold;
     [Tooltip("The size of the rolling window for averaging")]
-    [Range(0, 10000)]
+    [Range(0, 1000)]
     public int windowSize = 5; // Default size, but can be adjusted in Unity's inspector
-    [Tooltip("Determines how much a Peak will be weighted")]
-    [Range(1f, 10f)]
-    public float PeakSensitivity = 1.0f;
-    [Tooltip("Delta which determines when a peak is reached")]
+    [Tooltip("Determines the alpha which is used as weight for the EMA")]
+    [Range(0.0f, 1.0f)]
+    public float emaAlpha = 0.2f; // Exponential Moving Average smoothing factor
+    [Tooltip("Threshold for identifying peaks using derivative")]
     [Range (1,10)]
-    public int delta = 1;
+    float derivativeThreshold = 1.0f;  // Threshold for identifying peaks using derivative
+    [Tooltip("Determins the weight for a peak")]
+    [Range (0.0f,2.0f)]
+    public float PeakSensitivity;
     private float smooth = 0;
     private Queue<float> lastValues = new Queue<float>();
     //Score Attributes
@@ -617,37 +620,34 @@ public class REBA_Score : MonoBehaviour
 
     public int AverageScore(int currentREBAScore)
 {
-    bool isPeak = true;
-    float temp = 0;
     
-    // Check if currentREBAScore is a peak
-    foreach (int value in lastValues)
-    {
-        if (currentREBAScore <= value + delta)
-        {
-            isPeak = false;
-            break;
-        }
-    }
 
-    if (isPeak)
-    {
-        
-        Debug.Log("Peak Detected: " + currentREBAScore);
-        temp = currentREBAScore * PeakSensitivity;
-        lastValues.Enqueue(temp);        
-        smooth += temp; 
-    }
-
+    // Add the new score to the rolling window
     lastValues.Enqueue(currentREBAScore);        
-    smooth += currentREBAScore; 
-
-    // If the window size is exceeded, remove the oldest value
     if (lastValues.Count > windowSize)
     {
         smooth -= lastValues.Dequeue();
-    }   
-    return (int)Math.Round(smooth/lastValues.Count);
+    }
+
+    // Compute the EMA
+    float ema = (1 - emaAlpha) * (smooth / lastValues.Count) + emaAlpha * currentREBAScore;
+
+    // Peak detection using first derivative test
+    if (lastValues.Count >= 2)
+    {
+        float previousValue = lastValues.ToArray()[lastValues.Count - 2];  // Second last value in the queue
+        if (currentREBAScore > previousValue + derivativeThreshold && currentREBAScore > ema + derivativeThreshold)
+        {
+            Debug.Log("Peak Detected: " + currentREBAScore);
+            currentREBAScore = (int)(currentREBAScore * PeakSensitivity);
+        }
+    }
+
+    // Update the smooth sum
+    smooth += currentREBAScore;
+
+    // Return the average of the current window
+    return (int)Math.Round(smooth / lastValues.Count);
 }
     
 }

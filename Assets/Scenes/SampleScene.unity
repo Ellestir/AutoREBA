@@ -214,7 +214,7 @@ MonoBehaviour:
   ConnectionType: 0
   SkeletonCoordinates: 0
   BoneNamingConvention: 0
-  DrawMarkers: 1
+  DrawMarkers: 0
   DrawCameras: 0
   DrawForcePlates: 0
   RecordOnPlay: 0
@@ -1601,9 +1601,9 @@ MonoBehaviour:
   LogScoresCSV: 0
   LogScoresToConsole: 1
   threshold: 0
-  windowSize: 5
-  PeakSensitivity: 1
-  delta: 1
+  windowSize: 300
+  PeakSensitivity: 1.8
+  delta: 4
   neck: {fileID: 517922279}
   head: {fileID: 1058008180}
   torso: {fileID: 346122891}
@@ -3188,7 +3188,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806920353}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6226842a13d56fc4b9f6ffc41f7ef0ec, type: 3}
   m_Name: 

@@ -230,7 +230,7 @@ The box measures 9.1 x 5.5cm and consists of three 3D printed parts.  The lower 
   Figure 12: Battery compartement („purrBox“)
 </p>
 Over the soft surface, the second part of the 3D printing is used, which is a small surface to maintain a wall between the Arduino and the battery to protect the battery.  The surface is put on the small posts of the lower housing, so that it cannot slip.  For the surface itself, a more elastic softer plastic is recommended.
- <p align="right">
+ <p align="center">
   <br>
   <img src="./Images/Multimodal_Feedback/viFeBo_plate.png" alt="viFeBo_plate.png" width="300" />
   <br>

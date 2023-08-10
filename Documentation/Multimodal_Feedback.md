@@ -1,4 +1,4 @@
-# AutoREBA - Multimodal Feedback Module
+<img width="336" alt="Clippy" src="https://github.com/Ellestir/AutoREBA/assets/76398216/fbab64e3-d124-40c0-8f8f-23d8784e39e4"># AutoREBA - Multimodal Feedback Module
 
 ## Overview:
 The AutoREBA project signifies a significant advancement in the realm of human-computer interaction, 
@@ -210,69 +210,62 @@ We used the router "ASUS GT-AXE11000" for our project. It is advisable to set th
   Figure 10: Example of setting IP addresses static on "ASUS GT-AXE11000"
 </p>
 
-### Vibration Feedback Box ( „viFeBo“)
+### Vibration Feedback Box ( „purrBox“)
 The vibration feedback box includes an Arduino which connects to the device via Wifi and a LiPo battery 3.70V 500mAh to make the Arduino, as well as the vibration motors portable and wireless to the device.  As a result, there are no cables in the way during free movement and the user can move freely.
 
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo.png" alt="viFeBo.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/viFeBo.png" alt="viFeBo.png" width="500" />
   <br>
-  Figure 11: Vibration Feedback Box ( „viFeBo“)
+  Figure 11: Vibration Feedback Box ( „purrBox“)
 </p>
 
 #### Casing
 The box measures 9.1 x 5.5cm and consists of three 3D printed parts.  The lower part of the housing consists of two compartments, for battery and charger.  Here, the battery is inserted into the specially arranged large trough, which corresponds to the dimensions of the battery.  The charging/boost tool is then screwed in front of the battery into the 2 threads provided with M3 screws with a length of 6mm.  The threads themselves are M3 threads with a length of 6mm.  These are melted into the 3D printed housing, so that the charger is firmly in the housing.  A small area of foam or similar material over the battery is recommended, so the battery is solid and safe from crashes or the Arduino.
 
- <p align="left">
+ <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_Battery.png" alt="viFeBo_Battery.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_Battery.png" alt="viFeBo_Battery.png" width="400" />
   <br>
-  Figure 12: Battery compartement („viFeBo“)
-</p>
-
- <p align="right">
-  <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_charger.png" alt="viFeBo_charger.png" width="600" />
-  <br>
-  Figure 13: Charger/ Booster („viFeBo“)
+  Figure 12: Battery compartement („purrBox“)
 </p>
 Over the soft surface, the second part of the 3D printing is used, which is a small surface to maintain a wall between the Arduino and the battery to protect the battery.  The surface is put on the small posts of the lower housing, so that it cannot slip.  For the surface itself, a more elastic softer plastic is recommended.
  <p align="right">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_plate.png" alt="viFeBo_plate.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_plate.png" alt="viFeBo_plate.png" width="400" />
   <br>
-  Figure 14: Seperation plate („viFeBo“)
+  Figure 13: Seperation plate („purrBox“)
 </p>
 As the last component of the inside of the box, the Arduino is also placed on the posts to keep it from slipping.
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_arduino.png" alt="viFeBo_arduino.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_arduino.png" alt="viFeBo_arduino.png" width="400" />
   <br>
-  Figure 15: Arduino („viFeBo“)
+  Figure 14: Arduino („purrBox“)
 </p>
 The cover is the last part of the housing which is put on the bottom side.  Please note that the top side is plugged right around Sodas both outputs match to the bottom side (see picture).
- <p align="right">
+ <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_cover1.png" alt="viFeBo_cover1.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_cover1.png" alt="viFeBo_cover1.png" width="400" />
   <br>
-  Figure 16: Cover of the Case above („viFeBo“)
+  Figure 15: Cover of the Case above („purrBox“)
 </p>
- <p align="right">
+ <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_cover2.png" alt="viFeBo_cover2.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_cover2.png" alt="viFeBo_cover2.png" width="400" />
   <br>
-  Figure 17: Cover of the Case below („viFeBo“)
+  Figure 16: Cover of the Case below („purrBox“)
 </p>
 The bottom opening of the case is used for charging and switching on the charger / booster, which charges the battery and boosts it to 5V. Via the upper output of the housing come all cables through which are used for the vibration motors.  These correspond to the length of an arm. The upper and lower sides of the housing are screwed together, as the threads have been melted in on one side of the box. The box itself is attached to the suit at the back by means of Velcro fastening. The surface is enough that it sticks firmly to the body despite much movement.
 
 #### Vibration-Tool
 The vibration tool ensures that the motors are close to each other and can be attached to the arm.  The tool is also 3D printed and allows the motors to be tightly attached to screws via molten threads.  The motors are then attached to the lower wrist by means of a sewn-on band, allowing close and firm contact with the skin, so that the vibrations are more easily felt.
 </p>
- <p align="right">
+ <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_vibration.png" alt="viFeBo_vibration.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_vibration.png" alt="viFeBo_vibration.png" width="400" />
   <br>
-  Figure 18: Vibration device („viFeBo“)
+  Figure 17: Vibration device („purrBox“)
 </p>
 
 #### 3D Print
@@ -284,11 +277,11 @@ The wiring runs only from the box to the 2 motors via the arm.  Both motors each
 #### Soldering Arduino
 The Arduino has been soldered together so that it is removable again, as well as easy to replace.  The Arduino is connected via Female Pin Headers.  The pin headers are soldered to the board.  It is up to you to mark the position in which direction the power supply of the Arduino points, so that it is always plugged in the right direction. 
 </p>
- <p align="right">
+ <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_soldering.png" alt="viFeBo_soldering.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_soldering.png" alt="viFeBo_soldering.png" width="700" />
   <br>
-  Figure 19: Soldering Arduino plan („viFeBo“)
+  Figure 18: Soldering Arduino plan („purrBox“)
 </p>
 Next to the ground of the Arduino, 3 cables are soldered in a strand to the female header one after the other.  The same happens with the VIN/ + cables in VIN next to it.  The outermost cables of plus and minus are then soldered to the charger at the point where 5V comes out, so that the Arduino is connected to the charger and gets 5V from the charger.  The charger itself is soldered with the LiPo Battery 3.70V 500mAh at the connector, so that the battery is charged via the charger and boosted from 3.7V to 5V.  We have to reach 5V because the vibration motors vibrate more at 5V.
 
@@ -309,9 +302,9 @@ The auditory feedback works with the REBA score and varies depending on the leve
 The REBA scores range over 5 levels which define the degree of incorrect posture, as can be seen from the table.
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_Level.png" width="500" />
+  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_Level.png" width="400" />
   <br>
-  Figure 20: REBA score level
+  Figure 19: REBA score level
 </p>
 Source : Ergo Plus, https://ergo-plus.com/reba-assessment-tool-guide/, 10.08.2023
 
@@ -326,9 +319,9 @@ The volume of the REBA score corresponds to the respective level and can be prec
 
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/Volume_Level.png" alt="Volume_Level.png" width="500" />
+  <img src="./Images/Multimodal_Feedback/Volume_Level.png" alt="Volume_Level.png" width="400" />
   <br>
-  Figure 21: Volume levels on Unity
+  Figure 20: Volume levels on Unity
 </p>
 
 The auditory feedback uses 2 different sounds and plays them in different repetitions.  The volume can also be adjusted using the controls, so that the user has the opportunity to adjust it individually, whether all should have the same volume or would correspond differently.
@@ -339,9 +332,9 @@ The MusicCube.cs script and both music files must be added to your chosen projec
 
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/Clippy.png" alt="Clippy.png" width="500" />
+  <img src="./Images/Multimodal_Feedback/Clippy.png" alt="Clippy.png" width="400" />
   <br>
-  Figure 22: setClippy on Unity
+  Figure 21: setClippy on Unity
 </p>
 
 #### Music GameObject Settings
@@ -352,9 +345,9 @@ In addition, 3 audio sources must be added to your GameObject, so that the scrip
 
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/AudioSource.png" alt="AudioSource.png" width="500" />
+  <img src="./Images/Multimodal_Feedback/AudioSource.png" alt="AudioSource.png" width="400" />
   <br>
-  Figure 23: addAudioSource on Unity
+  Figure 22: addAudioSource on Unity
 </p>
 
 ____________________________________________________

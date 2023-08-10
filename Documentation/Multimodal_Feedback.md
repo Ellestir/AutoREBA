@@ -111,10 +111,104 @@ It's paramount to ensure that the required sprites and text references are corre
 - Integral in our module for the RebaText and RebaNumber elements.
 
 ## Tactile Feedback
-text
+### Electrical Muscle Stimulation(EMS): 
+In the phase of developing tactile feedback through electrical pulses, we conducted an internal study using ourselves as test subjects. We tested Electrical Muscle Stimulation (EMS) on different muscle parts to find the optimal position for impulse delivery.
 
-## Arduino Communication
-text
+This study proved to be more time-consuming than expected, as finding the exact muscle area where the EMS pulse was most effective was complicated. In addition, we found that the electrical pulses could be painful in some cases.
+
+These two main findings - the time-consuming process of finding the right muscle area and the potentially uncomfortable feeling of the pulses - led us to decide to discard this method altogether. Despite the initial expectation that electrical pulses could provide effective tactile feedback, we found them to be off target. The challenges outweighed the potential benefits, and so we decided to focus solely on vibration in our tactile feedback. This approach seemed more suitable for us to convey the desired information about posture in a pleasant and efficient way.
+
+### Vibration
+We used “Arduinos Nano 33 IoT” as controllers for vibration motors. These can be connected to vibrationmotors via pins to precisely control their vibration.
+
+The “Arduinos Nano IoT” were integrated into our Wi-Fi network, using the same network connection as the central computer. This integration allowed direct communication between the computer and the Arduinos.
+
+When a vibration was to be triggered, the computer would send a specific command. This command was then sent to the Arduinos via the WLAN network using the UDP protocol (User Datagram Protocol). 
+
+Once the Arduinos received the UDP command, they interpreted the information and passed it on to the vibrationmotors via the appropriate pins. The motors were then activated, controlling the strength and duration of the vibration according to the command received.
+
+### Vibrationmotors
+vibrationmotors of the type "Iduino TC-9520268" were used in the project. These vibration motors are controlled via pins, whereby each motor has three specific pins:
+1.	G: Ground connection (earthing)
+2.	V: Supply voltage (supplied voltage, between 3.0 V and 5.2 V)
+3.	S: Control signal (control)
+   
+These three pins must each be connected to the corresponding pins of the Arduino, using breadboard cables to connect them.
+
+The vibration motors can be controlled with different strengths in the range from 0 to 255, where 0 is off and 255 is the highest vibration strength However, there are special characteristics:
+- Minimum voltage range (0 to 89): This range provides so little voltage that the motor will not work even with higher voltage starting.
+- Low voltage range (90 to 129): In this range, the engine may not start due to insufficient voltage. To counteract this, the motor must first be started with a higher voltage before it can run with a lower strength.
+- Sufficient voltage range (130 to 255): The motor runs without problems here.
+  
+The vibration motors are designed to run between 3.0 V and 5.2 V, but they show significant differences in their vibration intensity at the same drive strength (in the range of 90 to 255) and different voltages. The higher the voltage, the more intense the vibration. For this reason, it is recommended to use a higher voltage to allow greater choice and control over the vibration intensity.
+
+The vibration motors can only be controlled differently in their intensity by the Arduinos if the connected pin is marked with the tilde symbol "~". This symbol means that the pin supports pulse width modulation (PWM). Pins without this PWM support are not able to vary the vibration intensity; they can only switch the motor on or off without allowing intermediate levels of intensity.
+
+### Arduino Communication
+For our project we chose the Arduino Nano 33 IoT. This Arduino was chosen because it is small, compact, easy to attach and additionally enables WIFI connections. This WIFI function facilitates communication between the computer and the VR goggles.
+
+Although the Arduino only supports a power supply of 3.3 V by default, a pin called "VUSB" offers the possibility to solder the two contacts there. This enables a 5 V power supply for the vibration motors. More information under this [link](https://github.com/ostaquet/Arduino-Nano-33-IoT-Ultimate-Guide)
+
+To run the code "udpClientWlan" on the Arduino, the package "WIFININA" from the library must first be installed and integrated in the Arduino IDE. The code itself starts with the integration of the necessary libraries (SPI.h and WiFiNINA.h) for the SPI and WiFi functionalities, as well as the declaration of constants and variables for LED pins, motor pins, UDP port and WiFi details. Within the code, the SSID and password of the WLAN to which the Arduino is to connect are also specified. If there are any variations in SSID or password, these must be adjusted accordingly in the code.
+
+In the setup function, the serial communication is initialised, the pins are defined as outputs and the WiFi connection is established with the specified access data. In addition, UDP is started on the specified port.
+
+The main logic is found in the function "vibrationMotors", which is called in the loop method. This checks incoming UDP packets and performs actions based on the commands received. The motor controller analyses commands to start vibration or calibration and sends corresponding signals to the vibration motors. The strength of the vibration is derived from the packet data, and if the strength is between 0 and 130, a special start-up procedure is initiated to crank the motors. The vibration duration is 1 second for normal messages and 2 seconds for calibration messages.
+
+There are specific functions for managing the WiFi connection, such as connecting to a WiFi network and outputting network information. When an attempt is made to establish a connection, the LED flashes, while a successful connection is indicated by a permanently lit LED signal.
+
+### Vibration as feedback for the Reba score
+Initially, it seemed reasonable to use a vibrationmotor that starts with the lowest possible vibration value (90) and increases in even steps to the highest value (255). However, we found out:
+- Perception of smaller vibrations: The differences between lower vibration levels can be perceived more clearly than with higher ones. Therefore, an exponential mapping seemed more appropriate.
+- Individual sensitivity: Since everyone perceives vibration differently, we had to consider that different mappings might be needed to adjust the intensity of the vibration individually - some people might find a stronger, others a weaker vibration suitable.
+- Insufficient differences in the mappings: Despite several mappings, the differences were sometimes not clear enough, so we decided to enable the option of another vibrationmotor so that more variation is possible.
+
+To find the optimal feedback, there is the possibility to test them beforehand by using the script "Vib_Vibration". See different mappings. (LINK)
+The feedback system "Vibration" in our project is divided into two separate scripts:
+1.	Vibration
+2.	Vib_calibration
+
+Both scripts must be attached to a “GameObject” in Unity before they can be used. They each offer three selectable options, which are described below:
+1.	Motor slider: this allows you to specify whether one or two vibration motors should be used.
+2.	Steps Slider: This option allows the user to decide whether the vibration should follow Reba values between 1 and 15 or alternatively be divided into five fixed values, depending on the danger level.
+
+ <p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Level_of_MSD_Risk.png" alt="Level_of_MSD_Risk.png" width="600" />
+  <br>
+  Figure 7: [RebaScore and Level of MSD Risk](https://ergo-plus.com/reba-assessment-tool-guide/) 
+</p>
+
+3.	Intensity Slider: The user can choose between three intensity levels (Low, Medium, High) to adjust the vibration intensity.
+
+ <p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Vibration.png" alt="Vibration.png" width="600" />
+  <br>
+  Figure 8: Vibration-Skript on Unity
+</p>
+
+ 
+In both scripts, the IP address of the Arduino and the port number are first set in the code to enable communication with the device.
+- Script Vibration: This script reads the Reba Score from the script "REBA_Score" and sends the command "Start Vibration" to the Arduino every second, the strength varying depending on the mapping. This creates a continuous vibration that can change every second. The timing and vibration duration can be adjusted in Unity and in the [Arduino code](../Arduino) to allow faster or slower changes. 
+- Script Vib_Calibration: With this script, the Reba Score can be set and tested directly in Unity Inspector to find the appropriate mapping. Depending on the mapping, the selected strengths are sent to the Arduino with the command "Start Calibration" as soon as you click on the button "Test Vibration" in the Inspector. The vibration lasts for 2 seconds.
+
+ <p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Kalibrierung.png" alt="Kalibrierung.png" width="600" />
+  <br>
+  Figure 9: Calibration-Skript on Unity
+</p>
+
+### Router
+We used the router "ASUS GT-AXE11000" for our project. It is advisable to set the IP addresses of the Arduinos in the router settings as they are specified in the Unity scripts.
+
+ <p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Router.png" alt="Router.png" width="600" />
+  <br>
+  Figure 10: Example of setting IP addresses static on "ASUS GT-AXE11000"
+</p>
 
 ## Auditory Feedback
 ### Overview
@@ -125,7 +219,63 @@ The unpleasant and loud sound should create a conscious attitude.  The communica
 The auditory feedback serves as a memory support and learning environment whereby the user is actively supported in the learning process in relation to the posture by means of an immediate feedback about their actions.
 After each correction, the user learns to improve his posture in the long term by means of a reward over the sound, by a change for the better.  Here, the reward as well as the correction by the sound is better remembered, since sound is a strong indicator.  The reward system will remind the user of his/her attitude in the long-term process by means of a consistent alarm sound, to remind him/her of the risky attitude and sensitize him/her to the formation of a habit based on the emotional and communicative effect of the sound in the memory of the user, since he/she learns to pay more attention to his/her attitude.
 
+### Main components:
+The auditory feedback works with the REBA score and varies depending on the level of the score.  Feedback takes place in real-time to the user via the VR headset.  The REBA scores are divided into 5 different levels, so that there are 5 different sounds available and are played depending on the respective level.
 
+
+#### 1- REBA - Level:
+The REBA scores range over 5 levels which define the degree of incorrect posture, as can be seen from the table.
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_Level.png" width="500" />
+  <br>
+  Figure 11: REBA score level
+</p>
+Source : Ergo Plus, https://ergo-plus.com/reba-assessment-tool-guide/, 10.08.2023
+
+#### 2- Volume - Level:
+The volume of the REBA score corresponds to the respective level and can be precisely adjusted via the Inspector via Unity, so that the user can adjust the volume for themselves.  The volume can be adjusted from 0.1 to 1, whereby a volume of 0.2 is recommended.
+
+**Volume Level 1  (REBA Score 1 ideal posture):** play elevator sound one time 
+**Volume Level 2 (REBA Score 2-3):** play elevator sound two times
+**Volume Level 3 (REBA Score 4-7):** play elevator sound three times 
+**Volume Level 4 (REBA Score 8-10):** play alert sound one time 
+**Volume Level 5 (REBA Score 11+ poor posture):** play alert sound in loop
+
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Volume_Level.png" alt="Volume_Level.png" width="500" />
+  <br>
+  Figure 12: Volume levels on Unity
+</p>
+
+The auditory feedback uses 2 different sounds and plays them in different repetitions.  The volume can also be adjusted using the controls, so that the user has the opportunity to adjust it individually, whether all should have the same volume or would correspond differently.
+
+### Configuration & Usage:
+#### Upload Files 
+The MusicCube.cs script and both music files must be added to your chosen project.  The script is inserted to the respective selected GameObject in Unity and the audios are classified into the assets.  Both files are needed to play the audio.
+
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Clippy.png" alt="Clippy.png" width="500" />
+  <br>
+  Figure 13: setClippy on Unity
+</p>
+
+#### Music GameObject Settings
+To be able to use the music clips, they must be saved as a clip in the object by assigning the sound “elevator” to “Clippy A” and the sound “alert” to “Clippy B”, so that the script can also use them. 
+Here, the sound clips can also be individualized and adapted according to your own ideas, by assigning them to the respective clip.
+The assignment of the audios depends on the scheme, „Clippy A“ is used for the audio volume levels 1-3 and Clippy B for the audio levels 4+5, with note that at volume level 5 the sound is played as a loop.
+In addition, 3 audio sources must be added to your GameObject, so that the script can play the repetitions without any problems.
+
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/AudioSource.png" alt="AudioSource.png" width="500" />
+  <br>
+  Figure 14: addAudioSource on Unity
+</p>
+
+____________________________________________________
 ## Contributors:
 - [Patricia Maria Bombik](http://github.com/PatPatDango)
 - [Albin Hoti](http://github.com/albinh55)

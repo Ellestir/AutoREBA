@@ -302,7 +302,7 @@ The auditory feedback works with the REBA score and varies depending on the leve
 The REBA scores range over 5 levels which define the degree of incorrect posture, as can be seen from the table.
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_Level.png" width="400" />
+  <img src="./Images/Multimodal_Feedback/REBA_level.png" alt="REBA_level.png" width="400" />
   <br>
   Figure 19: REBA score level
 </p>

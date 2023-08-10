@@ -117,7 +117,14 @@ text
 text
 
 ## Auditory Feedback
-text
+### Overview
+The auditory feedback is used to support posture correction by actively and quickly drawing attention based on different auditory notifications.  It aims to create awareness of the user's posture by notifying the user in real time and correcting the posture.  The sound itself, which is played in different patterns, is intended to encourage the user to improve his bad position and thereby create a progressive improvement of posture in VR over time.  The auditory feedback is close to the body and is played by the sound of the headset, which cannot be ignored by the user.  The feedback itself is played in different variations in order to establish connections to the level of the REBA score based on different patterns, so that the user knows directly about the severity of his posture.
+The sound allows a multitasking to the visual and brings a direct feedback that cannot be ignored or ignored as with the visual.  Thus, despite distraction, feedback can be sent and attention drawn to the posture.
+Repeated loud messages about a dominant in poor posture can not be ignored, and the user is encouraged to improve his posture in order to stop or improve the sound.  The sound unconsciously reminds the user of a warning system, whereby the alarm indicates an imminent danger, whereby the attitude in this connection is classified as a danger or risk for the user unconsciously.  Tone, rhythm and sound are an important part of the transmission of information that is subconsciously associated with certain emotions, such as danger or risk, with an alarm sound or louder dominant sound.
+The unpleasant and loud sound should create a conscious attitude.  The communication via a loud and dominant unpleasant sound should bring the user an unpleasant connection with the posture Sodas the posture is corrected quickly, because the user wants to stop the sound as soon as possible.
+The auditory feedback serves as a memory support and learning environment whereby the user is actively supported in the learning process in relation to the posture by means of an immediate feedback about their actions.
+After each correction, the user learns to improve his posture in the long term by means of a reward over the sound, by a change for the better.  Here, the reward as well as the correction by the sound is better remembered, since sound is a strong indicator.  The reward system will remind the user of his/her attitude in the long-term process by means of a consistent alarm sound, to remind him/her of the risky attitude and sensitize him/her to the formation of a habit based on the emotional and communicative effect of the sound in the memory of the user, since he/she learns to pay more attention to his/her attitude.
+
 
 ## Contributors:
 - [Patricia Maria Bombik](http://github.com/PatPatDango)

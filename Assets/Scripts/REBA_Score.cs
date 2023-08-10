@@ -13,11 +13,16 @@ public class REBA_Score : MonoBehaviour
     public bool LogScoresToConsole;
     //"What is sided or bend" determines at which angle the condition is met 
     [Tooltip("Determines the threshold at which angle condittions like sided, twisted or bend are met")]
+    [Range(0, 360)]
     public int threshold;
     [Tooltip("The size of the rolling window for averaging")]
+    [Range(0, 10000)]
     public int windowSize = 5; // Default size, but can be adjusted in Unity's inspector
+    [Tooltip("Determines how much a Peak will be weighted")]
+    [Range(1f, 10f)]
+    public float PeakSensitivity = 1.0f;
+    private float smooth = 0;
     private Queue<float> lastValues = new Queue<float>();
-    float smooth = 0;
     //Score Attributes
     public static int Score;
     //Bones from Skeleton
@@ -608,15 +613,38 @@ public class REBA_Score : MonoBehaviour
     }
 
     public int AverageScore(int currentREBAScore)
-    {
-        lastValues.Enqueue(currentREBAScore);        
-        smooth += currentREBAScore; 
-        // If the window size is exceeded, remove the oldest value
-        if (lastValues.Count > windowSize)
-        {
-            smooth -= lastValues.Dequeue();
-        }   
+{
+    bool isPeak = true;
+    float temp = 0;
     
-        return (int)Math.Round(smooth/lastValues.Count);
+    // Check if currentREBAScore is a peak
+    foreach (int value in lastValues)
+    {
+        if (currentREBAScore <= value)
+        {
+            isPeak = false;
+            break;
+        }
     }
+
+    if (isPeak)
+    {
+        
+        Debug.Log("Peak Detected: " + currentREBAScore);
+        temp = currentREBAScore * PeakSensitivity;
+        lastValues.Enqueue(temp);        
+        smooth += temp; 
+    }
+
+    lastValues.Enqueue(currentREBAScore);        
+    smooth += currentREBAScore; 
+
+    // If the window size is exceeded, remove the oldest value
+    if (lastValues.Count > windowSize)
+    {
+        smooth -= lastValues.Dequeue();
+    }   
+    return (int)Math.Round(smooth/lastValues.Count);
+}
+    
 }

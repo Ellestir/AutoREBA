@@ -111,7 +111,7 @@ It's paramount to ensure that the required sprites and text references are corre
 - Integral in our module for the RebaText and RebaNumber elements.
 
 ## Tactile Feedback
-### Electrical pulses: 
+### Electromyostimulation (EMS): 
 In the phase of developing tactile feedback through electrical pulses, we conducted an internal study using ourselves as test subjects. We tested electromyostimulation (EMS) on different muscle parts to find the optimal position for impulse delivery.
 
 This study proved to be more time-consuming than expected, as finding the exact muscle area where the EMS pulse was most effective was complicated. In addition, we found that the electrical pulses could be painful in some cases.

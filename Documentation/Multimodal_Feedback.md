@@ -147,7 +147,7 @@ The vibration motors can only be controlled differently in their intensity by th
 ### Arduino Communication
 For our project we chose the Arduino Nano 33 IoT. This Arduino was chosen because it is small, compact, easy to attach and additionally enables WIFI connections. This WIFI function facilitates communication between the computer and the VR goggles.
 
-Although the Arduino only supports a power supply of 3.3 V by default, a pin called "VUSB" offers the possibility to solder the two contacts there. This enables a 5 V power supply for the vibration motors. More information under this link (retrieved on 09.08.2023 at 14:00).
+Although the Arduino only supports a power supply of 3.3 V by default, a pin called "VUSB" offers the possibility to solder the two contacts there. This enables a 5 V power supply for the vibration motors. More information under this [link](https://github.com/ostaquet/Arduino-Nano-33-IoT-Ultimate-Guide)
 
 To run the code "udpClientWlan" on the Arduino, the package "WIFININA" from the library must first be installed and integrated in the Arduino IDE. The code itself starts with the integration of the necessary libraries (SPI.h and WiFiNINA.h) for the SPI and WiFi functionalities, as well as the declaration of constants and variables for LED pins, motor pins, UDP port and WiFi details. Within the code, the SSID and password of the WLAN to which the Arduino is to connect are also specified. If there are any variations in SSID or password, these must be adjusted accordingly in the code.
 
@@ -190,7 +190,7 @@ Both scripts must be attached to a “GameObject” in Unity before they can be 
 
  
 In both scripts, the IP address of the Arduino and the port number are first set in the code to enable communication with the device.
-- Script Vibration: This script reads the Reba Score from the script "REBA_Score" and sends the command "Start Vibration" to the Arduino every second, the strength varying depending on the mapping. This creates a continuous vibration that can change every second. The timing and vibration duration can be adjusted in Unity and in the Arduino code (delay(970)) to allow faster or slower changes. 
+- Script Vibration: This script reads the Reba Score from the script "REBA_Score" and sends the command "Start Vibration" to the Arduino every second, the strength varying depending on the mapping. This creates a continuous vibration that can change every second. The timing and vibration duration can be adjusted in Unity and in the [Arduino code] (../Arduino) to allow faster or slower changes. 
 - Script Vib_Calibration: With this script, the Reba Score can be set and tested directly in Unity Inspector to find the appropriate mapping. Depending on the mapping, the selected strengths are sent to the Arduino with the command "Start Calibration" as soon as you click on the button "Test Vibration" in the Inspector. The vibration lasts for 2 seconds.
 
  <p align="center">
@@ -218,6 +218,25 @@ Repeated loud messages about a dominant in poor posture can not be ignored, and 
 The unpleasant and loud sound should create a conscious attitude.  The communication via a loud and dominant unpleasant sound should bring the user an unpleasant connection with the posture Sodas the posture is corrected quickly, because the user wants to stop the sound as soon as possible.
 The auditory feedback serves as a memory support and learning environment whereby the user is actively supported in the learning process in relation to the posture by means of an immediate feedback about their actions.
 After each correction, the user learns to improve his posture in the long term by means of a reward over the sound, by a change for the better.  Here, the reward as well as the correction by the sound is better remembered, since sound is a strong indicator.  The reward system will remind the user of his/her attitude in the long-term process by means of a consistent alarm sound, to remind him/her of the risky attitude and sensitize him/her to the formation of a habit based on the emotional and communicative effect of the sound in the memory of the user, since he/she learns to pay more attention to his/her attitude.
+
+### Main components:
+The auditory feedback works with the REBA score and varies depending on the level of the score.  Feedback takes place in real-time to the user via the VR headset.  The REBA scores are divided into 5 different levels, so that there are 5 different sounds available and are played depending on the respective level.
+
+
+#### 1- REBA - Level:
+The REBA scores range over 5 levels which define the degree of incorrect posture, as can be seen from the table.
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_level.png" width="700" />
+  <br>
+  Figure 8: Vibration-Skript on Unity
+</p>
+
+Source : Ergo Plus, https://ergo-plus.com/reba-assessment-tool-guide/, 10.08.2023
+
+#### 2- Volume - Level:
+The volume of the REBA score corresponds to the respective level and can be precisely adjusted via the Inspector via Unity, so that the user can adjust the volume for themselves.  The volume can be adjusted from 0.1 to 1, whereby a volume of 0.2 is recommended.
+
 
 
 ## Contributors:

@@ -381,4 +381,4 @@ Most of our files are attached in the Ground_Truth folder but some files were la
 ## Contributors:
 - [Jessica Brandl](https://github.com/JessBrandl)
 - [Vito Costa](https://github.com/VitoCostaaa)
-- [Cem Dogan](https://github.com/DoganCem)
+- [Cem Dogan](https://github.com/CemmDogan)

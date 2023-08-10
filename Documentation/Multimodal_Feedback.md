@@ -147,7 +147,7 @@ The vibration motors can only be controlled differently in their intensity by th
 ### Arduino Communication
 For our project we chose the Arduino Nano 33 IoT. This Arduino was chosen because it is small, compact, easy to attach and additionally enables WIFI connections. This WIFI function facilitates communication between the computer and the VR goggles.
 
-Although the Arduino only supports a power supply of 3.3 V by default, a pin called "VUSB" offers the possibility to solder the two contacts there. This enables a 5 V power supply for the vibration motors. More information under this link (retrieved on 09.08.2023 at 14:00).
+Although the Arduino only supports a power supply of 3.3 V by default, a pin called "VUSB" offers the possibility to solder the two contacts there. This enables a 5 V power supply for the vibration motors. More information under this [link](https://github.com/ostaquet/Arduino-Nano-33-IoT-Ultimate-Guide)
 
 To run the code "udpClientWlan" on the Arduino, the package "WIFININA" from the library must first be installed and integrated in the Arduino IDE. The code itself starts with the integration of the necessary libraries (SPI.h and WiFiNINA.h) for the SPI and WiFi functionalities, as well as the declaration of constants and variables for LED pins, motor pins, UDP port and WiFi details. Within the code, the SSID and password of the WLAN to which the Arduino is to connect are also specified. If there are any variations in SSID or password, these must be adjusted accordingly in the code.
 
@@ -176,7 +176,7 @@ Both scripts must be attached to a “GameObject” in Unity before they can be 
   <br>
   <img src="./Images/Multimodal_Feedback/Level_of_MSD_Risk.png" alt="Level_of_MSD_Risk.png" width="600" />
   <br>
-  Figure 7: RebaScore and Level of MSD Risk
+  Figure 7: [RebaScore and Level of MSD Risk](https://ergo-plus.com/reba-assessment-tool-guide/) 
 </p>
 
 3.	Intensity Slider: The user can choose between three intensity levels (Low, Medium, High) to adjust the vibration intensity.
@@ -190,7 +190,7 @@ Both scripts must be attached to a “GameObject” in Unity before they can be 
 
  
 In both scripts, the IP address of the Arduino and the port number are first set in the code to enable communication with the device.
-- Script Vibration: This script reads the Reba Score from the script "REBA_Score" and sends the command "Start Vibration" to the Arduino every second, the strength varying depending on the mapping. This creates a continuous vibration that can change every second. The timing and vibration duration can be adjusted in Unity and in the Arduino code (delay(970)) to allow faster or slower changes. 
+- Script Vibration: This script reads the Reba Score from the script "REBA_Score" and sends the command "Start Vibration" to the Arduino every second, the strength varying depending on the mapping. This creates a continuous vibration that can change every second. The timing and vibration duration can be adjusted in Unity and in the [Arduino code](../Arduino) to allow faster or slower changes. 
 - Script Vib_Calibration: With this script, the Reba Score can be set and tested directly in Unity Inspector to find the appropriate mapping. Depending on the mapping, the selected strengths are sent to the Arduino with the command "Start Calibration" as soon as you click on the button "Test Vibration" in the Inspector. The vibration lasts for 2 seconds.
 
  <p align="center">
@@ -227,18 +227,55 @@ The auditory feedback works with the REBA score and varies depending on the leve
 The REBA scores range over 5 levels which define the degree of incorrect posture, as can be seen from the table.
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_level.png" width="700" />
+  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_Level.png" width="500" />
   <br>
-  Figure 8: Vibration-Skript on Unity
+  Figure 11: REBA score level
 </p>
-
 Source : Ergo Plus, https://ergo-plus.com/reba-assessment-tool-guide/, 10.08.2023
 
 #### 2- Volume - Level:
 The volume of the REBA score corresponds to the respective level and can be precisely adjusted via the Inspector via Unity, so that the user can adjust the volume for themselves.  The volume can be adjusted from 0.1 to 1, whereby a volume of 0.2 is recommended.
 
+**Volume Level 1  (REBA Score 1 ideal posture):** play elevator sound one time 
+**Volume Level 2 (REBA Score 2-3):** play elevator sound two times
+**Volume Level 3 (REBA Score 4-7):** play elevator sound three times 
+**Volume Level 4 (REBA Score 8-10):** play alert sound one time 
+**Volume Level 5 (REBA Score 11+ poor posture):** play alert sound in loop
 
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Volume_Level.png" alt="Volume_Level.png" width="500" />
+  <br>
+  Figure 12: Volume levels on Unity
+</p>
 
+The auditory feedback uses 2 different sounds and plays them in different repetitions.  The volume can also be adjusted using the controls, so that the user has the opportunity to adjust it individually, whether all should have the same volume or would correspond differently.
+
+### Configuration & Usage:
+#### Upload Files 
+The MusicCube.cs script and both music files must be added to your chosen project.  The script is inserted to the respective selected GameObject in Unity and the audios are classified into the assets.  Both files are needed to play the audio.
+
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Clippy.png" alt="Clippy.png" width="500" />
+  <br>
+  Figure 13: setClippy on Unity
+</p>
+
+#### Music GameObject Settings
+To be able to use the music clips, they must be saved as a clip in the object by assigning the sound “elevator” to “Clippy A” and the sound “alert” to “Clippy B”, so that the script can also use them. 
+Here, the sound clips can also be individualized and adapted according to your own ideas, by assigning them to the respective clip.
+The assignment of the audios depends on the scheme, „Clippy A“ is used for the audio volume levels 1-3 and Clippy B for the audio levels 4+5, with note that at volume level 5 the sound is played as a loop.
+In addition, 3 audio sources must be added to your GameObject, so that the script can play the repetitions without any problems.
+
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/AudioSource.png" alt="AudioSource.png" width="500" />
+  <br>
+  Figure 14: addAudioSource on Unity
+</p>
+
+____________________________________________________
 ## Contributors:
 - [Patricia Maria Bombik](http://github.com/PatPatDango)
 - [Albin Hoti](http://github.com/albinh55)

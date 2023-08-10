@@ -227,18 +227,55 @@ The auditory feedback works with the REBA score and varies depending on the leve
 The REBA scores range over 5 levels which define the degree of incorrect posture, as can be seen from the table.
 <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_level.png" width="700" />
+  <img src="./Images/Multimodal_Feedback/REBA_Level.png" alt="REBA_Level.png" width="500" />
   <br>
-  Figure 8: Vibration-Skript on Unity
+  Figure 11: REBA score level
 </p>
-
 Source : Ergo Plus, https://ergo-plus.com/reba-assessment-tool-guide/, 10.08.2023
 
 #### 2- Volume - Level:
 The volume of the REBA score corresponds to the respective level and can be precisely adjusted via the Inspector via Unity, so that the user can adjust the volume for themselves.  The volume can be adjusted from 0.1 to 1, whereby a volume of 0.2 is recommended.
 
+**Volume Level 1  (REBA Score 1 ideal posture):** play elevator sound one time 
+**Volume Level 2 (REBA Score 2-3):** play elevator sound two times
+**Volume Level 3 (REBA Score 4-7):** play elevator sound three times 
+**Volume Level 4 (REBA Score 8-10):** play alert sound one time 
+**Volume Level 5 (REBA Score 11+ poor posture):** play alert sound in loop
 
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Volume_Level.png" alt="Volume_Level.png" width="500" />
+  <br>
+  Figure 12: Volume levels on Unity
+</p>
 
+The auditory feedback uses 2 different sounds and plays them in different repetitions.  The volume can also be adjusted using the controls, so that the user has the opportunity to adjust it individually, whether all should have the same volume or would correspond differently.
+
+### Configuration & Usage:
+#### Upload Files 
+The MusicCube.cs script and both music files must be added to your chosen project.  The script is inserted to the respective selected GameObject in Unity and the audios are classified into the assets.  Both files are needed to play the audio.
+
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Clippy.png" alt="Clippy.png" width="500" />
+  <br>
+  Figure 13: setClippy on Unity
+</p>
+
+#### Music GameObject Settings
+To be able to use the music clips, they must be saved as a clip in the object by assigning the sound “elevator” to “Clippy A” and the sound “alert” to “Clippy B”, so that the script can also use them. 
+Here, the sound clips can also be individualized and adapted according to your own ideas, by assigning them to the respective clip.
+The assignment of the audios depends on the scheme, „Clippy A“ is used for the audio volume levels 1-3 and Clippy B for the audio levels 4+5, with note that at volume level 5 the sound is played as a loop.
+In addition, 3 audio sources must be added to your GameObject, so that the script can play the repetitions without any problems.
+
+<p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/AudioSource.png" alt="AudioSource.png" width="500" />
+  <br>
+  Figure 14: addAudioSource on Unity
+</p>
+
+____________________________________________________
 ## Contributors:
 - [Patricia Maria Bombik](http://github.com/PatPatDango)
 - [Albin Hoti](http://github.com/albinh55)

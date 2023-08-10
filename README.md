@@ -13,8 +13,6 @@ The project involves approximately 13 students working collaboratively to answer
 - [Ground Truth](Documentation/Ground_Truth.md)
 
 ## Requirements:
-
-## Requirements:
 To run the project, the following components are required:
 Unity (Version 2021.3.26f1) 
 VR Device and software

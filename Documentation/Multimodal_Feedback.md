@@ -176,7 +176,7 @@ Both scripts must be attached to a “GameObject” in Unity before they can be 
   <br>
   <img src="./Images/Multimodal_Feedback/Level_of_MSD_Risk.png" alt="Level_of_MSD_Risk.png" width="600" />
   <br>
-  Figure 7: [RebaScore and Level of MSD Risk] (https://ergo-plus.com/reba-assessment-tool-guide/) 
+  Figure 7: [RebaScore and Level of MSD Risk](https://ergo-plus.com/reba-assessment-tool-guide/) 
 </p>
 
 3.	Intensity Slider: The user can choose between three intensity levels (Low, Medium, High) to adjust the vibration intensity.
@@ -190,7 +190,7 @@ Both scripts must be attached to a “GameObject” in Unity before they can be 
 
  
 In both scripts, the IP address of the Arduino and the port number are first set in the code to enable communication with the device.
-- Script Vibration: This script reads the Reba Score from the script "REBA_Score" and sends the command "Start Vibration" to the Arduino every second, the strength varying depending on the mapping. This creates a continuous vibration that can change every second. The timing and vibration duration can be adjusted in Unity and in the [Arduino code] (../Arduino) to allow faster or slower changes. 
+- Script Vibration: This script reads the Reba Score from the script "REBA_Score" and sends the command "Start Vibration" to the Arduino every second, the strength varying depending on the mapping. This creates a continuous vibration that can change every second. The timing and vibration duration can be adjusted in Unity and in the [Arduino code](../Arduino) to allow faster or slower changes. 
 - Script Vib_Calibration: With this script, the Reba Score can be set and tested directly in Unity Inspector to find the appropriate mapping. Depending on the mapping, the selected strengths are sent to the Arduino with the command "Start Calibration" as soon as you click on the button "Test Vibration" in the Inspector. The vibration lasts for 2 seconds.
 
  <p align="center">

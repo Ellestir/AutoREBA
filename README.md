@@ -14,6 +14,10 @@ The project involves 13 students + 1 Tutor working collaboratively to answer the
 - [Multimodal Feedback](Documentation/Multimodal_Feedback.md)
 - [Ground Truth](Documentation/Ground_Truth.md)
 
+## What is REBA and Motive?
+- [REBA](https://github.com/Ellestir/AutoREBA/blob/master/Documentation/Ground_Truth.md#the-reba-score)
+- [Motive](https://github.com/Ellestir/AutoREBA/blob/master/Documentation/Ground_Truth.md#the-reba-score)
+
 ## Requirements:
 To run the project, the following components are required:
 
@@ -55,13 +59,3 @@ Open the project in Unity
 - [Cem Dogan](https://github.com/DoganCem)
 - [Mustafa Rafati](https://github.com/elementary-watson/)
 
-## Project Conclusion:
-
-Wrapping up our journey with the REBA-Score and the Optitrack system, it's clear that this project was both a challenge and a fantastic learning experience. With 13 of us, divided into four focused groups, the organisation was a tremendous task.
-We each had our own set of hurdles to overcome. Whether it was setting up Optitrack with the VR environment or fixing the code until the REBA-Score feedback was spot on, there were moments that truly tested our mettle.
-
-But here's the thing: amidst these challenges, we learned a ton about teamwork and organization. The diverse skills in our team not only made problem-solving more dynamic but also made the process genuinely enjoyable. We shared knowledge, supported each other, and celebrated our small successes along the way.
-
-We're genuinely excited about the potential of our work. Implementing posture feedback in virtual and mixed reality could be a game-changer for many. We're hopeful that our efforts will pave the way for real-world applications that can make a positive impact on people's lives.
-
-In retrospect, while we faced our fair share of challenges. We've grown as a team, enjoyed the process, and are proud of our collective output. Here's to our work serving as a foundation for future innovations and truly making a difference!

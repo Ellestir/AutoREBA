@@ -110,7 +110,7 @@ It's paramount to ensure that the required sprites and text references are corre
 - A sophisticated text solution tailored for Unity. It seamlessly replaces Unity's UI Text and the legacy Text Mesh.
 - Integral in our module for the RebaText and RebaNumber elements.
 
-## Tactile Feedback Feedback
+## Tactile Feedback
 text
 
 ## Arduino Communication

@@ -45,6 +45,38 @@ Open the project in Unity
 - [Vito Costa](https://github.com/VitoCostaaa)
 - [Cem Dogan](https://github.com/DoganCem)
 
+## Implementation Details
+
+## Der REBA Score:
+The Rapid Entire Body Assessment (REBA) was developed to “rapidly” evaluate risk of musculoskeletal disorders (MSD) associated with certain job tasks. 
+
+
+
+
+It consists of a scoring system from 1-15 and splits these into 5 subgroups as seen in the image above with 1 being negligible risk and 11+ being very high risk, implement change. 
+
+In order to calculate the score one must have a video or a picture of a person, ideally one that is doing a task or job. Following this one will look at six different body parts to evaluate; Neck, trunk, legs, upper arm, lower arm and the wrists. 
+For each body part there are a number of different evaluations to do to determine its subscore. For example, the trunk varies in score from 1 - 5, The angle of the upper body in comparison to the upright position can be a score from 1-4, +1 for a perfect straight trunk, and +4 for a trunk bending forward 60 degrees or more. Additionally 1 is added if the upper body is twisted or side bending, leading to a possible maximum subscore of 5.
+
+After all 6 body parts have been assessed, it is also necessary to note down the “force load”, if a good grip was found via the “coupling score” and which activity the person in question had potentially been doing for the past minute or more for the “activity score”.
+The Force Load is implemented if the person was holding something of a certain weight, 0-10 lbs is a score of +0, 11-22 lbs is +1 and 23+ is +2. And additionally +1 if there is shock or a rapid buildup of force
+Coupling defines the hand hold or grip the person has on the item they are holding, ranging from good over fair to poor. 
+The Activity Score will need more knowledge on the person's movement over time than a screenshot offers. It adds score if one or more body parts were held for longer than one minute, if there were repeated actions or there was a large range change in posture. 
+
+To calculate the final Score using the subscores Table A, Table B and Table C will be necessary. 
+
+From Table A one can get a score from 1 - 9. Onto this one adds the Force Load Score of max 3, leading to Score A having the range of 1-12.
+
+
+From Table B one can get a score from 1-9 also. Onto this one adds the Coupling Score of max 3, leading to Score B having the range of 1-12. 
+
+
+
+Score A and Score B is used in Table C to determine Score C, which ranges from 1-12.
+
+Onto Score C one must add the Activity Score which ranges from 1-3 to end up at the final REBA Score. 
+
+
 ## Project Conclusion:
 
 Wrapping up our journey with the REBA-Score and the Optitrack system, it's clear that this project was both a challenge and a fantastic learning experience. With 13 of us, divided into four focused groups, the organisation was a tremendous task.

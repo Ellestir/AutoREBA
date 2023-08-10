@@ -1,8 +1,9 @@
-In der Computation und Visualization Gruppe konzentrieren wir uns auf die Berechnung des so genannten REBA-Scores. Die Rapid Entire Body Assessment (REBA) ist eine Methode zur Bewertung der Körperhaltung und Bewegung.
-Sie wurde entwickelt, um das Risiko von Muskel-Skelett-Erkrankungen bei der Arbeit zu bewerten. Die Methode basiert auf der Beobachtung der Körperhaltung, der Bewegung, der Kraftanforderungen und der Muskelaktivität.
+# AutoREBA - Computation & Visualization
 
-Die REBA-Methode besteht aus zwei Teilen: dem oberen und dem unteren Körper. Jeder Teil wird separat bewertet und dann zusammengezählt, um das Gesamtrisiko zu ermitteln. Die Bewertungsskala reicht von 1 (geringes Risiko) bis 15 (sehr hohes Risiko).
-Wir nutzen also die Winkel zwischen den Gliedmaßen um zu bestimmen, ob die Nutzer eines VR-Headsets eine Risikobehaftete Körperhaltung haben und melden dies mit Hilfe der Arbeit der Multimodal Feedback den Nutzern durch visuelles, auditives und vibrationsbasiertes Feedback ihnen in Echzeit zurück.
+## Overview:
+In the Computation and Visualization group, we focus on calculating the so-called REBA score. The Rapid Entire Body Assessment (REBA) is a method for evaluating body posture and movement. It was developed to assess the risk of musculoskeletal disorders at work. The method is based on observing body posture, movement, force requirements, and muscle activity.
+
+The REBA method consists of two parts: the upper and lower body. Each part is evaluated separately and then added together to determine the overall risk. The assessment scale ranges from 1 (low risk) to 15 (very high risk). Therefore, we use the angles between the limbs to determine whether users of a VR headset have a risky posture and report this to the users in real-time using the work of the Multimodal Feedback through visual, auditory, and vibration-based feedback.
 
 Figure 1:
 <p align="center">
@@ -38,9 +39,10 @@ Figure 4:
   Figure 4: Reba-Controller
 </p>
 
-If you want to log the limb scores and the corresponding table scores into a csv-file you need to tick the "Log Scores CSV" box. Furthermore there are the options to print the angles and/or scores into the console. The "threshold" variable is used to determin at which angle a limb is considered twisted, sided or bend. The "Window Size" determines how large the rolling window is supposed to be, i.e. how many frames are onsidered in the averiging of the score.
-Beitragende:
+If you want to log the limb scores and the corresponding table scores into a csv-file you need to tick the "Log Scores CSV" box. The CSV Log File is saved in %PojectFile%/Logs/AutoREBALogFile.csv. Furthermore there are the options to print the angles and/or scores into the console. The "threshold" variable is used to determin at which angle a limb is considered twisted, sided or bend. The "Window Size" determines how large the rolling window is supposed to be, i.e. how many frames are onsidered in the averiging of the score.
 
-    Frederik Wiemer
-    Jonas
-    Luke Werle
+## Contributors:
+
+- [Jonas Scheffner](https://github.com/jonasscheffner)
+- [Luke Werle](https://github.com/Luke-Werle-99)
+- [Frederik Wiemer](http://github.com/FreddyOs)

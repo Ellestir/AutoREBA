@@ -33,17 +33,70 @@ Enabling Passthrough involved steps within Unity:
 1. Select "OVRCameraRig" in the "Hierarchy" tab.
 2. In the "Inspector" tab, follow these stages:
    - a. Choose "Stage" as the "Tracking Origin Type" under the "Tracking" section.
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_1.jpg" alt="IMG_1.jpg" width="400" />
+  <br>
+  Figure 1: Set Tracking Origin Type to "Stage"
+</p>
    - b. In the "Quest Features" section, navigate to the "General" tab. Select "Supported" from the "Passthrough Support" list.
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_2.jpg" alt="IMG_2.jpg" width="350" />
+  <br>
+  Figure 2: Set Passthrough Support to "Support"
+</p>
    - c. Enable "Enable Passthrough" under "Insight Passthrough" for app startup.
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_3.jpg" alt="IMG_3.jpg" width="350" />
+  <br>
+  Figure 3: Enable "Enable Passthrough"
+</p>
    - d. Integrate the "OVRPassthroughLayer" script by adding the component and selecting the script.
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_4.jpg" alt="IMG_4.jpg" width="350" />
+  <br>
+  Figure 4: Integrate the "OVRPassthroughLayer" script
+</p>
    - e. Fine-tune "OVRPassthroughLayer" settings, setting "Placement" to "Underlay" for background passthrough.
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_5.jpg" alt="IMG_5.jpg" width="400" />
+  <br>
+  Figure 5: Set "Placement" to "Underlay"
+</p>
 
-4. Access the menu, go to "Window," then select "Rendering," and finally "Lighting."
-5. On the "Environment" tab, locate "Skybox Material" and select "None."
+4. Access the menu, go to "Window," then select "Rendering," and finally "Lighting".
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_6.jpg" alt="IMG_6.jpg" width="500" />
+  <br>
+  Figure 6: Set Navigate to "Lighting"
+</p>
+5. On the "Environment" tab, locate "Skybox Material" and select "None". 
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_7.jpg" alt="IMG_7.jpg" width="500" />
+  <br>
+  Figure 7: Select "None" for "Skybox Material"
+</p>
 6. Expand "OVRCameraRig > TrackingSpace > CenterEyeAnchor" in the "Hierarchy" tab. In the "Inspector" tab:
    - a. Choose "Solid Color" from the "Clear Flags" list.
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_8.jpg" alt="IMG_8.jpg" width="350" />
+  <br>
+  Figure 8: Set "Clear Flags" to "Solid Color"
+</p>
    - b. Adjust the "Background color" to black and set the alpha value to 0 (or (R,G,B,A) values to (0, 0, 0, 0)).
-
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_9.jpg" alt="IMG_9.jpg" width="350" />
+  <br>
+  Figure 9: Adjust the "Background color"
+</p>
 This setup empowers you to utilize passthrough while overlaying virtual 3D objects onto the physical world.
 
 ## Challenges Faced

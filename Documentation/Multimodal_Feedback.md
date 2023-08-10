@@ -199,6 +199,7 @@ In both scripts, the IP address of the Arduino and the port number are first set
   <br>
   Figure 9: Calibration-Skript on Unity
 </p>
+
 ### Router
 We used the router "ASUS GT-AXE11000" for our project. It is advisable to set the IP addresses of the Arduinos in the router settings as they are specified in the Unity scripts.
 

@@ -25,7 +25,7 @@ Unity (Version 2021.3.26f1)
 
 VR Device (Oculus Quest Pro) and Software (Oculus app)
 
-Optitrack
+Optitrack (Motive)
 
 Further dependencies are specified in the respective directory of the component.
 
@@ -42,6 +42,12 @@ git clone https://github.com/Ellestir/AutoREBA
 	 
 Open the project in Unity 
 
+Configure the Optitrack Plugin to match your Motive settings
+
+Check your Oculus Link connection 
+
+Start the Unity Application
+
 
 ## Contributors:
 - [Patricia Maria Bombik](http://github.com/PatPatDango)
@@ -56,6 +62,6 @@ Open the project in Unity
 - [Ibtehal Al-Omari](https://github.com/ib1907)
 - [Jessica Brandl](https://github.com/JessBrandl)
 - [Vito Costa](https://github.com/VitoCostaaa)
-- [Cem Dogan](https://github.com/DoganCem)
+- [Cem Dogan](https://github.com/CemmDogan)
 - [Mustafa Rafati](https://github.com/elementary-watson/)
 

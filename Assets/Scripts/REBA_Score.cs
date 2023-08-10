@@ -21,6 +21,9 @@ public class REBA_Score : MonoBehaviour
     [Tooltip("Determines how much a Peak will be weighted")]
     [Range(1f, 10f)]
     public float PeakSensitivity = 1.0f;
+    [Tooltip("Delta which determines when a peak is reached")]
+    [Range (1,10)]
+    public int delta = 1;
     private float smooth = 0;
     private Queue<float> lastValues = new Queue<float>();
     //Score Attributes
@@ -620,7 +623,7 @@ public class REBA_Score : MonoBehaviour
     // Check if currentREBAScore is a peak
     foreach (int value in lastValues)
     {
-        if (currentREBAScore <= value)
+        if (currentREBAScore <= value + delta)
         {
             isPeak = false;
             break;

@@ -5,9 +5,9 @@ In order to assess the individual body parts and their respective scores we used
 This included explanations, pictures and the tables used to determine the scores that make up the final REBA score. 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/REBA_Overview.png" alt="REBA_Overview.png" width="1000" />
   <br>
-  Figure 1: REBA Bild
+  Figure 1: REBA Overview, Source: https://ergo-plus.com/reba-assessment-tool-guide/
 </p>
 
 As the website outlines, we took multiple pictures and videos to assess the posture accurately. 
@@ -20,9 +20,9 @@ The Rapid Entire Body Assessment (REBA) was developed to “rapidly” evaluate 
 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/MSD_Risk.png" alt="MSD_Risk.png" width="700" />
   <br>
-  Figure 1: MSD Risk
+  Figure 2: MSD Risk, Source: https://ergo-plus.com/reba-assessment-tool-guide/
 </p>
 
 It consists of a scoring system from 1-15 and splits these into 5 subgroups as seen in the image above with 1 being negligible risk and 11+ being very high risk, implement change. 
@@ -41,25 +41,25 @@ From Table A one can get a score from 1 - 9. Onto this one adds the Force Load S
 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/TableA.png" alt="TableA.png" width="500" />
   <br>
-  Figure 1: Table A
+  Figure 3: Table A
 </p>
 From Table B one can get a score from 1-9 also. Onto this one adds the Coupling Score of max 3, leading to Score B having the range of 1-12. 
 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/TableB.png" alt="TableB.png" width="500" />
   <br>
-  Figure 1: Table B
+  Figure 4: Table B
 </p>
 Score A and Score B is used in Table C to determine Score C, which ranges from 1-12.
 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/TableC.png" alt="TableC.png" width="500" />
   <br>
-  Figure 1: Table C
+  Figure 5: Table C
 </p>
 
 Onto Score C one must add the Activity Score which ranges from 1-3 to end up at the final REBA Score. 

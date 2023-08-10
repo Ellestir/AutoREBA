@@ -176,7 +176,7 @@ Both scripts must be attached to a “GameObject” in Unity before they can be 
   <br>
   <img src="./Images/Multimodal_Feedback/Level_of_MSD_Risk.png" alt="Level_of_MSD_Risk.png" width="600" />
   <br>
-  Figure 7: RebaScore and Level of MSD Risk
+  Figure 7: [RebaScore and Level of MSD Risk] (https://ergo-plus.com/reba-assessment-tool-guide/) 
 </p>
 
 3.	Intensity Slider: The user can choose between three intensity levels (Low, Medium, High) to adjust the vibration intensity.

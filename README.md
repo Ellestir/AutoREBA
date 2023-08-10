@@ -8,7 +8,7 @@ In order to minimise the damage caused by suboptimal posture in these situations
 
 The aim of this project is to address a research question related to posture ergonomics in Mixed Reality. The overarching theme of the project is "Multimodal Biofeedback for Enhancing Posture Ergonomics in Mixed Reality."
 
-The project involves approximately 13 students working collaboratively to answer the research question. The team comprises four groups, each consisting of three members and a project manager. The groups are divided as follows:
+The project involves 13 students + 1 Tutor working collaboratively to answer the research question. The team comprises four groups, each consisting of three members and a project manager. The groups are divided as follows:
 - [Computation and Visualization](Documentation/Computation&Visualization.md)
 - [Multi Device Communication](Documentation/Multi_Device_Communication.md)
 - [Multimodal Feedback](Documentation/Multimodal_Feedback.md)
@@ -19,7 +19,7 @@ To run the project, the following components are required:
 
 Unity (Version 2021.3.26f1) 
 
-VR Device and software
+VR Device (Oculus Quest Pro) and Software (Oculus app)
 
 Optitrack
 
@@ -44,7 +44,7 @@ Open the project in Unity
 - [Albin Hoti](http://github.com/albinh55)
 - [Pouya Nikbakhsh](http://github.com/pouya-nik)
 - [Tom Roman Rosenberger](http://github.com/Ellestir)
-- Jonas Scheffner
+- [Jonas Scheffner](https://github.com/jonasscheffner)
 - [Luke Werle](https://github.com/Luke-Werle-99)
 - [Frederik Wiemer](http://github.com/FreddyOs)
 - [Nassim Laaraj](https://github.com/Nassim795)
@@ -53,6 +53,7 @@ Open the project in Unity
 - [Jessica Brandl](https://github.com/JessBrandl)
 - [Vito Costa](https://github.com/VitoCostaaa)
 - [Cem Dogan](https://github.com/DoganCem)
+- [Mustafa Rafati](https://github.com/elementary-watson/)
 
 ## Project Conclusion:
 

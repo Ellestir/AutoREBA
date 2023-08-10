@@ -16,7 +16,7 @@ The project involves 13 students + 1 Tutor working collaboratively to answer the
 
 ## What is REBA and Motive?
 - [REBA](https://github.com/Ellestir/AutoREBA/blob/master/Documentation/Ground_Truth.md#the-reba-score)
-- [Motive](https://github.com/Ellestir/AutoREBA/blob/master/Documentation/Ground_Truth.md#the-reba-score)
+- [Motive](https://github.com/Ellestir/AutoREBA/blob/master/Documentation/Ground_Truth.md#motive)
 
 ## Requirements:
 To run the project, the following components are required:

@@ -283,7 +283,7 @@ The Arduino has been soldered together so that it is removable again, as well as
   <br>
   Figure 18: Soldering Arduino plan („purrBox“)
 </p>
-Next to the ground of the Arduino, 3 cables are soldered in a strand to the female header one after the other.  The same happens with the VIN/ + cables in VIN next to it.  The outermost cables of plus and minus are then soldered to the charger at the point where 5V comes out, so that the Arduino is connected to the charger and gets 5V from the charger.  The charger itself is soldered with the LiPo Battery 3.70V 500mAh at the connector, so that the battery is charged via the charger and boosted from 3.7V to 5V.  We have to reach 5V because the vibration motors vibrate more at 5V.
+Next to the ground of the Arduino, 3 cables are soldered in a strand to the female header one after the other.  The same happens with the VIN/ + cables in VIN next to it.  The outermost cables of plus and minus are then soldered to the charger at the point where 5V comes out, so that the Arduino is connected to the charger and gets 5V from the charger.  The charger itself is soldered with the LiPo Battery 3.70V 500mAh at the connector, so that the battery is charged via the charger and boosted from 3.7V to 5V.  We have to reach 5V because the vibration motors vibrate more at 5V.For the signal to the motor, two cables are soldered to one pin each at D2 and D3 for both motors.  These are then soldered to the female header.
 
 ## Auditory Feedback
 ### Overview

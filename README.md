@@ -31,3 +31,6 @@ To execute the project, the following components are required:
 - [Nassim Laaraj](https://github.com/Nassim795)
 - [Nabil Akir](https://github.com/nabil-ak)
 - [Ibtehal Al-Omari](https://github.com/ib1907)
+- [Jessica Brandl](https://github.com/JessBrandl)
+- [Vito Costa](https://github.com/VitoCostaaa)
+- [Cem Dogan](https://github.com/DoganCem)

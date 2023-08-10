@@ -69,25 +69,18 @@ Motive is an optical motion capture program, capable of connecting to cameras wh
 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/SkeletonBody.png" alt="SkeletonBody.png" width="500" />
   <br>
-  Figure 1: Skeleton Body Front
-</p>
-
-<p align="center">
-  <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
-  <br>
-  Figure 1: Skeleton Body Back
+  Figure 6: Skeleton Body
 </p>
 
 49 markers are required to be able to detect and record a person properly without issue. The white markers indicate which knobs need to be exact on the respective muscle/bone. The purple markers indicate which knobs can vary in position due to the person's height or other physical traits. After successfully attaching them the knobs are to be marked and can then be set as a Skeleton body.
 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/MotiveBodyWithTableandBox.png" alt="MotiveBodyWithTableandBox.png" width="500" />
   <br>
-  Figure 1: Motive Body with box and table
+  Figure 7: Motive Body with box and table
 </p>
 
 Also visible here are other objects we imported such as a table and a box. This follows the same procedure as before with attaching markers and then importing them into Motive, this time using the Rigid Body type.
@@ -97,25 +90,102 @@ Also visible here are other objects we imported such as a table and a box. This 
 ## Process:
 
 ### 1. Planning:
+In the planning phase, after consulting with Prof. Schwind, we developed a general setting for our future story. We chose the supermarket as the location because it allows for the integration of multiple movement sequences. We quickly realized that we shouldn't create large stories, but rather work with individual movements, known as "moves." This approach has several advantages.
+
+• Few timestamps per move
+
+• More organized (individual folders per move)
+
+• Move variations with separate scores (easy/difficult, good/bad grip)
+
+• Division of work among multiple editors
+
+• Over time, a catalog of individual moves is created
+
+• Story creation becomes much easier, as individual moves can be combined into a larger story arbitrarily.
+
+And few disadvantages we could think of:
+
+• Many small takes
+
+After we had devised a set of moves, we created variations for each individual move, such as heavy box and light box or good grip and bad grip.
+
+For the final submission, we conceptualized a story set in a supermarket from the moveset. The final story is a combination of different moves. We independently evaluated the story itself once again so that we could identify minor deviations from the individual moves and take them into account in our calculations.
+
+## Set of moves
+• Lifting a box with the weight of light or heavy which has an easy or weak grip.
+
+• Placing a box on the table with the box having the weight of light or heavy which has an easy or weak grip.
+
+• Placing a box on a high table  with the box having the weight of light or heavy which has an easy or weak grip.
+
+• Taking a box from a distant table with the box having the weight of light or heavy which has an easy or weak grip.
+
+• Lifting a table
+
+• Working at a cash register while sitting with light and heavy boxes while also differentiating between normal movement or putting the box behind him and turning backwards for the movement
+
+• Working at a cash register while standing with light and heavy boxes while also differentiating between normal movement or putting the box behind him and turning backwards for the movement
 
 ### 2. Test Recording:
+Before recording the final submission footage, we familiarized ourselves with Motive. We put on the suit and positioned the knobs (reflectors). In addition to Motive, we also set up a camera to capture video footage for later analysis. In our initial test recordings, we tested the following moves:
+
+• Working at the cash register while sitting
+
+• Working at the cash register while standing
+
+• Lifting a light or heavy box
+
+The light box weighed half a kilogram, while the heavy box was approximately 6 kilograms in weight.
+
+In addition to individual moves, we also recorded a preliminary story to understand how we could simulate, for example, a cash register belt. The results confirmed our basic approach, although some minor improvements had to be made.
 
 ### 3. Refinement:
+During the test recordings, we quickly realized that a single camera perspective wouldn't suffice. The plan was altered in this regard. Our initial consideration was to attach four cameras to the frame in the laboratory to capture camera footage from all corners of the room. However, this approach couldn't be implemented within the given timeframe, leading us to choose two camera perspectives instead. The positioning of the cameras was as follows:
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/Cameraperspectives.png" alt="Cameraperspective.png" width="500" />
+  <br>
+  Figure 8: Camera perspectives
+</p>
+
+In addition to adding extra camera perspectives, we also standardized the boxes. The heavy box was no longer a modified box but rather a six-pack of water from Lidl. This ensured that the heavy box consistently weighed 9kg, making setup easily replicable.
+
+We expanded our set of moves and excluded certain moves, such as "Working at the cash register while standing," from the final recordings, as they displayed similar scores to other moves, such as "Working at the cash register while sitting."
+
+Synchronizing the Motive recording with the camera footage was also a challenge. We attached a bottle with knobs (reflectors) and used the swinging of the bottle at the beginning of each take, akin to a film shoot's clapperboard, as a synchronization point between the Motive system and the cameras.
+
+After implementing these improvements, we were able to conceptualize a final story. The composed final story consists of the following moves:
+
+1. Working at the cash register while sitting, with boxes of weight light and heavy, which has an easy grip and a weak grip
+    
+2. Standing up
+
+3. Lifting a box onto a table, with boxes of weight light and heavy, which has an easy grip and a weak grip
+    
+We envisioned an employee in a supermarket who alternates between working at the cash register and stocking items on the shelves. The employee manages the cash register and deals with objects of varying weights, ideally scanning them with proper posture. Alongside the weight of the items, the gripping options also differ, impacting the posture. After finishing the cash register tasks, the employee begins stocking shelves. Here, objects of various weights are positioned, and the employee lifts them onto a table with optimal posture. The table is situated behind the person, necessitating the person to turn around. In a longer sequence of movements, placing the table behind the person encourages twisting the body instead of a full turn with each movement.
 
 ### 4. Final Recording:
 
 ### 5. Evaluation:
+In order to keep track of all the recordings and scores in an organised manner we decided on an excel sheet. This way we noted down the subscores individually so that a given REBA score can be analysed and broken down into more details. As such we had columns for each measured body part, force load, coupling score, activity score then the scores given in the tables. Additionally we had the columns Number/ID, from which POV the recording was taken as it was either Motive or two different camera angles, a short description of the move seen and the timestamp in seconds in the recording. 
+The rows each had the name of a take followed by the perspective in the next rows. 
+To make life easier we implemented some minor excel formulas. These can be improved upon, especially by hard coding in the tables and inputting Score A, B and C to automate the processes. 
+
+For the actual image evaluation we found that most of the subscores could be seen without using any external tools like a goniometer or any software. For edge cases where an angle would be very close to a value that was the border value between two positions we would use those tools for better accuracy.
+Certains positions were a challenge to decide as no clear definitions were given by the document we used. Thus whether for example an arm was abducted or not can be objective in some cases. We tried to keep this uniform between each of us leading to scores that are all relative to each other correct. 
 
 ## Examples:
 
 ### Good Posture:
+This posture we ended up giving a perfect score of 1. We evaluated the neck as having a subscore of 1 as it is barely bent forward if it all, it is not twisted or bent. Whether it is bent may be controversial but as the official page does not mention any angles we decided here that this is not bent enough to add +1.
 
-This posture we ended up giving a perfect score of 1. We evaluated the neck as having a subscore of 1 as it is barely bent forward if it all, it is not twisted or bent. Whether it is bent may be controversial but as the official page does not mention any angles we decided here that this is not bent enough to add +1. 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/GoodPosture.png" alt="GoodPosture.png" width="500" />
   <br>
-  Figure 1: REBA Bild
+  Figure 9: REBA Score 1
 </p>
 Similarly, the trunk is straight, not twisted or bent. Leading to a score of +1. 
 
@@ -137,14 +207,80 @@ Picking up a box also does not cause a rapid large range change in posture and t
 Inputting the subscores into the given tables and adding the coupling score and force load gives a Score A of 1 and a Score B of 1. Inputting these into Table C gives a Score of 1, adding onto the +0 of the activity score leaves it at a 1, giving an end score of 1.
 
 ### Bad Posture:
+The following position has a score of 10, which is one of the lower scores in our overall evaluation.
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/BadPosture.png" alt="BadPosture.png" width="500" />
+  <br>
+  Figure 10: REBA Score 10
+</p>
+
+In this position, the neck is slightly tilted backward, resulting in a Subscore of 2. There is no visible twist or bend. The upper body's forward lean is a significant factor in this example.
+For an angle greater than 60°, the Subscore for the upper body is 4.
+The legs have an angle of 30 - 60°, resulting in a Subscore of 2.
+The lifted box has no weight, leading to a Subscore for Force Load.
+The right upper arm reaches for the box and is extended more than 90° upward. Additionally, the right shoulder is raised, resulting in a cumulative Subscore of 5.
+Between the upper arm and forearm, there's an angle of about 180°. The arm is fully extended, yielding a Subscore of 2 for the forearm.
+The hand grips the box. An angle of more than 10° between the back of the hand and the forearm is clearly visible. Moreover, a bend in the hand is noticeable. The Subscore for the hand is 3.
+A poor grip adds an additional Coupling Score of 2.
+After evaluating Tables A, B, and C, and with an Activity Score of 0, the final result is 10.
 
 ### Further examples:
 #### Twisted Trunk:
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/TwistedTrunk.png" alt="TwistedTrunk.png" width="500" />
+  <br>
+  Figure 11: Twisted Trunk
+</p>
+
+The timestamp of Motive and our shots show a person trying to place a box on the table. During the movement, you can clearly see that the torso is twisted. Because of this, the REBA Score increases due to the trunk subscore increasing +1, elevated by that the trunk has a bigger weight into the final score.
+
 #### Abducted Arm:
-#### Side bending Neck:
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/AbductedArm.png" alt="AbductedArm.png" width="500" />
+  <br>
+  Figure 12: Abducted Arm
+</p>
+
+Another posture that further boosts the REBA score is the abducted arm. From the screenshots it is obvious to see how the person is moving a box on the checkout. At the end of the movement (end of the checkout), the left arm is in an almost 90 degree angled position to the side, away from the body.
+
+#### Side bending neck:
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/SideBendingNeck.png" alt="SideBendingNeck.png" width="500" />
+  <br>
+  Figure 13: Side-bending neck
+</p>
+
+Another posture that makes an important contribution to the REBA score is the neck posture. As you can see from the screenshots, the person is sitting at the checkout and placing a heavy box on the floor. During this movement, the neck is bent to the right. This raises the REBA score.
+
+
 #### Raised Leg:
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/RaisedLeg.png" alt="RaisedLeg.png" width="500" />
+  <br>
+  Figure 14: Raised Leg
+</p>
+
+The picture shows another interesting posture. The person in the picture is trying to take a light box from a table at a further distance. Thus the left leg is lifted, which increases the REBA score, as an unnatural pose is assumed.
+
 #### Coupling Score:
+
 #### Activity Score:
+
+The activity score can boost the REBA score. It is achieved through three different activities.
+Firstly, if a static posture is maintained for longer than 1 minute, the REBA score is increased by 1. In our case, we performed a seated scenario, where the person's legs remain in a static position.
+
+Secondly, if a certain movement is performed several times (4-5 times), the REBA score is increased by 1. We have demonstrated this scenario with the following example. A person is sitting or standing at the checkout and moves light and heavy boxes on the checkout continuously for a longer period of time.
+
+The last activity movement that can move up the REBA score by 1 is an action that can lead to fast, large posture changes or an unstable base. An example would be if a heavy box was thrown at a person, causing his posture to change rapidly to a poor posture.
 
 ## Problems:
 

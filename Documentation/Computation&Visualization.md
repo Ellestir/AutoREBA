@@ -4,6 +4,14 @@ Sie wurde entwickelt, um das Risiko von Muskel-Skelett-Erkrankungen bei der Arbe
 Die REBA-Methode besteht aus zwei Teilen: dem oberen und dem unteren Körper. Jeder Teil wird separat bewertet und dann zusammengezählt, um das Gesamtrisiko zu ermitteln. Die Bewertungsskala reicht von 1 (geringes Risiko) bis 15 (sehr hohes Risiko).
 Wir nutzen also die Winkel zwischen den Gliedmaßen um zu bestimmen, ob die Nutzer eines VR-Headsets eine Risikobehaftete Körperhaltung haben und melden dies mit Hilfe der Arbeit der Multimodal Feedback den Nutzern durch visuelles, auditives und vibrationsbasiertes Feedback ihnen in Echzeit zurück.
 
+Bild1:
+<p align="center">
+  <br>
+  <img src="./Images/Computation&Visualization/OptitrackController.png" alt="OptitrackController.png" width="500" />
+  <br>
+  Figure 1: Inspector of the Potitrack Controller
+</p>
+
 Beitragende:
 
     Frederik Wiemer

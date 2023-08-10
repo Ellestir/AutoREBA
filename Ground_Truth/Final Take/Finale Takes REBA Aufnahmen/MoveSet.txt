@@ -1,0 +1,11 @@
+1. Kiste aufheben x
+2. Kiste vom Boden auf Tisch stellen x
+3. Kiste oben abstellen x
+4. Kleinigkeiten in eine Kiste packen und dann Kiste aufheben
+5. Kiste von einem Tisch aufheben mit gewisser Distanz zum Tisch x
+6. Kleinen Tisch anheben, aber man darf nur die mittlere Stange beruehren x
+7. Kasse generell
+8. Kasse, jemand ruft einen von hinten
+9. Kiste auf ein Tisch hinter der Person abstellen
+10. Nach etwas greifen was hinter einem Tisch ist
+

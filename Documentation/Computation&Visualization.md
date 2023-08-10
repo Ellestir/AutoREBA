@@ -38,7 +38,7 @@ Figure 4:
   Figure 4: Reba-Controller
 </p>
 
-If you want to log the limb scores and the corresponding table scores into a csv-file you need to tick the "Log Scores CSV" box. Further  
+If you want to log the limb scores and the corresponding table scores into a csv-file you need to tick the "Log Scores CSV" box. Furthermore there are the options to print the angles and/or scores into the console. The "threshold" variable is used to determin at which angle a limb is considered twisted, sided or bend. The "Window Size" determines how large the rolling window is supposed to be, i.e. how many frames are onsidered in the averiging of the score.
 Beitragende:
 
     Frederik Wiemer

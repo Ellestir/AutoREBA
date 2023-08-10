@@ -5,14 +5,92 @@ In order to assess the individual body parts and their respective scores we used
 This included explanations, pictures and the tables used to determine the scores that make up the final REBA score. 
 <p align="center">
   <br>
-  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <img src="./Images/Ground_Truth/REBA_Overview.png" alt="REBA_Overview.png" width="1000" />
   <br>
-  Figure 1: REBA Bild
+  Figure 1: REBA Overview, Source: https://ergo-plus.com/reba-assessment-tool-guide/
 </p>
 
 As the website outlines, we took multiple pictures and videos to assess the posture accurately. 
 Firstly we took videos from two different angles from which we took screenshots and noted down their timestamps within the video. 
 Additionally we used Motive, a motion capture program with which we could track the target's movement precisely and from multiple angles at once. To achieve this the person to be measured needed to wear a full body suit with reflective knobs that the setup cameras around the room could recognise. The accurate position of the knobs on the person was of great importance due to the program needing this precision to better follow the person's movement. 
+
+## The REBA Score
+
+The Rapid Entire Body Assessment (REBA) was developed to “rapidly” evaluate risk of musculoskeletal disorders (MSD) associated with certain job tasks. 
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/MSD_Risk.png" alt="MSD_Risk.png" width="700" />
+  <br>
+  Figure 2: MSD Risk, Source: https://ergo-plus.com/reba-assessment-tool-guide/
+</p>
+
+It consists of a scoring system from 1-15 and splits these into 5 subgroups as seen in the image above with 1 being negligible risk and 11+ being very high risk, implement change. 
+
+In order to calculate the score one must have a video or a picture of a person, ideally one that is doing a task or job. Following this one will look at six different body parts to evaluate; Neck, trunk, legs, upper arm, lower arm and the wrists. 
+For each body part there are a number of different evaluations to do to determine its subscore. For example, the trunk varies in score from 1 - 5, The angle of the upper body in comparison to the upright position can be a score from 1-4, +1 for a perfect straight trunk, and +4 for a trunk bending forward 60 degrees or more. Additionally 1 is added if the upper body is twisted or side bending, leading to a possible maximum subscore of 5.
+
+After all 6 body parts have been assessed, it is also necessary to note down the “force load”, if a good grip was found via the “coupling score” and which activity the person in question had potentially been doing for the past minute or more for the “activity score”.
+The Force Load is implemented if the person was holding something of a certain weight, 0-10 lbs is a score of +0, 11-22 lbs is +1 and 23+ is +2. And additionally +1 if there is shock or a rapid buildup of force
+Coupling defines the hand hold or grip the person has on the item they are holding, ranging from good over fair to poor. 
+The Activity Score will need more knowledge on the person's movement over time than a screenshot offers. It adds score if one or more body parts were held for longer than one minute, if there were repeated actions or there was a large range change in posture. 
+
+To calculate the final Score using the subscores Table A, Table B and Table C will be necessary. 
+
+From Table A one can get a score from 1 - 9. Onto this one adds the Force Load Score of max 3, leading to Score A having the range of 1-12.
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/TableA.png" alt="TableA.png" width="500" />
+  <br>
+  Figure 3: Table A
+</p>
+From Table B one can get a score from 1-9 also. Onto this one adds the Coupling Score of max 3, leading to Score B having the range of 1-12. 
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/TableB.png" alt="TableB.png" width="500" />
+  <br>
+  Figure 4: Table B
+</p>
+Score A and Score B is used in Table C to determine Score C, which ranges from 1-12.
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/TableC.png" alt="TableC.png" width="500" />
+  <br>
+  Figure 5: Table C
+</p>
+
+Onto Score C one must add the Activity Score which ranges from 1-3 to end up at the final REBA Score. 
+
+## Motive
+Motive is an optical motion capture program, capable of connecting to cameras which detect certain reflective sensors that form shapes and bodies. We used Motive to record our movements and evaluate them later using REBA. To achieve this we first had to place reflective markers on the person to be recorded. 
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <br>
+  Figure 1: Skeleton Body Front
+</p>
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <br>
+  Figure 1: Skeleton Body Back
+</p>
+
+49 markers are required to be able to detect and record a person properly without issue. The white markers indicate which knobs need to be exact on the respective muscle/bone. The purple markers indicate which knobs can vary in position due to the person's height or other physical traits. After successfully attaching them the knobs are to be marked and can then be set as a Skeleton body.
+
+<p align="center">
+  <br>
+  <img src="./Images/Ground_Truth/leeresImage.png" alt="leeresImage.png" width="500" />
+  <br>
+  Figure 1: Motive Body with box and table
+</p>
+
+Also visible here are other objects we imported such as a table and a box. This follows the same procedure as before with attaching markers and then importing them into Motive, this time using the Rigid Body type.
 
 ### Word explanations:
 

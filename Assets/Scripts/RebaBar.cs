@@ -10,16 +10,26 @@ public class RebaBar : MonoBehaviour
     public Gradient gradientDescending;
     public Image fill;
     public Image border;
+
+    // Add bool variable to determine which gradient to use
+    [HideInInspector] public bool useAscendingGradient = true;
+
     public void SetMaxReba(int reba)
     {
         slider.minValue = 1;
         slider.maxValue = reba;
         slider.value = 1;
-        fill.color = gradientAscending.Evaluate(0f);
+
+        // Modify this to evaluate the color based on the chosen gradient
+        fill.color = useAscendingGradient ? gradientAscending.Evaluate(0f) : gradientDescending.Evaluate(0f);
     }
+
     public void SetRebaBar(int reba)
     {
         slider.value = reba;
-        fill.color = gradientAscending.Evaluate(1f - slider.normalizedValue);
+
+        // Modify this to evaluate the color based on the chosen gradient
+        float evalValue = 1f - slider.normalizedValue;
+        fill.color = useAscendingGradient ? gradientAscending.Evaluate(evalValue) : gradientDescending.Evaluate(evalValue);
     }
 }

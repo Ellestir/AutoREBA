@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: a28aec3ea507c3742a34ee4a5e97cd58
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Painting_1_1
+    100002: Painting_1_2
+    100004: Painting_1_3
+    100006: Painting_1_4
+    100008: Painting_1_5
+    100010: //RootNode
+    400000: Painting_1_1
+    400002: Painting_1_2
+    400004: Painting_1_3
+    400006: Painting_1_4
+    400008: Painting_1_5
+    400010: //RootNode
+    2300000: Painting_1_1
+    2300002: Painting_1_2
+    2300004: Painting_1_3
+    2300006: Painting_1_4
+    2300008: Painting_1_5
+    3300000: Painting_1_1
+    3300002: Painting_1_2
+    3300004: Painting_1_3
+    3300006: Painting_1_4
+    3300008: Painting_1_5
+    4300000: Painting_1_5
+    4300002: Painting_1_4
+    4300004: Painting_1_3
+    4300006: Painting_1_2
+    4300008: Painting_1_1
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Painting_1_1
+    second: {fileID: 2100000, guid: 6cdaa542913723242880e4b57926f3eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Painting_1_2
+    second: {fileID: 2100000, guid: 4dcadd82078df8b47911a724465d21c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Painting_1_3
+    second: {fileID: 2100000, guid: b5c82d2234eb35c43833b3160b0cbf96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Painting_1_4
+    second: {fileID: 2100000, guid: cd572272075a1104e8dd49d405f01ecf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Painting_1_5
+    second: {fileID: 2100000, guid: b660952c04b317a42af2b89cb88f7da3, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

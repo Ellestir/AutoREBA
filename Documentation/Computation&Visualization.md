@@ -37,6 +37,8 @@ Figure 4:
   <br>
   Figure 4: Reba-Controller
 </p>
+
+If you want to log the limb scores and the corresponding table scores into a csv-file you need to tick the "Log Scores CSV" box. Further  
 Beitragende:
 
     Frederik Wiemer

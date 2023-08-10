@@ -170,18 +170,45 @@ The feedback system "Vibration" in our project is divided into two separate scri
 
 Both scripts must be attached to a “GameObject” in Unity before they can be used. They each offer three selectable options, which are described below:
 1.	Motor slider: this allows you to specify whether one or two vibration motors should be used.
-2.	Steps Slider: This option allows the user to decide whether the vibration should follow Reba values between 1 and 15 or alternatively be divided into five fixed values, depending on the danger level.  
- 
+2.	Steps Slider: This option allows the user to decide whether the vibration should follow Reba values between 1 and 15 or alternatively be divided into five fixed values, depending on the danger level.
+
+ <p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Level_of_MSD_Risk.png" alt="Level_of_MSD_Risk.png" width="600" />
+  <br>
+  Figure 7: RebaScore and Level of MSD Risk
+</p>
 
 3.	Intensity Slider: The user can choose between three intensity levels (Low, Medium, High) to adjust the vibration intensity.
- 
+
+ <p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Vibration.png" alt="Vibration.png" width="600" />
+  <br>
+  Figure 8: Vibration-Skript on Unity
+</p>
+
  
 In both scripts, the IP address of the Arduino and the port number are first set in the code to enable communication with the device.
 - Script Vibration: This script reads the Reba Score from the script "REBA_Score" and sends the command "Start Vibration" to the Arduino every second, the strength varying depending on the mapping. This creates a continuous vibration that can change every second. The timing and vibration duration can be adjusted in Unity and in the Arduino code (delay(970)) to allow faster or slower changes. 
 - Script Vib_Calibration: With this script, the Reba Score can be set and tested directly in Unity Inspector to find the appropriate mapping. Depending on the mapping, the selected strengths are sent to the Arduino with the command "Start Calibration" as soon as you click on the button "Test Vibration" in the Inspector. The vibration lasts for 2 seconds.
- 
+
+ <p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Kalibrierung.png" alt="Kalibrierung.png" width="600" />
+  <br>
+  Figure 9: Calibration-Skript on Unity
+</p>
+
 ### Router
 We used the router "ASUS GT-AXE11000" for our project. It is advisable to set the IP addresses of the Arduinos in the router settings as they are specified in the Unity scripts.
+
+ <p align="center">
+  <br>
+  <img src="./Images/Multimodal_Feedback/Router.png" alt="Router.png" width="600" />
+  <br>
+  Figure 10: Example of setting IP addresses static on "ASUS GT-AXE11000"
+</p>
 
 ## Auditory Feedback
 ### Overview

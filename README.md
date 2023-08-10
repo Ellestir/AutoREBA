@@ -12,13 +12,21 @@ The project involves approximately 13 students working collaboratively to answer
 
 ## Requirements:
 
-To execute the project, the following components are required:
-- Unity (Version 2021.3.26f1)
-- Additional dependencies are specified in the respective directory of the component.
+## Requirements:
+To run the project, the following components are required:
+Unity (Version 2021.3.26f1) 
+VR Device and software
+Optitrack
+Further dependencies are specified in the respective directory of the component.
 
-## Installation and Usage:
-1. Clone the repository to your local computer: `git clone https://github.com/"DeinBenutzername"/AutoREBA`
-2. Open the Unity project and navigate to the relevant scene. Start the scene, adjust the limb positions, and observe how the score changes in the output.
+## Installation and Use:
+Set up your virtual reality device
+Clone the repository to your local computer: 
+Go to the desired folders location
+Open the command line and type:
+git clone https://github.com/Ellestir/AutoREBA
+Open the project in Unity 
+
 
 ## Contributors:
 - [Patricia Maria Bombik](http://github.com/PatPatDango)

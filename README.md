@@ -14,17 +14,26 @@ The project involves approximately 13 students working collaboratively to answer
 
 ## Requirements:
 To run the project, the following components are required:
+
 Unity (Version 2021.3.26f1) 
+
 VR Device and software
+
 Optitrack
+
 Further dependencies are specified in the respective directory of the component.
 
 ## Installation and Use:
 Set up your virtual reality device
+
 Clone the repository to your local computer: 
+
 Go to the desired folders location
+	 
 Open the command line and type:
+	 
 git clone https://github.com/Ellestir/AutoREBA
+	 
 Open the project in Unity 
 
 

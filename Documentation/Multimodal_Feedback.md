@@ -1,4 +1,4 @@
-<img width="336" alt="Clippy" src="https://github.com/Ellestir/AutoREBA/assets/76398216/fbab64e3-d124-40c0-8f8f-23d8784e39e4"># AutoREBA - Multimodal Feedback Module
+# AutoREBA - Multimodal Feedback Module
 
 ## Overview:
 The AutoREBA project signifies a significant advancement in the realm of human-computer interaction, 
@@ -215,7 +215,7 @@ The vibration feedback box includes an Arduino which connects to the device via 
 
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo.png" alt="viFeBo.png" width="500" />
+  <img src="./Images/Multimodal_Feedback/viFeBo.png" alt="viFeBo.png" width="450" />
   <br>
   Figure 11: Vibration Feedback Box ( „purrBox“)
 </p>
@@ -225,34 +225,34 @@ The box measures 9.1 x 5.5cm and consists of three 3D printed parts.  The lower 
 
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_Battery.png" alt="viFeBo_Battery.png" width="400" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_Battery.png" alt="viFeBo_Battery.png" width="300" />
   <br>
   Figure 12: Battery compartement („purrBox“)
 </p>
 Over the soft surface, the second part of the 3D printing is used, which is a small surface to maintain a wall between the Arduino and the battery to protect the battery.  The surface is put on the small posts of the lower housing, so that it cannot slip.  For the surface itself, a more elastic softer plastic is recommended.
  <p align="right">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_plate.png" alt="viFeBo_plate.png" width="400" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_plate.png" alt="viFeBo_plate.png" width="300" />
   <br>
   Figure 13: Seperation plate („purrBox“)
 </p>
 As the last component of the inside of the box, the Arduino is also placed on the posts to keep it from slipping.
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_arduino.png" alt="viFeBo_arduino.png" width="400" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_arduino.png" alt="viFeBo_arduino.png" width="300" />
   <br>
   Figure 14: Arduino („purrBox“)
 </p>
 The cover is the last part of the housing which is put on the bottom side.  Please note that the top side is plugged right around Sodas both outputs match to the bottom side (see picture).
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_cover1.png" alt="viFeBo_cover1.png" width="400" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_cover1.png" alt="viFeBo_cover1.png" width="300" />
   <br>
   Figure 15: Cover of the Case above („purrBox“)
 </p>
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_cover2.png" alt="viFeBo_cover2.png" width="400" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_cover2.png" alt="viFeBo_cover2.png" width="300" />
   <br>
   Figure 16: Cover of the Case below („purrBox“)
 </p>
@@ -263,7 +263,7 @@ The vibration tool ensures that the motors are close to each other and can be at
 </p>
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_vibration.png" alt="viFeBo_vibration.png" width="400" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_vibration.png" alt="viFeBo_vibration.png" width="300" />
   <br>
   Figure 17: Vibration device („purrBox“)
 </p>
@@ -279,7 +279,7 @@ The Arduino has been soldered together so that it is removable again, as well as
 </p>
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/viFeBo_soldering.png" alt="viFeBo_soldering.png" width="700" />
+  <img src="./Images/Multimodal_Feedback/viFeBo_soldering.png" alt="viFeBo_soldering.png" width="800" />
   <br>
   Figure 18: Soldering Arduino plan („purrBox“)
 </p>

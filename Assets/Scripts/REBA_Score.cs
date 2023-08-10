@@ -617,15 +617,15 @@ public class REBA_Score : MonoBehaviour
 
     public int AverageScore(int currentREBAScore)
 {
-    bool isPeak = true;
+    bool isPeak = false;
     float temp = 0;
     
     // Check if currentREBAScore is a peak
     foreach (int value in lastValues)
     {
-        if (currentREBAScore <= value + delta)
+        if (currentREBAScore >= value + delta)
         {
-            isPeak = false;
+            isPeak = true;
             break;
         }
     }

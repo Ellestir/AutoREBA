@@ -44,7 +44,7 @@ The process of Router Configuration and IP Address Assignment included:
   <br> 
   Figure 4: Activating 6 GHz
 </p>
-2. Assigning static IP addresses to ensure an organized network structure.
+2. Assigning static IP addresses to various devices, including the Arduino, the PC running OptiTrack, the VR headset, etc.
 <p align="center">
   <br> 
   <img src="./Images/Multi_Device_Communication/IMG_14.jpg" alt="IMG_14.jpg" width="500" />

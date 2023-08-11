@@ -1,4 +1,3 @@
-Copy code
 # Multi Device Communication
 
 ## Communication Setup
@@ -18,11 +17,41 @@ Our efforts to achieve seamless multi-device communication included a pivotal ph
 
 The process of Router Configuration and IP Address Assignment included:
 
-1. Configuring the router to facilitate smooth communication among project devices.
-2. Assigning distinct IP addresses to ensure an organized network structure.
+1. Configuring the router to facilitate smooth communication among project devices.   
+   a. Our first approach was to use Air Link and a 6 Ghz Router. All the communication was held via the Router.
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_10.jpg" alt="IMG_10.jpg" width="500" />
+  <br>
+  Figure 1: Setting up the Router
+</p>
+      b. After finishing the setup of the router we were able to configure a few things.
+<p align="center">
+  <br>
+  <img src="./Images/Multi_Device_Communication/IMG_11.jpg" alt="IMG_11.jpg" width="500" />
+  <br> 
+  Figure 2: Activating 2.4 GHz
+</p>
+<p align="center">
+  <br> 
+  <img src="./Images/Multi_Device_Communication/IMG_12.jpg" alt="IMG_12.jpg" width="500" />
+  <br> 
+  Figure 3: Activating 5 GHz
+</p>
+<p align="center">
+  <br> 
+  <img src="./Images/Multi_Device_Communication/IMG_13.jpg" alt="IMG_13.jpg" width="500" />
+  <br> 
+  Figure 4: Activating 6 GHz
+</p>
+2. Assigning static IP addresses to ensure an organized network structure.
+<p align="center">
+  <br> 
+  <img src="./Images/Multi_Device_Communication/IMG_14.jpg" alt="IMG_14.jpg" width="500" />
+  <br> 
+  Figure 5: Assigning static IP addresses
+</p>
 3. Verifying connectivity and data flow to ensure efficient communication.
-
-These endeavors laid the foundation for a robust communication infrastructure, allowing devices to interact harmoniously and exchange data seamlessly.
 
 ## Passthrough Configuration
 
@@ -32,40 +61,40 @@ Enabling Passthrough involved steps within Unity:
 
 1. Select "OVRCameraRig" in the "Hierarchy" tab.
 2. In the "Inspector" tab, follow these stages:
-   - a. Choose "Stage" as the "Tracking Origin Type" under the "Tracking" section.
+   a. Choose "Stage" as the "Tracking Origin Type" under the "Tracking" section.
 <p align="center">
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_1.jpg" alt="IMG_1.jpg" width="400" />
   <br>
-  Figure 1: Set Tracking Origin Type to "Stage"
+  Figure 6: Set Tracking Origin Type to "Stage"
 </p>
-   - b. In the "Quest Features" section, navigate to the "General" tab. Select "Supported" from the "Passthrough Support" list.
+   b. In the "Quest Features" section, navigate to the "General" tab. Select "Supported" from the "Passthrough Support" list.
 <p align="center">
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_2.jpg" alt="IMG_2.jpg" width="350" />
   <br>
-  Figure 2: Set Passthrough Support to "Support"
+  Figure 7: Set Passthrough Support to "Support"
 </p>
-   - c. Enable "Enable Passthrough" under "Insight Passthrough" for app startup.
+   c. Enable "Enable Passthrough" under "Insight Passthrough" for app startup.
 <p align="center">
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_3.jpg" alt="IMG_3.jpg" width="350" />
   <br>
-  Figure 3: Enable "Enable Passthrough"
+  Figure 8: Enable "Enable Passthrough"
 </p>
-   - d. Integrate the "OVRPassthroughLayer" script by adding the component and selecting the script.
+   d. Integrate the "OVRPassthroughLayer" script by adding the component and selecting the script.
 <p align="center">
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_4.jpg" alt="IMG_4.jpg" width="350" />
   <br>
-  Figure 4: Integrate the "OVRPassthroughLayer" script
+  Figure 9: Integrate the "OVRPassthroughLayer" script
 </p>
-   - e. Fine-tune "OVRPassthroughLayer" settings, setting "Placement" to "Underlay" for background passthrough.
+   e. Fine-tune "OVRPassthroughLayer" settings, setting "Placement" to "Underlay" for background passthrough.
 <p align="center">
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_5.jpg" alt="IMG_5.jpg" width="400" />
   <br>
-  Figure 5: Set "Placement" to "Underlay"
+  Figure 10: Set "Placement" to "Underlay"
 </p>
 
 4. Access the menu, go to "Window," then select "Rendering," and finally "Lighting".
@@ -73,29 +102,29 @@ Enabling Passthrough involved steps within Unity:
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_6.jpg" alt="IMG_6.jpg" width="500" />
   <br>
-  Figure 6: Set Navigate to "Lighting"
+  Figure 11: Set Navigate to "Lighting"
 </p>
 5. On the "Environment" tab, locate "Skybox Material" and select "None". 
 <p align="center">
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_7.jpg" alt="IMG_7.jpg" width="500" />
   <br>
-  Figure 7: Select "None" for "Skybox Material"
+  Figure 12: Select "None" for "Skybox Material"
 </p>
 6. Expand "OVRCameraRig > TrackingSpace > CenterEyeAnchor" in the "Hierarchy" tab. In the "Inspector" tab:
-   - a. Choose "Solid Color" from the "Clear Flags" list.
+   a. Choose "Solid Color" from the "Clear Flags" list.
 <p align="center">
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_8.jpg" alt="IMG_8.jpg" width="350" />
   <br>
-  Figure 8: Set "Clear Flags" to "Solid Color"
+  Figure 13: Set "Clear Flags" to "Solid Color"
 </p>
-   - b. Adjust the "Background color" to black and set the alpha value to 0 (or (R,G,B,A) values to (0, 0, 0, 0)).
+   b. Adjust the "Background color" to black and set the alpha value to 0 (or (R,G,B,A) values to (0, 0, 0, 0)).
 <p align="center">
   <br>
   <img src="./Images/Multi_Device_Communication/IMG_9.jpg" alt="IMG_9.jpg" width="350" />
   <br>
-  Figure 9: Adjust the "Background color"
+  Figure 14: Adjust the "Background color"
 </p>
 This setup empowers you to utilize passthrough while overlaying virtual 3D objects onto the physical world.
 

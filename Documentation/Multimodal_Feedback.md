@@ -174,7 +174,7 @@ Both scripts must be attached to a “GameObject” in Unity before they can be 
 
  <p align="center">
   <br>
-  <img src="./Images/Multimodal_Feedback/Level_of_MSD_Risk.png" alt="Level_of_MSD_Risk.png" width="600" />
+  <img src="./Images/Multimodal_Feedback/REBA_level.png" alt="REBA_level.png" width="400" />
   <br>
   Figure 7: [RebaScore and Level of MSD Risk](https://ergo-plus.com/reba-assessment-tool-guide/) 
 </p>

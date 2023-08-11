@@ -41,6 +41,34 @@ Figure 4:
 
 If you want to log the limb scores and the corresponding table scores into a csv-file you need to tick the "Log Scores CSV" box. The CSV Log File is saved in %PojectFile%/Logs/AutoREBALogFile.csv. Furthermore there are the options to print the angles and/or scores into the console. The "threshold" variable is used to determin at which angle a limb is considered twisted, sided or bend. The "Window Size" determines how large the rolling window is supposed to be, i.e. how many frames are onsidered in the averiging of the score.
 
+## Addressing the Challenges:
+
+As we delved into the project, we encountered a multitude of challenges, each requiring innovative solutions and adaptability. These challenges provided valuable insights and paved the way for refining our methodologies. In the following section, we will outline the primary challenges we faced and the solutions we implemented to overcome them.
+
+### Challenge 1:
+One of our initial challenges was the general calculation of angles. Our first strategy employed local rotations for all body parts. Ultimately, we integrated quaternions for a more refined approach.
+
+### Challenge 2:
+Determining whether a part is side-bent or twisted posed its own set of challenges. We initially used a single bone for reference. However, after some iterations, we averaged the euler angles of multiple bones. The final solution incorporated the Quaternion.Slerp() function to average rotations. The REBA-PDF lacked clear guidelines on this, so we added a customizable threshold variable to address this ambiguity.
+
+### Challenge 3:
+Another complication arose when determining side-bends and twists simultaneously. The solution we implemented resets the score if it goes out of a defined range.
+
+### Challenge 4:
+The positioning and movement of arms in mixed reality simulations brought up distinct challenges. Specifically, there was a lack of concrete guidelines for defining arm abduction. To address this, we used the 'spine4' as a reference point and calculated the angle between the upper arm and 'spine4'. Introducing a threshold allowed us to more accurately determine arm abduction. Another problem we faced was the inversion of y & x coordinates for the left and right arms. To rectify this, we employed both 0° and 360° as starting points for angle calculations.
+
+### Challenge 5:
+We sought to account for the position of raised shoulders using local positions. However, we observed that these positions did not register significant changes. Due to time constraints, a definitive solution could not be found. Additionally, there was an issue with the wrist scoring as the mapping led to high deviation. We introduced a threshold for determining when a wrist was twisted or side-bended to improve accuracy.
+
+### Challenge 6:
+Defining actions like walking and sitting in mixed reality environments posed more challenges. For walking, we resolved the issue by adding colliders to the feet and ground. However, we ran into another problem with the avatar appearing to float, caused by a mismatch between 'motive' and 'unity' mappings. Adjusting the ground level in Unity addressed this. When it came to defining a seated posture, the current scoring was not satisfactory due to the angle of the legs and, once again, a lack of clear guidelines in the REBA-PDF.
+
+### Challenge 7:
+User feedback indicated that there was an overloading of biofeedback, which could confuse users or potentially overload the Arduino. We recognized the necessity of filtering the feedback for better user comprehension. Our solution was to implement a rolling window combined with an exponential moving average, allowing for smoother and more understandable feedback to the user.
+
+### Challenge 8:
+The averaging of the REBA score sometimes resulted in missing out on extreme values. Our solution was the application of a peak detection algorithm using the first derivative test. Detected peaks are then multiplied by a constant, termed "peak sensitivity," to adjust the sensitivity of the detection.
+
 ## Contributors:
 
 - [Jonas Scheffner](https://github.com/jonasscheffner)
